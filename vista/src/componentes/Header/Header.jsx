@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import "./styles.css";
 
 const Header = () => {
@@ -22,19 +21,13 @@ const Header = () => {
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <Link to="/adjudicados" className="nav-link" style={linkStyle}>
-                Beneficiarios
-              </Link>
+            
             </li>
             <li className="nav-item">
-              <Link to="/beneficio" className="nav-link" style={linkStyle}>
-                Creación de Beneficio
-              </Link>
+             
             </li>
             <li className="nav-item">
-              <Link to="/tallermensual" className="nav-link" style={linkStyle}>
-                Creación de Taller
-              </Link>
+          
             </li>
             <li className="nav-item dropdown">
               <a
@@ -49,24 +42,16 @@ const Header = () => {
               </a>
               <ul className="dropdown-menu">
                 <li>
-                  <Link to="/tablalectiva" className="dropdown-item">
-                    A punto de cumplir etapa lectiva
-                  </Link>
+                
                 </li>
                 <li>
-                  <Link to="/culminaformacion" className="dropdown-item">
-                    A punto de culminar formación
-                  </Link>
+                
                 </li>
                 <li>
-                  <Link to="/asistencia" className="dropdown-item">
-                    Asistencia taller
-                  </Link>
+                
                 </li>
                 <li>
-                  <Link to="/formatoseguimiento" className="dropdown-item">
-                    Novedades Formato de seguimiento
-                  </Link>
+                 
                 </li>
               </ul>
             </li>
@@ -83,9 +68,7 @@ const Header = () => {
               </a>
               <ul className="dropdown-menu">
                 <li>
-                  <Link to="/datosusuario" className="dropdown-item">
-                    Gestionar datos
-                  </Link>
+              
                 </li>
                 <li  style={{colorg:"#0000"}}>
                   <a className="dropdown-item" href="/">
