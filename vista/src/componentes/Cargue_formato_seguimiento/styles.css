@@ -1,0 +1,16 @@
+.contenedor_componentes{
+    display: flex;
+    align-items: center;
+}
+.contenedor_hijo{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+@media (max-width: 600px) {
+   .contenedor_componentes{
+    display: flex;
+    flex-direction: column;
+   }
+    }

@@ -1,0 +1,15 @@
+.boton {
+    border-radius: 10px;
+    transition: transform 0.3s;
+  }
+  
+  .boton:hover {
+    transform: scale(1.05); /* Escala el botón para que parezca acercarse */
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .boton:active {
+    transform: scale(0.9); /* Devuelve el botón a su tamaño original al hacer clic */
+    box-shadow: none; /* Elimina la sombra al hacer clic */
+  }
+  
