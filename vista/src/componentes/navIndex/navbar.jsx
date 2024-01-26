@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import "./styles.css";
 
@@ -17,23 +16,23 @@ const Navegacion = () => {
 
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ml-auto">
-              <Link to="/" className="nav-link" style={{ color: "#000000" }}>
+              <li to="/" className="nav-li" style={{ color: "#000000" }}>
                 Inicio
-              </Link>
-              <Link
+              </li>
+              <li
                 to="/formularioregistro"
-                className="nav-link"
+                className="nav-li"
                 style={{ color: "#000000" }}
               >
                 Asistencia
-              </Link>
-              <Link
+              </li>
+              <li
                 to="/login"
-                className="nav-link"
+                className="nav-li"
                 style={{ color: "#000000" }}
               >
                 Aplicación
-              </Link>
+              </li>
               <NavDropdown title="Más opciones" id="basic-nav-dropdown">
                 <NavDropdown.Item
                   href="https://oferta.senasofiaplus.edu.co/sofia-oferta/inscripcion-apoyo-sostenimiento.html"
