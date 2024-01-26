@@ -1,11 +1,8 @@
-import Navbar from "../navbar/navbar";
-import Footer from "../Footer/Footer";
 import { Carousel } from "react-bootstrap"; // Importa el componente Carousel de Bootstrap
 import "./styles.css";
 const Padre = () => {
   return (
     <>
-      <Navbar />
       <div className="container mt-4 py-5 " style={{ backgroundColor: "#f8f8f8" }}>
         <div className="row">
           <div className="col-md-12 text-center">
@@ -155,7 +152,6 @@ const Padre = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };

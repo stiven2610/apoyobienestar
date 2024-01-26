@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Navbar from "../navbar/navbar";
+import Navbar from "../navIndex/navbar";
 import "./styles.css";
 import Footer from "../Footer/Footer";
 const FormRegistroAsistenciaTaller = () => {
