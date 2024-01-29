@@ -1,7 +1,5 @@
 import { useState } from "react";
-import Navbar from "../navIndex/navbar";
 import "./styles.css";
-import Footer from "../Footer/Footer";
 const FormRegistroAsistenciaTaller = () => {
   // Definir estados para los datos del formulario
   const [user, setUser] = useState({
@@ -112,7 +110,6 @@ const FormRegistroAsistenciaTaller = () => {
 
   return (
     <>
-      <Navbar />
       <div className="container-fluid d-flex flex-column justify-content-center align-items-center"style={{ minHeight: "70vh" }}>
           <div className="col-md-5" id="form-container">
             <div className="container_form bg-light p-4 rounded text-center">
@@ -202,7 +199,6 @@ const FormRegistroAsistenciaTaller = () => {
             </div>
           </div>
         </div>
-      <Footer/>
     </>
   );
 };

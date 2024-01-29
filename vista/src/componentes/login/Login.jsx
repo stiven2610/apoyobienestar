@@ -1,11 +1,7 @@
-import "./styles.css";
 import { useState } from "react";
-import Navbar from "../navbar/navbar";
-import Footer from "../Footer/Footer";
-import { useNavigate } from "react-router-dom";
+import "./styles.css";
 
 const Login = () => {
-  const navigate = useNavigate();
 
   const [user, setUser] = useState({
     codigo_usuario: "",
@@ -66,9 +62,6 @@ const Login = () => {
       if (res.ok) {
  
 
-        // La respuesta del servidor es exitosa (código de estado HTTP 200)
-        // Puedes realizar alguna acción adicional, como redirigir al usuario
-        navigate("/adjudicados");
       } else {
         const errorData = await res.json(); // Lee el mensaje de error del servidor
         if (errorData.field === "contrasenha_usuario") {
@@ -90,7 +83,6 @@ const Login = () => {
 
   return (
     <>
-      <Navbar />
       <div className="container-fluid d-flex flex-column justify-content-center align-items-center" style={{ minHeight: "70vh" }}>
         <div id="form-container" className="bg-light p-4 shadow col-md-4 text-center">
           <form onSubmit={handleSubmit} method="POST">
@@ -140,15 +132,10 @@ const Login = () => {
                 Iniciar Sesión
               </button>
             </div>
-            <div className="text-center">
-              <button type="button" className="btn">
-                ¿Olvidaste tu Contraseña?
-              </button>
-            </div>
+          
           </form>
         </div>
       </div>
-      <Footer />
     </>
   );
 };
