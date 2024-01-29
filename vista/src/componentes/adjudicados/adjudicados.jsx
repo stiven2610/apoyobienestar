@@ -1,8 +1,8 @@
-import "./styles.css";
-import { useEffect, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import "./styles.css";
 const Tabla_adjudicados = () => {
   const [datos, setDatos] = useState([]);
   const [cargando, setCargando] = useState(true);
@@ -29,6 +29,7 @@ const Tabla_adjudicados = () => {
 
   return (
     <div className="container_body">
+      <h4>tabla de gestion de Aprendices adjudicados</h4>
       <div className="table-container">
         <div className="table-responsive">
           <table className="table table-bordered table-striped">

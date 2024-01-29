@@ -1,8 +1,7 @@
 import { useState } from "react";
 import "./styles.css";
-import { useNavigate } from "react-router-dom";
+
 const FormularioCreaBeneficio = () => {
-  const navigate = useNavigate();
   const [beneficio, setBeneficio] = useState({
     codigo_beneficio: "",
     cupos_beneficio: "",
@@ -17,7 +16,6 @@ const FormularioCreaBeneficio = () => {
     fecha_fin_beneficio: "",
     archivo_excel: "",
   });
-
   const [successMessage] = useState("");
 
   const handleSubmit = async (e) => {
@@ -32,11 +30,8 @@ const FormularioCreaBeneficio = () => {
         body: JSON.stringify(beneficio),
       });
 
-      if (res.ok) {
-        navigate("/adjudicados");
-      } else {
+      if (!res.ok) {
         const errorData = await res.json();
-
         const fieldWithError = errorData.field;
         setErrors({
           ...errors,
@@ -51,7 +46,6 @@ const FormularioCreaBeneficio = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    // Verificar si se ha seleccionado un archivo
     if (e.target.files && e.target.files.length > 0) {
       const selectedFile = e.target.files[0];
       setBeneficio({
@@ -60,7 +54,6 @@ const FormularioCreaBeneficio = () => {
       });
     }
 
-    // Actualizar otros campos del formulario
     setBeneficio({ ...beneficio, [name]: value });
     setErrors({ ...errors, [name]: "" });
   };
@@ -143,7 +136,7 @@ const FormularioCreaBeneficio = () => {
                   </span>
                 )}
               </div>
-              <div className="form-group text-center"style={{ color: "#39A900" }}>
+              <div className="form-group text-center" style={{ color: "#39A900" }}>
                 <label
                   htmlFor="fecha_fin_beneficio"
                   className="form_label mb-3"
@@ -191,7 +184,7 @@ const FormularioCreaBeneficio = () => {
                   </span>
                 )}
               </div>
-              <button className="btn boton_crear m-2 btn-success"style={{ background: "#39A900" }} type="submit">
+              <button className="btn boton_crear m-2 btn-success" style={{ background: "#39A900" }} type="submit">
                 CREAR
               </button>
               {successMessage && (
