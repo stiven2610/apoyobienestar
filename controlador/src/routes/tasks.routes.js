@@ -13,6 +13,7 @@ const { formularioRegistroAsistencia } = require("../controllers/asistencia.cont
 const {obtenerAdjudicados}  = require("../controllers/adjudicados.controller");
 const {creacionTaller} = require("../controllers/creacion.taller")
 const {asistencias} = require ("../controllers/asistencias.controller")
+const {pruebaControlador} = require ("../controllers/creacion.aprendiz")
 //rutas para CRUD de usuario...
 router.get("/usuarios", getALlUsuarios);
 
@@ -28,11 +29,16 @@ router.post("/login", validarUsuario);
 //ruta para creacion de beneficio
 router.post("/beneficio", crearBeneficio);
 
+//ruta para creacion de Aprendiz
+router.post("/aprendiz", pruebaControlador);
+
 //ruta para registro de asistencia
 router.post("/asistenciataller",formularioRegistroAsistencia )
 
 router.get("/adjudicados",obtenerAdjudicados)
+
 router.get("/asistencias",asistencias)
 //ruta para registro de asistencia
+
 router.post("/creaciontaller",creacionTaller )
 module.exports = router;

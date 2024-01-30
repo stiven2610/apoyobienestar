@@ -114,7 +114,7 @@ const Index= () => {
                 </div>
               </div>
             </div>
-          </div>{" "}
+          </div>
         </div>
         <div className="row m-3 mt-4 text-center">
           <div className="col-md-12 ">
