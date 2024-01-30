@@ -1,4 +1,4 @@
-import { Navbar, Nav, NavDropdown } from "react-bootstrap";
+import { Navbar, Nav } from "react-bootstrap";
 import "./styles.css";
 
 const Navegacion = () => {
@@ -8,7 +8,7 @@ const Navegacion = () => {
       style={{ background: "#39A900" }}
     >
       <h2 className="text-center " style={{ color: "#000000" }}>
-        APOYO DE SOSTENIMIENTO
+        SIGAAS
       </h2>
       <div className="d-flex align-items-center justify-content-center">
         <Navbar expand="lg">
@@ -16,6 +16,8 @@ const Navegacion = () => {
 
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ml-auto">
+              <div className="container_nav">
+
               <li to="/" className="nav-li" style={{ color: "#000000" }}>
                 Inicio
               </li>
@@ -33,16 +35,36 @@ const Navegacion = () => {
               >
                 Aplicación
               </li>
-              <NavDropdown title="Más opciones" id="basic-nav-dropdown">
-                <NavDropdown.Item
-                  href="https://oferta.senasofiaplus.edu.co/sofia-oferta/inscripcion-apoyo-sostenimiento.html"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ color: "#000000" }}
-                >
-                  Realizar inscripción
-                </NavDropdown.Item>
-              </NavDropdown>
+              <li
+                to="/login"
+                className="nav-li"
+                style={{ color: "#000000" }}
+              >
+                Contactanos
+              </li>
+              <li
+                to="/login"
+                className="nav-li"
+                style={{ color: "#000000" }}
+              >
+                Normatividad 
+              </li>
+              <li
+                to="/login"
+                className="nav-li"
+                style={{ color: "#000000" }}
+              >
+               ¿Quienes somos ? 
+              </li>
+              <li
+                to="/login"
+                className="nav-li"
+                style={{ color: "#000000" }}
+              >
+               Objetivos 
+              </li>
+              </div>
+
             </Nav>
           </Navbar.Collapse>
         </Navbar>

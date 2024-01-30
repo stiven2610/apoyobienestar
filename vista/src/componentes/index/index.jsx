@@ -55,7 +55,7 @@ const Index= () => {
                 alt="Persona 2"
                 className="img-fluid"
               />
-              <h5>Sandra mora</h5>
+              <h5>xxxxxxxxxxxxxxxxxxxxx</h5>
               <p>Trabajadora social</p>
             </div>
           </div>
@@ -66,7 +66,7 @@ const Index= () => {
                 alt="Persona 3"
                 className="img-fluid"
               />
-              <h5>Claudia Yunitsa</h5>
+              <h5>xxxxxxxxxxxxxxxxxx</h5>
               <p>Secretaria</p>
             </div>
           </div>
