@@ -82,15 +82,28 @@ CREATE TABLE beneficio
     fecha_update                          TIMESTAMP WITHOUT TIME ZONE,              
     PRIMARY KEY(codigo_beneficio)
 );
+
+CREATE TABLE estado_aprendiz(
+    id_estado_aprendiz  INT NOT NULL,
+    nombre_estado_aprendiz   VARCHAR NOT NULL,
+
+    PRIMARY KEY ( id_estado_aprendiz)
+);
+CREATE TABLE  obligacion_mensual(
+    id_obligacion_mensual   INT NOT NULL,
+    nombre_obligacion_mensual  VARCHAR NOT NULL,
+
+    PRIMARY KEY (id_obligacion_mensual)
+);
 CREATE TABLE aprendiz(
     numero_documento_aprendiz        INT        NOT NULL,
-    obligacion_mensual               BOOLEAN    ,
+    id_obligacion_mensual             INT NOT NULL    ,
     codigo_ficha                     INT  NOT   NULL,
     codigo_beneficio                 INT  NOT    NULL,
+    id_estado_aprendiz               INT NOT NULL;
     tipo_documento                   VARCHAR    NOT NULL,
     nombre_completo_aprendiz         VARCHAR    NOT  NULL,
     fecha_adjudicacion               DATE       NOT NULL,
-    id_modalidad                     INT       ,
     numero_telefono_fijo             VARCHAR(50)      NOT NULL,              
     numero_telefono_movil            VARCHAR(50)      NOT NULL,                
     direccion_residencia_aprendiz    VARCHAR(100)     NOT NULL,              
@@ -101,29 +114,34 @@ CREATE TABLE aprendiz(
     fecha_update                     TIMESTAMP WITHOUT TIME ZONE,         
 
     PRIMARY  KEY  (numero_documento_aprendiz),
-    FOREIGN KEY  (id_modalidad)      REFERENCES modalidad (id_modalidad),
     FOREIGN KEY (codigo_ficha)  REFERENCES  ficha   (codigo_ficha),
-    FOREIGN  KEY (codigo_beneficio)  REFERENCES  beneficio ( codigo_beneficio)
+    FOREIGN  KEY (id_estado_aprendiz)  REFERENCES  estado_aprendiz ( id_estado_aprendiz),
+    FOREIGN KEY (id_obligacion_mensual)  REFERENCES obligacion_mensual (id_obligacion_mensual)
   );
 
+CREATE TABLE motivo_suspension (
+    id_motivo_suspension   INT NOT NULL,
+    nombre_motivo_suspension    VARCHAR NOT NULL,
 
-
+    PRIMARY KEY ( id_motivo_suspension )
+);
 CREATE TABLE  aprendiz_suspendido (
     id_aprendiz_suspendido           INT NOT   NULL,
     numero_documento_aprendiz        INT NOT  NULL,
+    id_motivo_suspension             INT  NOT NULL,
     fecha_inicio_suspension          DATE NOT  NULL,
-    fecha_fin_suspension             DATE NOT  NULL,
     user_insert                      VARCHAR         NOT NULL,                      
     fecha_insert                     TIMESTAMP WITHOUT TIME ZONE NOT NULL,         
     user_update                      VARCHAR,                                        
     fecha_update                     TIMESTAMP WITHOUT TIME ZONE, 
     PRIMARY KEY (id_aprendiz_suspendido),
-    FOREIGN key (numero_documento_aprendiz) REFERENCES aprendiz (numero_documento_aprendiz)
+    FOREIGN key (numero_documento_aprendiz) REFERENCES aprendiz (numero_documento_aprendiz),
+    FOREIGN key (id_motivo_suspension) REFERENCES motivo_suspension (id_motivo_suspension)
  );
   CREATE TABLE formato_seguimiento(
     id_formato                      INT  NOT NULL,
     numero_documento_aprendiz       INT NOT NULL,
-    formato_seguimiento             TEXT NOT NULL,  --campo para guardar el formato de seguimiento en formato word.
+    formato_seguimiento             TEXT NOT NULL, 
     user_insert                     VARCHAR       NOT NULL,                      
     fecha_insert                    TIMESTAMP WITHOUT TIME ZONE NOT NULL,         
     user_update                     VARCHAR,                                        
@@ -135,9 +153,9 @@ CREATE TABLE  aprendiz_suspendido (
  
  CREATE TABLE  taller_mensual (
     codigo_taller               INT NOT NULL,
+    nombre_taller                VARCHAR(50) NOT NULL,
     fecha_taller                DATE NOT NULL,
     contrasenha_taller          VARCHAR(10)  NOT NULL,
-    tema_taller                 VARCHAR(500) NOT NULL,
     user_insert                 VARCHAR       NOT NULL,                      
     fecha_insert                TIMESTAMP WITHOUT TIME ZONE NOT NULL,         
     user_update                 VARCHAR,                                        
@@ -158,26 +176,17 @@ CREATE TABLE  aprendiz_suspendido (
 
     PRIMARY KEY  (codigo_taller,numero_documento_aprendiz)
  );
+CREATE TABLE tipo_novedad (
+    id_tipo_novedad  INT NOT NULL ,
+    nombre_tipo_novedad  VARCHAR NOT NULL,
 
- CREATE TABLE novedad(
-    id_novedad            INT NOT NULL,
-    id_formato            INT NOT NULL,
-    estado_novedad        BOOLEAN,
-    nombre_novedad        VARCHAR(100)  NOT NULL,
-    user_insert           VARCHAR       NOT NULL,                      
-    fecha_insert          TIMESTAMP WITHOUT TIME ZONE NOT NULL,         
-    user_update           VARCHAR,                                        
-    fecha_update          TIMESTAMP WITHOUT TIME ZONE, 
+    PRIMARY KEY ( id_tipo_novedad)
+);
 
-    PRIMARY KEY (id_novedad),
-    FOREIGN KEY (id_formato)  REFERENCES formato_seguimiento (id_formato)
- );
 
  CREATE TABLE alerta(
     id_alerta             INT NOT NULL,
-    id_novedad            INT NOT NULL,
-    motivo_alerta         VARCHAR NOT NULL,
-    cuerpo_alerta         VARCHAR NOT NULL,
+    id_tipo_novedad       INT NOT NULL,
     user_insert           VARCHAR       NOT NULL,                      
     fecha_insert          TIMESTAMP WITHOUT TIME ZONE NOT NULL,         
     user_update           VARCHAR,                                        
@@ -185,14 +194,13 @@ CREATE TABLE  aprendiz_suspendido (
 
 
     PRIMARY KEY (id_alerta),
-    FOREIGN KEY (id_novedad) REFERENCES novedad (id_novedad)
+    FOREIGN KEY (id_tipo_novedad) REFERENCES tipo_novedad (id_tipo_novedad)
  );
 
  CREATE TABLE parametros ( 
     id_parametros             INT      NOT NULL,
     cuerpo_correo             VARCHAR  NOT NULL,
-    valor_benficio            INT      NOT NULL,
-    estado_aprendiz           BOOLEAN,
+    valor_beneficio            INT      NOT NULL,
     user_insert               VARCHAR          NOT NULL,               
     fecha_insert              TIMESTAMP WITHOUT TIME ZONE NOT NULL,    
     user_upda                 VARCHAR,                                  

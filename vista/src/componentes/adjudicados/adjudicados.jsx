@@ -1,21 +1,17 @@
-import { faPen } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import "./styles.css";
+
 const Tabla_adjudicados = () => {
   const [datos, setDatos] = useState([]);
   const [cargando, setCargando] = useState(true);
 
   useEffect(() => {
-    // Realiza una solicitud GET a la API (reemplaza la URL con la URL correcta de tu API)
     fetch("http://localhost:4000/adjudicados")
       .then((response) => response.json())
       .then((data) => {
-        // Verifica si 'data' contiene la propiedad 'data' que contiene el array de datos
         if (data.data && Array.isArray(data.data)) {
-          setDatos(data.data); // Almacena los datos en el estado
-          setCargando(false); // Marca la carga como completa
+          setDatos(data.data);
+          setCargando(false);
         } else {
           console.error("Los datos recibidos no son válidos.");
           setCargando(false);
@@ -23,13 +19,13 @@ const Tabla_adjudicados = () => {
       })
       .catch((error) => {
         console.error("Error en la solicitud:", error);
-        setCargando(false); // Marca la carga como completa incluso en caso de error
+        setCargando(false);
       });
   }, []);
 
   return (
     <div className="container_body">
-      <h4>tabla de gestion de Aprendices adjudicados</h4>
+      <h4>Tabla de gestión de Aprendices adjudicados</h4>
       <div className="table-container">
         <div className="table-responsive">
           <table className="table table-bordered table-striped">
@@ -60,14 +56,7 @@ const Tabla_adjudicados = () => {
                   <tr key={item.numero_documento_aprendiz}>
                     <td>
                       <div className="iconos_gestion h-100 d-flex flex-column align-items-center ">
-                        <Link
-                          to={{
-                            pathname: "/gestiondatosaprendiz",
-                            state: { registro: item }, // Pasar el registro como estado
-                          }}
-                        >
-                          <FontAwesomeIcon icon={faPen} className="mt-3 mb-3" />
-                        </Link>
+                        {/* Enlace a="/gestiondatosaprendiz" y estado con el registro */}
                       </div>
                     </td>
                     <td>{item.nombre_completo_aprendiz}</td>

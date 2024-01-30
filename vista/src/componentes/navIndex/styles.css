@@ -9,7 +9,15 @@
   }
   
   .boton:active {
-    transform: scale(0.9); /* Devuelve el botón a su tamaño original al hacer clic */
-    box-shadow: none; /* Elimina la sombra al hacer clic */
+    transform: scale(0.9); 
+    box-shadow: none;
   }
   
+.container_nav{
+  display: flex;
+}
+  .nav-li{
+  cursor: pointer;
+
+    padding: 1rem;
+  }
