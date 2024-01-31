@@ -31,7 +31,7 @@ const AprendicesSuspendidos = () => {
           <table className="table table-bordered table-striped">
             <thead>
               <tr>
-                <th>GESTIONAR</th>
+                <th>ACTUALIZAR</th>
                 <th>Nombre Completo del Aprendiz</th>
                 <th>Tipo de Documento</th>
                 <th>Número de Documento</th>
@@ -40,6 +40,7 @@ const AprendicesSuspendidos = () => {
                 <th>fecha fin de suspensión</th>
                 <th>Teléfono Móvil</th>
                 <th>Correo Electrónico del Aprendiz</th>
+                <th>Nombre instructor lider</th>
               </tr>
             </thead>
             <tbody>

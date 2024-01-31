@@ -70,24 +70,25 @@ const FormularioCreaBeneficio = () => {
               BENEFICIO
             </p>
             <form onSubmit={handleSubmit} encType="multipart/form-data">
+              
               <div className="form-group mb-2 text-center" style={{ color: "#39A900" }}>
-                <label htmlFor="codigo_beneficio" className="form_label mb-3">
-                  Código beneficio
+                <label htmlFor="nombre_beneficio" className="form_label mb-3">
+                  Nombre Beneficio
                 </label>
                 <input
                   onChange={handleChange}
-                  name="codigo_beneficio"
+                  name="nombre_beneficio"
                   type="text"
                   className={`form-control form_input ${
-                    errors.codigo_beneficio ? "is-invalid" : ""
+                    errors.nombre_beneficio ? "is-invalid" : ""
                   }`}
-                  id="codigo_beneficio"
+                  id="nombre_beneficio"
                   required
-                  value={beneficio.codigo_beneficio}
+                  value={beneficio.nombre_beneficio}
                 />
-                {errors.codigo_beneficio && (
+                {errors.nombre_beneficio && (
                   <span className="invalid-feedback">
-                    {errors.codigo_beneficio}
+                    {errors.nombre_beneficio}
                   </span>
                 )}
               </div>
