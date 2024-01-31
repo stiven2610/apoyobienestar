@@ -1,6 +1,6 @@
 import { Carousel } from "react-bootstrap"; // Importa el componente Carousel de Bootstrap
 import "./styles.css";
-const Index= () => {
+const Inicio= () => {
   return (
     <>
       <div className="container mt-4 py-5 " style={{ backgroundColor: "#f8f8f8" }}>
@@ -156,4 +156,4 @@ const Index= () => {
   );
 };
 
-export default Index;
+export default Inicio;

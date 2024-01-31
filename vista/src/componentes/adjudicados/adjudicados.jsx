@@ -31,13 +31,15 @@ const Tabla_adjudicados = () => {
           <table className="table table-bordered table-striped">
             <thead>
               <tr>
-                <th>GESTIONAR</th>
+                <th>ACTUALIZAR</th>
+                <th>Número  Consecutivo</th>
                 <th>Nombre Completo del Aprendiz</th>
                 <th>Tipo de Documento</th>
                 <th>Número de Documento</th>
+                <th>Estado de Aprendiz</th>
                 <th>Obligación Mensual</th>
                 <th>Código de Ficha</th>
-                <th>Código de Beneficio</th>
+                <th>Nombre de beneficio</th>
                 <th>Fecha de Adjudicación</th>
                 <th>Modalidad</th>
                 <th>Teléfono Fijo</th>
@@ -56,7 +58,6 @@ const Tabla_adjudicados = () => {
                   <tr key={item.numero_documento_aprendiz}>
                     <td>
                       <div className="iconos_gestion h-100 d-flex flex-column align-items-center ">
-                        {/* Enlace a="/gestiondatosaprendiz" y estado con el registro */}
                       </div>
                     </td>
                     <td>{item.nombre_completo_aprendiz}</td>

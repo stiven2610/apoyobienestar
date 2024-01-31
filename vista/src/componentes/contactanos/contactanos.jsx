@@ -30,7 +30,7 @@ const FormContactos = () => {
 
   return (
     <div className="container mt-4 bg-light p-4 rounded">
-      <h2 className="text-center mb-4">Contactanos</h2>
+      <h2 className="text-center mb-4">Contáctanos</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label className="form-label">Nombre completo</label>
