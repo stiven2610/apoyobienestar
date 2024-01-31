@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./styles.css";
 
-const AprendicesSuspendidos = () => {
+const AprendicesAplazados = () => {
   const [datos, setDatos] = useState([]);
   const [cargando, setCargando] = useState(true);
 
@@ -79,4 +79,4 @@ const AprendicesSuspendidos = () => {
   );
 };
 
-export default AprendicesSuspendidos;
+export default AprendicesAplazados;

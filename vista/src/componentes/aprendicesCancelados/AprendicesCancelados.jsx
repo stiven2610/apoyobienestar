@@ -38,6 +38,7 @@ const AprendicesCancelados= () => {
                 <th>Tipo de Documento</th>
                 <th>Número de Documento</th>
                 <th>Numero de resolución</th>
+                <th>Fecha de Cancelación</th>
                 <th>motivo de cancelación</th>
                 <th>Código de Ficha</th>
                 <th>Teléfono Móvil</th>
