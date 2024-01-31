@@ -38,7 +38,7 @@ const AprendicesMesGracia= () => {
                 <th>Número de Documento</th>
                 <th>Obligación Mensual</th>
                 <th>Código de Ficha</th>
-                <th>Código de Beneficio</th>
+                <th>Nombre de beneficio</th>
                 <th>Fecha de Adjudicación</th>
                 <th>Modalidad</th>
                 <th>Teléfono Fijo</th>
