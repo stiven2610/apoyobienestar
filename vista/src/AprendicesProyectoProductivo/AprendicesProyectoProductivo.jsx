@@ -1,14 +1,12 @@
-
-
 import { useEffect, useState } from "react";
 import "./styles.css";
 
-const AprendicesCancelados= () => {
+const AprendicesProyectoProductivo = () => {
   const [datos, setDatos] = useState([]);
   const [cargando, setCargando] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:4000/adj43")
+    fetch("http://localhost:4000/adjudicados")
       .then((response) => response.json())
       .then((data) => {
         if (data.data && Array.isArray(data.data)) {
@@ -27,7 +25,7 @@ const AprendicesCancelados= () => {
 
   return (
     <div className="container_body">
-      <h4>Aprendices cancelados</h4>
+      <h4>Aprendices realizando proyecto Productivo</h4>
       <div className="table-container">
         <div className="table-responsive">
           <table className="table table-bordered table-striped">
@@ -37,10 +35,12 @@ const AprendicesCancelados= () => {
                 <th>Nombre Completo del Aprendiz</th>
                 <th>Tipo de Documento</th>
                 <th>Número de Documento</th>
-                <th>Numero de resolución</th>
-                <th>motivo de cancelación</th>
                 <th>Código de Ficha</th>
+                <th>Código de Beneficio</th>
+                <th>Fecha de Adjudicación</th>
+                <th>Modalidad</th>
                 <th>Teléfono Móvil</th>
+                <th>Dirección de Residencia del Aprendiz</th>
                 <th>Correo Electrónico del Aprendiz</th>
               </tr>
             </thead>
@@ -80,4 +80,4 @@ const AprendicesCancelados= () => {
   );
 };
 
-export default AprendicesCancelados;
+export default AprendicesProyectoProductivo;
