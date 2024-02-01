@@ -29,7 +29,7 @@ const Tabla_adjudicados = () => {
       <div className="table-container">
         <div className="table-responsive">
           <table className="table table-bordered table-striped">
-            <thead>
+            <thead style={{ backgroundColor: '#45ca03', color: '#fff' }}>
               <tr>
                 <th>ACTUALIZAR</th>
                 <th>Número  Consecutivo</th>
