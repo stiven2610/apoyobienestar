@@ -6,7 +6,7 @@ const AprendicesProyectoProductivo = () => {
   const [cargando, setCargando] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:4000/adjudicados")
+    fetch("http://localhost:4000/adjudics")
       .then((response) => response.json())
       .then((data) => {
         if (data.data && Array.isArray(data.data)) {
