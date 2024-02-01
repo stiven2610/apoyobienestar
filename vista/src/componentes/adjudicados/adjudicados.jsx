@@ -31,7 +31,7 @@ const Tabla_adjudicados = () => {
           <table className="table table-bordered table-striped">
             <thead style={{ backgroundColor: '#45ca03', color: '#fff' }}>
               <tr>
-                <th>ACTUALIZAR</th>
+                <th>GESTIONAR</th>
                 <th>Número  Consecutivo</th>
                 <th>Nombre Completo del Aprendiz</th>
                 <th>Tipo de Documento</th>

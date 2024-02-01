@@ -31,7 +31,7 @@ const AprendicesProyectoProductivo = () => {
           <table className="table table-bordered table-striped">
             <thead>
               <tr>
-                <th>ACTUALIZAR</th>
+                <th>GESTIONAR</th>
                 <th>Nombre Completo del Aprendiz</th>
                 <th>Tipo de Documento</th>
                 <th>Número de Documento</th>

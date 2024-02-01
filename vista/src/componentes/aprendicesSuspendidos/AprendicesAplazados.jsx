@@ -31,11 +31,12 @@ const AprendicesAplazados = () => {
           <table className="table table-bordered table-striped">
             <thead>
               <tr>
-                <th>ACTUALIZAR</th>
+                <th>GESTIONAR</th>
                 <th>Nombre Completo del Aprendiz</th>
                 <th>Tipo de Documento</th>
                 <th>Número de Documento</th>
                 <th>Motivo de suspensión</th>
+                <th>Numero de resolución</th>
                 <th>fecha de inicio de suspensión</th>
                 <th>fecha fin de suspensión</th>
                 <th>Teléfono Móvil</th>
