@@ -236,9 +236,25 @@ CREATE TABLE novedad_formato_seguimiento (
     FOREIGN KEY (id_tipo_novedad) REFERENCES tipo_novedad (id_tipo_novedad),
     FOREIGN KEY (numero_documento_aprendiz)  REFERENCES  aprendiz(numero_documento_aprendiz)
  );
+CREATE TABLE aprendiz_cancelado(
+    id_aprendiz_cancelado  INT NOT NULL,
+    codigo_ficha   INT NOT NULL,
+    numero_documento_aprendiz  INT NOT NULL,
+    motivo_cancelacion VARCHAR  NOT NULL,
+    fecha_cancelacion   DATE NOT NULL,
+    numero_resolucion    INT NOT   NULL,
+    user_insert           VARCHAR       NOT NULL,                      
+    fecha_insert          TIMESTAMP WITHOUT TIME ZONE NOT NULL,         
+    user_update           VARCHAR,                                        
+    fecha_update          TIMESTAMP WITHOUT TIME ZONE, 
+    PRIMARY KEY (id_aprendiz_cancelado),
+    FOREIGN KEY (codigo_ficha) REFERENCES ficha  (codigo_ficha),
+    FOREIGN  KEY (numero_documento_aprendiz) REFERENCES  aprendiz (numero_documento_aprendiz)
 
+);
  CREATE TABLE parametros ( 
     id_parametros             INT      NOT NULL,
+    correo_electronico_contacto   VARCHAR  NOT NULL,
     cuerpo_correo             VARCHAR  NOT NULL,
     valor_beneficio            INT      NOT NULL,
     user_insert               VARCHAR          NOT NULL,               
