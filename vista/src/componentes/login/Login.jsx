@@ -4,12 +4,12 @@ import "./styles.css";
 const Login = () => {
 
   const [user, setUser] = useState({
-    codigo_usuario: "",
+    numero_documento_usuario: "",
     contrasenha_usuario: "",
   });
 
   const [errors, setErrors] = useState({
-    codigo_usuario: "",
+    numero_documento_usuario: "",
     contrasenha_usuario: "",
   });
 
@@ -19,8 +19,8 @@ const Login = () => {
     setErrors({ ...errors, [name]: "" }); // Limpiar el error del campo actual
 
     // Validación del campo código de usuario
-    if (name === "codigo_usuario") {
-      if (!/^\d{6}$/.test(value)) {
+    if (name === " numero_documento_usuario") {
+      if (!/^\d{11}$/.test(value)) {
         setErrors({
           ...errors,
           [name]: "Código de usuario inválido. Debe ser de 6 números.",
@@ -69,10 +69,10 @@ const Login = () => {
             ...errors,
             contrasenha_usuario: "Contraseña incorrecta",
           });
-        } else if (errorData.field === "codigo_usuario") {
+        } else if (errorData.field === " numero_documento_usuario") {
           setErrors({
             ...errors,
-            codigo_usuario: "El usuario no existe",
+             numero_documento_usuario: "El usuario no existe",
           });
         }
       }
@@ -91,20 +91,20 @@ const Login = () => {
             </h2>
             <div className="mb-3">
               <label htmlFor="numerodocumento" className="form-label">
-                Codigo Usuario
+                Numero de  documento usuario
               </label>
               <input
-                name="codigo_usuario"
+                name=" numero_documento_usuario"
                 onChange={handleChange}
                 type="tel"
-                className={`form-control ${errors.codigo_usuario ? "is-invalid" : ""}`}
+                className={`form-control ${errors. numero_documento_usuario ? "is-invalid" : ""}`}
                 id="numerodocumento"
-                maxLength="6"
+                maxLength="11"
                 required
               />
-              {errors.codigo_usuario && (
+              {errors. numero_documento_usuario && (
                 <div className="invalid-feedback">
-                  {errors.codigo_usuario}
+                  {errors. numero_documento_usuario}
                 </div>
               )}
             </div>

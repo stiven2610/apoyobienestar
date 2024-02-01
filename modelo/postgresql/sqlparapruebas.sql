@@ -1,9 +1,6 @@
 select *from beneficio;
 select * from usuario;
 select * FROM APRENDIZ;
-SELECT pg_terminate_backend (pg_stat_activity.pid)
-FROM pg_stat_activity
-WHERE pg_stat_activity.datname = 'apoyo';
 
 alter table beneficio drop column numero_documento_aprendiz
 ALTER TABLE beneficio 
@@ -13,10 +10,10 @@ select * from instructor_lider;
 insert into usuario (numero_documento_usuario,nombre_usuario,apellidos_usuario,contrasenha_usuario) values ('1094778783','Yeison Stiven','Gutierrez Rozo','1234567890');
 insert into modalidad ( id_modalidad,nombre_modalidad) values ('1','Virtual');
 insert into modalidad ( id_modalidad,nombre_modalidad) values ('2','Presencial');
-insert into tipo_documento (id_tipo_documento,nombre_documento) values (1','Cedula de ciudadania');
-insert into tipo_documento (id_tipo_documento,nombre_documento) values (2,'Tarjeta de identidad');;
+insert into tipo_documento (id_tipo_documento,nombre_documento) values (1,'Cedula de ciudadania');
+insert into tipo_documento (id_tipo_documento,nombre_documento) values (2,'Tarjeta de identidad');
 insert into tipo_documento (id_tipo_documento,nombre_documento) values (3,'PPT');
-insert into instructor_lider (numero_documento_instructor_lider,nombre_instructor_lider,email_instructor_lider) values ('1234567890','Carlos Perez','cperez@gmail.com');
+insert into instructor_lider (numero_documento_instructor_lider,nombre_instructor_lider,email_instructor_lider) values ('1234567891','Magda milena','milenaGarcia@gmail.com');
 insert into ficha (codigo_ficha,numero_documento_instructor_lider,fecha_inicio_ficha,fecha_inicio_etapa_productiva,fecha_fin_ficha,nivel_formacion,nombre_programa,modalidad_formacion) values ('2619702','1234567891','2023-10-05','2024-02-15','2024-10-05','Tecnologia','Gestión Administrativa','2');
 insert into ficha (codigo_ficha,numero_documento_instructor_lider,fecha_inicio_ficha,fecha_inicio_etapa_productiva,fecha_fin_ficha,nivel_formacion,nombre_programa,modalidad_formacion) values ('2619701','1234567890','2023-10-05','2024-02-15','2024-10-05','Tecnologia','ADSO','2');
 
