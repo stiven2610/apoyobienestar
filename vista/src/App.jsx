@@ -14,6 +14,7 @@ import Inicio from "./componentes/index/index";
 import Login from "./componentes/login/Login";
 import AprendicesMesGracia from "./componentes/mesGracia/aprendicesMesGracia";
 import Navegacion from "./componentes/navIndex/navbar";
+import NovedadComponent from "./componentes/novedades/novedades";
 import RegistroNovedades from "./componentes/registroNovedadesFormato/registroNovedades";
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
       <FormRegistroAsistenciaTaller/>
       <Tabla_asistencia/>
       <RegistroNovedades />
+      <NovedadComponent/>
       <Footer />
     </>
   );

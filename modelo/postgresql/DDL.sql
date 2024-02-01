@@ -65,7 +65,7 @@ CREATE TABLE ficha
     fecha_fin_ficha                    DATE            NOT NULL,                       
     nivel_formacion                    VARCHAR        ,                       
     nombre_programa                    VARCHAR(100)    NOT NULL,                       
-    modalidad_formacion                VARCHAR(50)    + ,                      
+    modalidad_formacion                VARCHAR(50)     ,                      
     user_insert                        VARCHAR         NOT NULL,                      
     fecha_insert                       TIMESTAMP WITHOUT TIME ZONE NOT NULL,         
     user_update                        VARCHAR,                                        
