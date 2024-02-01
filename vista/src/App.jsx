@@ -23,6 +23,7 @@ function App() {
       <Inicio />
       <FormContactos />
       <Login />
+      <Login/>
       <FormularioCreaBeneficio />
       <Tabla_adjudicados />
       <AprendicesMesGracia />

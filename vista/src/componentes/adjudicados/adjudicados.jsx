@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import "./styles.css";
 const TablaAdjudicados = () => {
   const [datos, setDatos] = useState([]);
   const [cargando, setCargando] = useState(true);
@@ -71,7 +71,7 @@ const TablaAdjudicados = () => {
             />
             <div className="input-group-append">
               <button
-                className="btn btn-success"
+                className="btn btn-success "
                 style={{ backgroundColor: "#45ca03", borderColor: "#45ca03" }}
                 onClick={agregarNuevoAprendiz}
               >
