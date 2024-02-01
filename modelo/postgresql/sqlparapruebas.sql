@@ -9,13 +9,19 @@ alter table beneficio drop column numero_documento_aprendiz
 ALTER TABLE beneficio 
 ADD numero_documento_aprendiz INT NOT NULL;
 SELECT * FROM pg_stat_activity;
-
+select * from instructor_lider;
 insert into usuario (numero_documento_usuario,nombre_usuario,apellidos_usuario,contrasenha_usuario) values ('1094778783','Yeison Stiven','Gutierrez Rozo','1234567890');
-insert into modalidad ( id_modalidad,nombre_modalidad) values ('2','Virtual');
+insert into modalidad ( id_modalidad,nombre_modalidad) values ('1','Virtual');
+insert into modalidad ( id_modalidad,nombre_modalidad) values ('2','Presencial');
+insert into tipo_documento (id_tipo_documento,nombre_documento) values (1','Cedula de ciudadania');
+insert into tipo_documento (id_tipo_documento,nombre_documento) values (2,'Tarjeta de identidad');;
 insert into tipo_documento (id_tipo_documento,nombre_documento) values (3,'PPT');
-insert into instructor_lider (numero_documento_instructor_lider,nombre_instructor_lider,email_instructor_lider) values ('1234567891','Magda Milena Garcia','garciaMagda@gmail.com');
+insert into instructor_lider (numero_documento_instructor_lider,nombre_instructor_lider,email_instructor_lider) values ('1234567890','Carlos Perez','cperez@gmail.com');
 insert into ficha (codigo_ficha,numero_documento_instructor_lider,fecha_inicio_ficha,fecha_inicio_etapa_productiva,fecha_fin_ficha,nivel_formacion,nombre_programa,modalidad_formacion) values ('2619702','1234567891','2023-10-05','2024-02-15','2024-10-05','Tecnologia','Gestión Administrativa','2');
-insert into beneficio ( codigo_beneficio,nombre_beneficio,fecha_inicio_beneficio,fecha_fin_beneficio,cupos_beneficio) values ('000001','convocatoria I  Apoyo de sostenimiento Regular','2024-02-15','2024-12-18','55');
+insert into ficha (codigo_ficha,numero_documento_instructor_lider,fecha_inicio_ficha,fecha_inicio_etapa_productiva,fecha_fin_ficha,nivel_formacion,nombre_programa,modalidad_formacion) values ('2619701','1234567890','2023-10-05','2024-02-15','2024-10-05','Tecnologia','ADSO','2');
+
+
+insert into beneficio ( codigo_beneficio,nombre_beneficio,fecha_inicio_beneficio,fecha_fin_beneficio,cupos_beneficio) values ('123456789','convocatoria I  Apoyo de sostenimiento Regular','2024-02-15','2024-12-18','55');
 insert into estado_aprendiz(id_estado_aprendiz,nombre_estado_aprendiz)  values ('1','A punto de cumplir etapa lectiva');
 insert into estado_aprendiz(id_estado_aprendiz,nombre_estado_aprendiz)  values ('2','Mes de gracia');
 insert into estado_aprendiz(id_estado_aprendiz,nombre_estado_aprendiz)  values ('3','Proyecto productivo');
@@ -25,7 +31,7 @@ select * from ficha;
 select * from obligacion_mensual;
 insert into obligacion_mensual ( id_obligacion_mensual,nombre_obligacion_mensual) values ('1','Taller Mensual');
 insert into obligacion_mensual ( id_obligacion_mensual,nombre_obligacion_mensual) values ('2','Plan de actividades');
-insert into aprendiz values ('1094778783','Yeison Stiven Gutierrez Rozo','2619701','1','5','1','1','100001','000001','2024-02-10','3242343432','3103558222','calel 29 #10-98 lagos 1','stivenrozo1@gmail.com');
+insert into aprendiz values ('1094778783','Yeison Stiven Gutierrez Rozo','2619701','1','5','1','1','100001','123456789','2024-02-10','3242343432','3103558222','calel 29 #10-98 lagos 1','stivenrozo1@gmail.com');
 INSERT INTO aprendiz VALUES ('109477878','Juan Pérez','2619701','1','5','1','2','100001','123456789','2024-02-10','3242343432','3103558222','Calle 29 #10-98 Lagos 1','juanperez@gmail.com');
 INSERT INTO aprendiz VALUES ('209477879','María García','2619702','2','4','2','3','100001','123456789','2024-04-15','3242343433','3103558223','Calle 30 #11-99 Lagos 2','mariagarcia@gmail.com');
 INSERT INTO aprendiz VALUES ('309477880','Carlos Rodríguez','2619701','3','2','2','4','100001','123456789','2024-06-20','3242343434','3103558224','Calle 31 #12-100 Lagos 3','carlosrodriguez@gmail.com');
