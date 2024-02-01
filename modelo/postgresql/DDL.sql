@@ -124,7 +124,9 @@ CREATE TABLE aprendiz(
     FOREIGN KEY (codigo_ficha)  REFERENCES  ficha   (codigo_ficha),
 	foreign Key  (id_tipo_documento)  REFERENCES tipo_documento (id_tipo_documento),
     FOREIGN  KEY (id_estado_aprendiz)  REFERENCES  estado_aprendiz ( id_estado_aprendiz),
-    FOREIGN KEY (id_obligacion_mensual)  REFERENCES obligacion_mensual (id_obligacion_mensual)
+    FOREIGN KEY (id_obligacion_mensual)  REFERENCES obligacion_mensual (id_obligacion_mensual),
+        FOREIGN KEY (codigo_beneficio)  REFERENCES beneficio (codigo_beneficio)
+
   );
 
 CREATE TABLE motivo_suspension (
