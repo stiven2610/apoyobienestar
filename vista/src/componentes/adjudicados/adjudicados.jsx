@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./styles.css";
+import Navadministrador from "../../Navadministrador/navAdministrador";
 const TablaAdjudicados = () => {
   const [datos, setDatos] = useState([]);
   const [cargando, setCargando] = useState(true);
@@ -46,6 +47,8 @@ const TablaAdjudicados = () => {
   });
 
   return (
+    <>
+    <Navadministrador/>
     <div className="container mt-4">
       <h4 className="mb-4">Gestión de Aprendices adjudicados</h4>
       <div className="row mb-3">
@@ -136,6 +139,8 @@ const TablaAdjudicados = () => {
         </table>
       </div>
     </div>
+    </>
+
   );
 };
 
