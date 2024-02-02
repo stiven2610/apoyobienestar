@@ -8,13 +8,13 @@ const validarUsuario = async (req, res, next) => {
 
   try {
     const validarUser = await pool.query(
-      "SELECT * FROM usuario_admin WHERE  numero_documento_usuario = $1 ",
+      "SELECT * FROM usuario WHERE  numero_documento_usuario = $1 ",
       [ numero_documento_usuario]
     );
 
     if (validarUser.rows.length === 1) {
       const validarContraseña = await pool.query(
-        "SELECT * FROM usuario_admin WHERE  numero_documento_usuario = $1 AND contrasenha_usuario = $2",
+        "SELECT * FROM usuario WHERE  numero_documento_usuario = $1 AND contrasenha_usuario = $2",
         [ numero_documento_usuario, contrasenha_usuario]
       );
 
