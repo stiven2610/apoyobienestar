@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, Nav } from "react-bootstrap";
+import { Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./styles.css";
 
@@ -38,6 +38,9 @@ const Navadministrador = ({ onLogin }) => {
                 </Link>
                 <Link to="/novedades" className="nav-li" style={{ color: "#000000" }}>
                   Registro de novedades de taller mensual
+                </Link>
+                <Link to="/beneficio" className="nav-li" style={{ color: "#000000" }}>
+                  Creación de beneficio
                 </Link>
               </div>
             </Nav>
