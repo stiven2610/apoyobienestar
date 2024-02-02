@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Navadministrador from "../../Navadministrador/navAdministrador";
 import "./styles.css";
 
 const FormularioCreaBeneficio = () => {
@@ -59,6 +60,9 @@ const FormularioCreaBeneficio = () => {
   };
 
   return (
+    <>
+    
+    <Navadministrador/>
     <div className="padre p-4">
       <div
         className="container d-flex justify-content-center"
@@ -196,6 +200,8 @@ const FormularioCreaBeneficio = () => {
         </div>
       </div>
     </div>
+    </>
+
   );
 };
 

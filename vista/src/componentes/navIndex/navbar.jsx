@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, Nav } from "react-bootstrap";
+import { Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./styles.css";
 
@@ -34,7 +34,7 @@ const Navegacion = () => {
             <Nav className="ml-auto">
               <div className="container_nav">
                 <Link
-                  to="/asistencia"
+                  to="/asistenciataller"
                   className="nav-li"
                   style={{ color: "#000000" }}
                   onClick={handleAsistenciaClick}
