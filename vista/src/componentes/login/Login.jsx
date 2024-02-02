@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Login = () => {
+const Login = ({onLogin}) => {
   const navigate = useNavigate();
   const loginContainerRef = useRef(null);
 
@@ -62,6 +62,7 @@ const Login = () => {
       });
 
       if (res.ok) {
+        onLogin();
         navigate("/navadmin");
       } else {
         const errorData = await res.json();

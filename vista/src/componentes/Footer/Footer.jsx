@@ -12,7 +12,9 @@ const Footer = () => {
       className=" text-dark py-5  d-flex justify-content-around w-100  align-items-center "
       style={{ backgroundColor: "#d5dfd7" }}
     >
+
       <div className="d-flex flex-column   w-100 text-center">
+
         <div>
         <ul className="list-inline social-icons">
           <li className="list-inline-item">
@@ -45,7 +47,7 @@ const Footer = () => {
         <p className="parrafo">@S E N A C o m u n i c a</p>
       </div>
       <div className="w-50">
-        <p className="parrafo  ">www.sena.edu.co</p>
+        <p className="parrafo  ">      Todos los derechos reservados ADSO 2619701</p>
       </div>
     </footer>
   );

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Navadministrador from '../../Navadministrador/navAdministrador';
 
 const NovedadesForm = () => {
   const [numeroDocumento, setNumeroDocumento] = useState('');
@@ -55,6 +56,8 @@ const NovedadesForm = () => {
   };
 
   return (
+    <>
+    <Navadministrador/>
     <div className="padre p-4">
       <div className="container d-flex justify-content-center">
         <div className="col-md-8">
@@ -166,6 +169,8 @@ const NovedadesForm = () => {
         </div>
       </div>
     </div>
+    </>
+
   );
 };
 

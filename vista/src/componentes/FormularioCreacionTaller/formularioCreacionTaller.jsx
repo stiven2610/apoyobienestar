@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Navadministrador from "../../Navadministrador/navAdministrador";
 
 const FormularioTaller = () => {
   // Estado para almacenar los valores del formulario
@@ -58,6 +59,8 @@ const FormularioTaller = () => {
   };
 
   return (
+    <>
+    <Navadministrador/>
     <div className="padre p-4">
       <div className="container d-flex justify-content-center">
         <div className="col-md-5">
@@ -130,6 +133,8 @@ const FormularioTaller = () => {
         </div>
       </div>
     </div>
+    </>
+
   );
 };
 

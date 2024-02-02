@@ -1,8 +1,11 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Navadministrador from '../../Navadministrador/navAdministrador';
 
 const NovedadComponent = ({ novedades, eliminarNovedad }) => {
   return (
+    <>
+    <Navadministrador/>
     <div className="table-responsive">
       <table className="table table-bordered table-striped">
         <thead className="thead-dark"> {/* Cambié la clase a thead-dark */}
@@ -44,6 +47,8 @@ const NovedadComponent = ({ novedades, eliminarNovedad }) => {
         </tbody>
       </table>
     </div>
+    </>
+
   );
 };
 
