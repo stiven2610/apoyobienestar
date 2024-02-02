@@ -1,8 +1,11 @@
 import { Carousel } from "react-bootstrap"; // Importa el componente Carousel de Bootstrap
+import Navegacion from "../navIndex/navbar";
 import "./styles.css";
 const Inicio= () => {
   return (
     <>
+    <Navegacion/>
+    
       <div className="container mt-4 py-5 " style={{ backgroundColor: "#f8f8f8" }}>
         <div className="row">
           <div className="col-md-12 text-center">
