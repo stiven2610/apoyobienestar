@@ -1,13 +1,29 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import "./styles.css";
+
 const FormRegistroAsistenciaTaller = () => {
+  const registroAsistenciaRef = useRef(null);
+
+  const handleScrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+  useEffect(() => {
+    if (registroAsistenciaRef.current) {
+      registroAsistenciaRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, []);
+
   // Definir estados para los datos del formulario
   const [user, setUser] = useState({
-    id_tipo_documento: "", // Puedes establecer un valor inicial adecuado aquí
+    id_tipo_documento: "",
     numero_documento_aprendiz: "",
     codigo_taller: "",
     contrasenha_taller: "",
   });
+
   const [errors, setErrors] = useState({
     id_tipo_documento: "",
     numero_documento_aprendiz: "",
@@ -16,12 +32,9 @@ const FormRegistroAsistenciaTaller = () => {
   });
 
   // Función para manejar cambios en los campos del formulario
-  // Función para manejar cambios en los campos del formulario
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    const formContainer = document.getElementById("form-container");
-    formContainer.classList.remove("error-container");
     // Borra el mensaje de error del campo de entrada correspondiente
     setErrors({
       ...errors,
@@ -45,7 +58,7 @@ const FormRegistroAsistenciaTaller = () => {
       if (!isValid) {
         setErrors({
           ...errors,
-          [name]: "Código de taller es de maximo 5 digitos",
+          [name]: "Código de taller es de máximo 5 digitos",
         });
         return; // No actualices el estado si es inválido
       }
@@ -65,6 +78,7 @@ const FormRegistroAsistenciaTaller = () => {
       [name]: value,
     });
   };
+
   // Función para manejar el envío del formulario
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -81,7 +95,6 @@ const FormRegistroAsistenciaTaller = () => {
 
       if (res.ok) {
         // La respuesta del servidor es exitosa (código de estado HTTP 200)
-
         // Puedes realizar alguna acción adicional, como redirigir al usuario
       } else {
         const errorData = await res.json(); // Lee el mensaje de error del servidor
@@ -110,95 +123,105 @@ const FormRegistroAsistenciaTaller = () => {
 
   return (
     <>
-      <div className="container-fluid d-flex flex-column justify-content-center align-items-center"style={{ minHeight: "70vh" }}>
-          <div className="col-md-5" id="form-container">
-            <div className="container_form bg-light p-4 rounded text-center">
-              <p className="titulo_beneficio  font-weight-bold"style={{ color: "#084416" }}>
-                REGISTRO ASISTENCIA
-              </p>
-              <form onSubmit={handleSubmit} autoComplete="off">
-                <div className="form-group mb-2 text-center"></div>
-                <div className="form-group mb-2 text-center">
-                  <label
-                    htmlFor="numero_documento_aprendiz"
-                    className="form_label mb-3"style={{ color: "#39A900" }}
-                  >
-                    Número de Documento
-                  </label>
-                  <input
-                    placeholder="Ingrese su número de documento"
-                    name="numero_documento_aprendiz"
-                    onChange={handleChange}
-                    type="tel"
-                    required
-                    className={`form-control form_input ${errors.numero_documento_aprendiz && "is-invalid"
-                      }`}
-                    id="numero_documento_aprendiz"
-                    value={user.numero_documento_aprendiz || ""} // Asignar el valor del estado al input
-                  />
-                  {errors.numero_documento_aprendiz && (
-                    <span className="invalid-feedback">
-                      {errors.numero_documento_aprendiz}
-                    </span>
-                  )}
-                </div>
-                <div className="form-group mb-2 text-center">
-                  <label htmlFor="codigo_taller" className="form_label mb-3"style={{ color: "#39A900" }}>
-                    Código del Taller
-                  </label>
-                  <input
-                    placeholder="Ingrese el código del taller al cual va a registrar su asistencia"
-                    name="codigo_taller"
-                    onChange={handleChange}
-                    type="tel"
-                    required
-                    className={`form-control form_input ${errors.codigo_taller && "is-invalid"
-                      }`}
-                    id="codigo_taller"
-                    value={user.codigo_taller || ""} // Asignar el valor del estado al input
-                  />
-
-                  {errors.codigo_taller && (
-                    <span className="invalid-feedback">
-                      {errors.codigo_taller}
-                    </span>
-                  )}
-                </div>
-                <div className="form-group mb-2 text-center">
-                  <label
-                    htmlFor="contrasenha_taller"
-                    className="form_label mb-3"style={{ color: "#39A900" }}
-                  >
-                    Contraseña del Taller
-                  </label>
-                  <input
-                    placeholder="Ingrese la contraseña del taller"
-                    name="contrasenha_taller"
-                    onChange={handleChange}
-                    type="password"
-                    required
-                    className={`form-control form_input ${errors.contrasenha_taller && "is-invalid"
-                      }`}
-                    id="contrasenha_taller"
-                    value={user.contrasenha_taller || ""} // Asignar el valor del estado al input
-                  />
-                  {errors.contrasenha_taller && (
-                    <span className="invalid-feedback">
-                      {errors.contrasenha_taller}
-                    </span>
-                  )}
-                </div>
-
-                <button
-                  className="btn boton_crear m-4 btn-success"style={{ background: "#39A900" }}
-                  type="submit"
+      <div ref={registroAsistenciaRef} className="container-fluid d-flex flex-column justify-content-center align-items-center" style={{ minHeight: "70vh" }}>
+        <div className="col-md-5" id="form-container">
+          <div className="container_form bg-light p-4 rounded text-center">
+            <p className="titulo_beneficio font-weight-bold" style={{ color: "#084416" }}>
+              REGISTRO ASISTENCIA
+            </p>
+            <form onSubmit={handleSubmit} autoComplete="off">
+              <div className="form-group mb-2 text-center"></div>
+              <div className="form-group mb-2 text-center">
+                <label
+                  htmlFor="numero_documento_aprendiz"
+                  className="form_label mb-3"
+                  style={{ color: "#39A900" }}
                 >
-                  Registrarse
-                </button>
-              </form>
-            </div>
+                  Número de Documento
+                </label>
+                <input
+                  placeholder="Ingrese su número de documento"
+                  name="numero_documento_aprendiz"
+                  onChange={handleChange}
+                  type="tel"
+                  required
+                  className={`form-control form_input ${errors.numero_documento_aprendiz && "is-invalid"
+                    }`}
+                  id="numero_documento_aprendiz"
+                  value={user.numero_documento_aprendiz || ""}
+                />
+                {errors.numero_documento_aprendiz && (
+                  <div className="invalid-feedback">
+                    {errors.numero_documento_aprendiz}
+                  </div>
+                )}
+              </div>
+              <div className="form-group mb-2 text-center">
+                <label htmlFor="codigo_taller" className="form_label mb-3" style={{ color: "#39A900" }}>
+                  Código del Taller
+                </label>
+                <input
+                  placeholder="Ingrese el código del taller al cual va a registrar su asistencia"
+                  name="codigo_taller"
+                  onChange={handleChange}
+                  type="tel"
+                  required
+                  className={`form-control form_input ${errors.codigo_taller && "is-invalid"
+                    }`}
+                  id="codigo_taller"
+                  value={user.codigo_taller || ""}
+                />
+
+                {errors.codigo_taller && (
+                  <div className="invalid-feedback">
+                    {errors.codigo_taller}
+                  </div>
+                )}
+              </div>
+              <div className="form-group mb-2 text-center">
+                <label
+                  htmlFor="contrasenha_taller"
+                  className="form_label mb-3"
+                  style={{ color: "#39A900" }}
+                >
+                  Contraseña del Taller
+                </label>
+                <input
+                  placeholder="Ingrese la contraseña del taller"
+                  name="contrasenha_taller"
+                  onChange={handleChange}
+                  type="password"
+                  required
+                  className={`form-control form_input ${errors.contrasenha_taller && "is-invalid"
+                    }`}
+                  id="contrasenha_taller"
+                  value={user.contrasenha_taller || ""}
+                />
+                {errors.contrasenha_taller && (
+                  <div className="invalid-feedback">
+                    {errors.contrasenha_taller}
+                  </div>
+                )}
+              </div>
+
+              <button
+                className="btn boton_crear m-4 btn-success"
+                style={{ background: "#39A900" }}
+                type="submit"
+              >
+                Registrarse
+              </button>
+            </form>
           </div>
         </div>
+        <button
+        className="btn  btn-scroll-to-top m-2"
+        onClick={handleScrollToTop}
+      >
+        Volver Arriba
+      </button>
+      </div>
+      
     </>
   );
 };

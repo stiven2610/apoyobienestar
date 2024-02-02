@@ -1,6 +1,14 @@
-import React, { useState } from 'react';
+import { useState, useRef, useEffect } from "react";
 
 const FormContactos = () => {
+  const contactanosRef = useRef(null);
+
+  useEffect(() => {
+    if (contactanosRef.current) {
+      contactanosRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, []);
+
   const [formulario, setFormulario] = useState({
     nombre: '',
     asunto: '',
@@ -29,7 +37,7 @@ const FormContactos = () => {
   };
 
   return (
-    <div className="container mt-4 bg-light p-4 rounded">
+    <div ref={contactanosRef} className="container mt-4 bg-light p-4 rounded">
       <h2 className="text-center mb-4">Contáctanos</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
@@ -67,12 +75,12 @@ const FormContactos = () => {
         </div>
         <div className="mb-3">
           <label className="form-label">Mensaje</label>
-          <input
-            type="text"
+          <textarea
             name="mensaje"
             value={formulario.mensaje}
             onChange={handleInputChange}
             className="form-control"
+            rows="4"  // Puedes ajustar la cantidad de filas según tu preferencia
             required
           />
         </div>

@@ -1,3 +1,4 @@
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import AprendicesProyectoProductivo from "./componentes/AprendicesProyectoProductivo/AprendicesProyectoProductivo";
 import Footer from "./componentes/Footer/Footer";
 import FormRegistroAsistenciaTaller from "./componentes/FormRegAsiTaller/formularioRegistroAsistencia";
@@ -13,32 +14,37 @@ import FormularioCreaBeneficio from "./componentes/formularioCreacionBeneficio/F
 import Inicio from "./componentes/index/index";
 import Login from "./componentes/login/Login";
 import AprendicesMesGracia from "./componentes/mesGracia/aprendicesMesGracia";
-import Navegacion from "./componentes/navIndex/navbar";
 import NovedadComponent from "./componentes/novedades/novedades";
 import RegistroNovedades from "./componentes/registroNovedadesFormato/registroNovedades";
+import Navadministrador from './Navadministrador/navAdministrador';
 function App() {
   return (
-    <>
-      <Navegacion />
-      <Inicio />
-      <FormContactos />
-      <Login />
-      <Login/>
-      <FormularioCreaBeneficio />
-      <Tabla_adjudicados />
-      <AprendicesMesGracia />
-      <AprendicesProyectoProductivo />
-      <AprendicesLectiva/>
-      <AprendicesAplazados/>
-      <AprendicesCancelados/>
-      <FormCreacionAprendiz />
-      <FormularioTaller />
-      <FormRegistroAsistenciaTaller/>
-      <Tabla_asistencia/>
-      <RegistroNovedades />
-      <NovedadComponent/>
-      <Footer />
-    </>
+    <Router>
+      <div>
+        <Inicio/>
+        <Routes>
+          <Route path="/" element={<Inicio />} />
+          <Route path="/contacto" element={<FormContactos />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/navadmin" element={<Navadministrador />} />
+          <Route path="/asistencia" element={<FormRegistroAsistenciaTaller />} />
+
+          <Route path="/asistenciataller" element={<Tabla_asistencia />} />
+          <Route path="/beneficio" element={<FormularioCreaBeneficio />} />
+          <Route path="/adjudicados" element={<Tabla_adjudicados />} />
+          <Route path="/mesgracia" element={<AprendicesMesGracia />} />
+          <Route path="/proyectoproductivo" element={<AprendicesProyectoProductivo />} />
+          <Route path="/lectiva" element={<AprendicesLectiva />} />
+          <Route path="/aplazados" element={<AprendicesAplazados />} />
+          <Route path="/cancelados" element={<AprendicesCancelados />} />
+          <Route path="/creacionaprendiz" element={<FormCreacionAprendiz />} />
+          <Route path="/creaciontaller" element={<FormularioTaller />} />
+          <Route path="/novedades" element={<RegistroNovedades />} />
+          <Route path="/novedadcomponent" element={<NovedadComponent />} />
+        </Routes>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 
