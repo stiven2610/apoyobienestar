@@ -1,6 +1,5 @@
 import { useState } from "react";
-import Navadministrador from "../../Navadministrador/navAdministrador";
-
+import Navadministrador from "../Navadministrador/navAdministrador";
 const FormularioTaller = () => {
   // Estado para almacenar los valores del formulario
   const [formData, setFormData] = useState({

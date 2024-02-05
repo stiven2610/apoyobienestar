@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import Navadministrador from '../../Navadministrador/navAdministrador';
-
+import Navadministrador from '../Navadministrador/navAdministrador';
 const NovedadesForm = () => {
   const [numeroDocumento, setNumeroDocumento] = useState('');
   const [nombreAprendiz, setNombreAprendiz] = useState('');

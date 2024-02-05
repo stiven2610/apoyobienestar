@@ -5,11 +5,11 @@ const Inicio= () => {
   return (
     <>
     <Navegacion/>
-    
-      <div className="container mt-4 py-5 " style={{ backgroundColor: "#f8f8f8" }}>
+    <div className="container-inicio ">
+      
         <div className="row">
           <div className="col-md-12 text-center">
-            <h4 className= ""style={{ color: "#39A900" }}>BIENESTAR AL APRENDIZ</h4>
+            <h3 className= "titulos">BIENESTAR AL APRENDIZ</h3>
             <p className="text-muted ">
               Es una estrategia institucional para contribuir en la permanencia
               y el desempeño exitoso de los aprendices de la entidad en su
@@ -18,8 +18,8 @@ const Inicio= () => {
           </div>
         </div>
 
-        <div className="row ">
-          <div className="col-md-12 ">
+        <div className=" container-carousel row  ">
+          <div className="carousel col-md-12 ">
             <Carousel interval={3000}>
               <Carousel.Item>
                 <img
@@ -39,7 +39,7 @@ const Inicio= () => {
           </div>
         </div>
         <div className="row mt-3 text-center">
-          <h1 className="m-3"style={{ color: "#39A900" }}>Equipo de Bienestar al Aprendiz</h1>
+          <h3 className="titulos m-3">Equipo de Bienestar al Aprendiz</h3>
           <div className="col-md-4 mb-4 ">
             <div className="border rounded p-2 shadow">
               <img
@@ -47,7 +47,7 @@ const Inicio= () => {
                 alt="Persona 1"
                 className="img-fluid"
               />
-              <h5>Ella Johana</h5>
+              <h4>Ella Johana</h4>
               <p>Lider de Bienestar</p>
             </div>
           </div>
@@ -58,7 +58,7 @@ const Inicio= () => {
                 alt="Persona 2"
                 className="img-fluid"
               />
-              <h5>xxxxxxxxxxxxxxxxxxxxx</h5>
+              <h4>xxxxxxxxxxxxxxxxxxxxx</h4>
               <p>Trabajadora social</p>
             </div>
           </div>
@@ -69,19 +69,19 @@ const Inicio= () => {
                 alt="Persona 3"
                 className="img-fluid"
               />
-              <h5>xxxxxxxxxxxxxxxxxx</h5>
+              <h4>xxxxxxxxxxxxxxxxxx</h4>
               <p>Secretaria</p>
             </div>
           </div>
         </div>
 
         <div className="row m-4 text-center">
-          <h1 className="p-3"style={{ color: "#39A900" }}>Objetivos Plan de Bienestar al Aprendiz</h1>
+          <h3 className="titulos p-3">Objetivos Plan de Bienestar al Aprendiz</h3>
           <div className="col-md-4 ">
             <div className="col-md-12 mt-2">
               <div className="card">
                 <div className="card-body">
-                  <h5 className="card-title"style={{ color: "#39A900" }}>Objetivo estratégico 1</h5>
+                  <h4 className="titulos ">Objetivo estratégico 1</h4>
                   <p className="card-text">
                     Implementar estrategias de acompañamiento para el desarrollo
                     integral del aprendiz en su proceso formativo.
@@ -94,7 +94,7 @@ const Inicio= () => {
             <div className="col-md-12 mt-2">
               <div className="card">
                 <div className="card-body">
-                  <h5 className="card-title"style={{ color: "#39A900" }}>Objetivo estratégico 2</h5>
+                  <h4 className="titulos ">Objetivo estratégico 2</h4>
                   <p className="card-text">
                     Incentivar al aprendiz en su proceso de formación
                     profesional integral mediante la implementación de un
@@ -108,7 +108,7 @@ const Inicio= () => {
             <div className="col-md-12 mt-2">
               <div className="card">
                 <div className="card-body">
-                  <h5 className="card-title"style={{ color: "#39A900" }}>Objetivo estratégico 3</h5>
+                  <h4 className="titulos ">Objetivo estratégico 3</h4>
                   <p className="card-text">
                     Entregar con oportunidad y calidad los servicios de
                     bienestar al aprendiz documentando procedimientos que
@@ -123,9 +123,9 @@ const Inicio= () => {
           <div className="col-md-12 ">
             <div className="card">
               <div className="card-body">
-                <h5 className="card-title"style={{ color: "#39A900" }}>
+                <h4 className="titulos ">
                   ¿Quiénes pueden acceder al Plan de Bienestar al Aprendiz?
-                </h5>
+                </h4>
                 <p className="card-text">
                   Aprendices matriculados en formación Laboral y Formación
                   tecnológica, de todos los niveles y jornadas, en sus
@@ -142,9 +142,9 @@ const Inicio= () => {
           <div className="col-md-12">
             <div className="card">
               <div className="card-body">
-                <h5 className="card-title"style={{ color: "#39A900" }}>
+                <h4 className="titulos ">
                   ¿Qué beneficios ofrece el Plan de Bienestar al Aprendiz?
-                </h5>
+                </h4>
                 <p className="card-text">
                   Consolida proyectos de vida. Motiva la culminación exitosa del
                   proceso formativo. Promueve hábitos de vida saludables.
@@ -155,6 +155,7 @@ const Inicio= () => {
           </div>
         </div>
       </div>
+
     </>
   );
 };

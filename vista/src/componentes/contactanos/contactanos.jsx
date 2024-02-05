@@ -1,13 +1,8 @@
-import { useState, useRef, useEffect } from "react";
-
+import { useState, } from "react";
+import Navegacion from "../navIndex/navbar";
+import "./styles.css"
 const FormContactos = () => {
-  const contactanosRef = useRef(null);
 
-  useEffect(() => {
-    if (contactanosRef.current) {
-      contactanosRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  }, []);
 
   const [formulario, setFormulario] = useState({
     nombre: '',
@@ -37,56 +32,57 @@ const FormContactos = () => {
   };
 
   return (
-    <div ref={contactanosRef} className="container mt-4 bg-light p-4 rounded">
-      <h2 className="text-center mb-4">Contáctanos</h2>
+    <>
+    <Navegacion/>
+    <div className="container ">
+    <div  className="container-contactanos bg-light shadow   ">
+      <h3 className="text-center ">Contáctanos</h3>
       <form onSubmit={handleSubmit}>
-        <div className="mb-3">
           <label className="form-label">Nombre completo</label>
           <input
             type="text"
             name="nombre"
+            placeholder="Ingresa tu nombre completo"
             value={formulario.nombre}
             onChange={handleInputChange}
             className="form-control"
             required
           />
-        </div>
-        <div className="mb-3">
           <label className="form-label">Asunto</label>
           <input
             type="text"
             name="asunto"
+            placeholder="Ingresa el asunto de tu solicitud"
             value={formulario.asunto}
             onChange={handleInputChange}
             className="form-control"
             required
           />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">Correo Electrónico</label>
+          <label className="form-label">Correo electrónico</label>
           <input
             type="email"
             name="email"
             value={formulario.email}
+            placeholder="Ingresa tu correo electronico"
             onChange={handleInputChange}
             className="form-control"
             required
           />
-        </div>
-        <div className="mb-3">
           <label className="form-label">Mensaje</label>
           <textarea
             name="mensaje"
+            placeholder="Ingrese un mensaje describiendo el motivo de su contacto "
             value={formulario.mensaje}
             onChange={handleInputChange}
             className="form-control"
-            rows="4"  // Puedes ajustar la cantidad de filas según tu preferencia
             required
           />
-        </div>
-        <button type="submit" className="btn btn-success">Enviar</button>
+        <button type="submit" className="boton-contactos ">Enviar</button>
       </form>
     </div>
+    </div>
+    </>
+
   );
 };
 

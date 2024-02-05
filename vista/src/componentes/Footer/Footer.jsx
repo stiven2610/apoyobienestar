@@ -47,7 +47,7 @@ const Footer = () => {
         <p className="parrafo">@S E N A C o m u n i c a</p>
       </div>
       <div className="w-50">
-        <p className="parrafo  ">      Todos los derechos reservados ADSO 2619701</p>
+        <p className="parrafo  ">©Todos los derechos reservados ADSO 2619701</p>
       </div>
     </footer>
   );
