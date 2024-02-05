@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import Navadministrador from './Navadministrador/navAdministrador';
+import Navadministrador from './componentes/Navadministrador/navAdministrador';
 import Footer from "./componentes/Footer/Footer";
-import FormRegistroAsistenciaTaller from "./componentes/FormRegAsiTaller/formularioRegistroAsistencia";
 import FormCreacionAprendiz from "./componentes/FormularioCreacionAprendiz/FormularioCreacionAprendiz";
 import FormularioTaller from "./componentes/FormularioCreacionTaller/formularioCreacionTaller";
 import Tabla_adjudicados from "./componentes/adjudicados/adjudicados";
@@ -31,11 +30,10 @@ function App() {
       <div>
         {!loggedIn && (
           <>
-            <Inicio />
             <Routes>
               <Route path="/contacto" element={<FormContactos />} />
               <Route path="/login" element={<Login onLogin={handleLogin} />} />
-            <Route path="/asistenciataller" element={<FormRegistroAsistenciaTaller />} />
+            <Route path="/" element={<Inicio/>} />
 
             </Routes>
           </>

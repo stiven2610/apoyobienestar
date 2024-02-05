@@ -1,9 +1,9 @@
-import { useState, useEffect, useRef } from "react";
+import { useState} from "react";
 import { useNavigate } from "react-router-dom";
-
+import Navegacion from "../navIndex/navbar";
+import "./styles.css"
 const Login = ({onLogin}) => {
   const navigate = useNavigate();
-  const loginContainerRef = useRef(null);
 
   const [user, setUser] = useState({
     numero_documento_usuario: "",
@@ -84,23 +84,22 @@ const Login = ({onLogin}) => {
     }
   };
 
-  useEffect(() => {
-    if (loginContainerRef.current) {
-      loginContainerRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [navigate]);
+
+    
+  
 
   return (
     <>
-      <div ref={loginContainerRef} className="container-fluid d-flex flex-column justify-content-center align-items-center" style={{ minHeight: "70vh" }}>
+    <Navegacion/>
+    <div className="container-login">
+
         <div id="form-container" className="bg-light p-4 shadow col-md-4 text-center">
           <form onSubmit={handleSubmit} method="POST">
-            <h2 className="mb-4" style={{ color: "#39A900" }}>
+            <h2 className="titulo mb-4">
               Iniciar Sesión
             </h2>
-            <div className="mb-3">
-              <label htmlFor="numero_documento_usuario" className="form-label">
-                Numero documento usuario
+              <label htmlFor="numero_documento_usuario" className="titulo form-label">
+                Número documento usuario
               </label>
               <input
                 name="numero_documento_usuario"
@@ -108,6 +107,7 @@ const Login = ({onLogin}) => {
                 type="tel"
                 className={`form-control ${errors.numero_documento_usuario ? "is-invalid" : ""}`}
                 id="numero_documento_usuario"
+                placeholder="Ingrese su número de documento"
                 maxLength="10"
                 required
               />
@@ -116,14 +116,13 @@ const Login = ({onLogin}) => {
                   {errors.numero_documento_usuario}
                 </div>
               )}
-            </div>
-            <div className="mb-3">
-              <label htmlFor="Password" className="form-label">
+              <label htmlFor="Password" className="titulo form-label">
                 Contraseña
               </label>
               <input
                 onChange={handleChange}
                 name="contrasenha_usuario"
+                placeholder="Ingrese su contraseña"
                 type="password"
                 className={`form-control ${errors.contrasenha_usuario ? "is-invalid" : ""}`}
                 id="Password"
@@ -135,20 +134,14 @@ const Login = ({onLogin}) => {
                   {errors.contrasenha_usuario}
                 </div>
               )}
-            </div>
-            <div className="mb-3">
-              <button type="submit" className="btn btn-block" style={{ background: "#39A900" }}>
-                Iniciar Sesión
+              <button type="submit" className="boton-iniciar btn-block" >
+                Iniciar sesión
               </button>
-            </div>
-            <div className="text-center">
-              <button type="button" className="btn">
-                ¿Olvidaste tu Contraseña?
-              </button>
-            </div>
+
           </form>
         </div>
-      </div>
+    </div>
+
     </>
   );
 };

@@ -1,7 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Navadministrador from '../../Navadministrador/navAdministrador';
-
+import Navadministrador from '../Navadministrador/navAdministrador';
 const NovedadComponent = ({ novedades, eliminarNovedad }) => {
   return (
     <>

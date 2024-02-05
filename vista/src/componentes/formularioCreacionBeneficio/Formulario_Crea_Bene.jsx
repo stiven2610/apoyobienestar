@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Navadministrador from "../../Navadministrador/navAdministrador";
-import "./styles.css";
 
+import "./styles.css";
+import Navadministrador from "../Navadministrador/navAdministrador";
 const FormularioCreaBeneficio = () => {
   const [beneficio, setBeneficio] = useState({
     codigo_beneficio: "",

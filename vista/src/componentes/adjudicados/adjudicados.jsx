@@ -1,6 +1,9 @@
+
+
+
 import { useEffect, useState } from "react";
 import "./styles.css";
-import Navadministrador from "../../Navadministrador/navAdministrador";
+import Navadministrador from "../Navadministrador/navAdministrador";
 const TablaAdjudicados = () => {
   const [datos, setDatos] = useState([]);
   const [cargando, setCargando] = useState(true);

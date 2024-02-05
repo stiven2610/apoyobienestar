@@ -1,0 +1,42 @@
+
+.header-container {
+    width: 100%;
+    background: #39A900;
+    align-items: center;
+    display: flex;
+    height: 100px;
+  margin-bottom: 2rem;
+  }
+  
+  .sigaas-container {
+    text-align: center;
+    width: 60%;
+  }
+  
+  .logo-container {
+    width: 20%;
+    background: #fff;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .sigaas {
+    margin-top: 2rem;
+    color: #FBFBE2;
+    font-weight: bold;
+  }
+  
+  .navbar-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background: #39A900;
+  }
+  
+  .link-nav {
+    text-decoration: none;
+    color: #ffff;
+    padding: 1rem;
+  }

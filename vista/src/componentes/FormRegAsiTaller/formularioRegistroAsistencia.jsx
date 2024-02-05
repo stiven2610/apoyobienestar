@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "./styles.css";
+import Navegacion from "../navIndex/navbar";
 
 const FormRegistroAsistenciaTaller = () => {
   const registroAsistenciaRef = useRef(null);
@@ -123,6 +124,7 @@ const FormRegistroAsistenciaTaller = () => {
 
   return (
     <>
+    <Navegacion/>
       <div ref={registroAsistenciaRef} className="container-fluid d-flex flex-column justify-content-center align-items-center" style={{ minHeight: "70vh" }}>
         <div className="col-md-5" id="form-container">
           <div className="container_form bg-light p-4 rounded text-center">
