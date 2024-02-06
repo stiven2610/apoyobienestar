@@ -38,6 +38,7 @@ const Navadministrador = ({ onLogin }) => {
               <Link to="/creaciontaller" className="link-nav">
                 Creación de taller
               </Link>
+              
               <Link to="/novedadcomponent" className="link-nav">
                 Novedades
               </Link>

@@ -1,7 +1,7 @@
 select *from beneficio;
 select * from usuario;
 select * FROM APRENDIZ;
-
+select * from aprendiz_cancelado;
 alter table beneficio drop column numero_documento_aprendiz
 ALTER TABLE beneficio 
 ADD numero_documento_aprendiz INT NOT NULL;
@@ -50,3 +50,4 @@ INSERT INTO aprendiz VALUES ('1809477895','Camila Ramirez','2619702','3','3','2'
 INSERT INTO aprendiz VALUES ('1909477896','Alejandro Herrera','2619701','2','2','1','21','100001','123456789','2025-07-21','3242343450','3103558240','Calle 47 #28-116 Lagos 19','alejandroherrera@gmail.com');
 INSERT INTO aprendiz VALUES ('2009477897','Lucía Gomez','2619702','1','1','2','21','100001','123456789','2025-09-26','3242343451','3103558241','Calle 48 #29-117 Lagos 20','luciagomez@gmail.com');
 
+INSERT INTO  aprendiz_cancelado values ('0001','2619702','1609477893','No presento formato de siguimiento mensual','2024-02-17','12345678')

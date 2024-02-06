@@ -56,12 +56,12 @@ const TablaAdjudicados = () => {
         <h4 className="mb-4">Gestión de Aprendices adjudicados</h4>
         <div className="container-filtros">
           <div className="container-filtro col-md-4 mb-3">
-            <label htmlFor="estado" className="text-dark">
+            <label htmlFor="estado" className="titulos">
               Filtrar por Estado de Aprendiz:
             </label>
             <select
               id="estado"
-              className="form-control"
+              className="select form-control"
               value={filtroEstado}
               onChange={handleEstadoChange}
             >
@@ -77,7 +77,7 @@ const TablaAdjudicados = () => {
           </div>
 
           <div className="container-buscador col-md-4 mb-3">
-            <label htmlFor="busqueda" className="text-dark">
+            <label htmlFor="busqueda" className="titulostext-dark">
               Buscar por Nombre o Número de Documento:
             </label>
             <input
