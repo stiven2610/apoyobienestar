@@ -94,7 +94,7 @@ CREATE TABLE estado_aprendiz(
 
     PRIMARY KEY ( id_estado_aprendiz)
 );
-CREATE TABLE  obligacion_mensual(
+C REATE TABLE  obligacion_mensual(
     id_obligacion_mensual   INT NOT NULL,
     nombre_obligacion_mensual  VARCHAR NOT NULL,
 

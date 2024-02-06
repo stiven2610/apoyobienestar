@@ -28,3 +28,12 @@ margin-left: 3rem;
 .container-boton{
     margin-top: 1rem;
 }
+.titulos{
+    color:#39A900 ;
+}
+.boton{
+    background: #39A900;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+}

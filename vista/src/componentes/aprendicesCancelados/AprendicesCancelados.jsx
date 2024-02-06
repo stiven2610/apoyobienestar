@@ -8,7 +8,7 @@ const AprendicesCancelados= () => {
   const [cargando, setCargando] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:4000/adj43")
+    fetch("http://localhost:4000/cancelados")
       .then((response) => response.json())
       .then((data) => {
         if (data.data && Array.isArray(data.data)) {
@@ -37,14 +37,12 @@ const AprendicesCancelados= () => {
               <tr>
                 <th>GESTIONAR</th>
                 <th>Nombre Completo del Aprendiz</th>
+                <th>Código de Ficha</th>
                 <th>Tipo de Documento</th>
                 <th>Número de Documento</th>
                 <th>Numero de resolución</th>
                 <th>Fecha de Cancelación</th>
                 <th>motivo de cancelación</th>
-                <th>Código de Ficha</th>
-                <th>Teléfono Móvil</th>
-                <th>Correo Electrónico del Aprendiz</th>
               </tr>
             </thead>
             <tbody>
@@ -61,17 +59,12 @@ const AprendicesCancelados= () => {
                       </div>
                     </td>
                     <td>{item.nombre_completo_aprendiz}</td>
-                    <td>{item.tipo_documento}</td>
-                    <td>{item.numero_documento_aprendiz}</td>
-                    <td>{item.obligacion_mensual}</td>
                     <td>{item.codigo_ficha}</td>
-                    <td>{item.codigo_beneficio}</td>
-                    <td>{item.fecha_adjudicacion}</td>
-                    <td>{item.id_modalidad}</td>
-                    <td>{item.numero_telefono_fijo}</td>
-                    <td>{item.numero_telefono_movil}</td>
-                    <td>{item.direccion_residencia_aprendiz}</td>
-                    <td>{item.email_aprendiz}</td>
+                    <td>{}</td>
+                    <td>{item.numero_documento_aprendiz}</td>
+                    <td>{item.numero_resolucion}</td>
+                    <td>{item.fecha_cancelacion}</td>
+                    <td>{item.motivo_cancelacion}</td>
                   </tr>
                 ))
               )}
