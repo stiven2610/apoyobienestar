@@ -53,3 +53,5 @@ FOR EACH ROW EXECUTE PROCEDURE fun_act_tabla();
 CREATE TRIGGER tri_act_tabla BEFORE INSERT OR UPDATE ON parametros
 FOR EACH ROW EXECUTE PROCEDURE fun_act_tabla();
 
+CREATE TRIGGER tri_act_tabla BEFORE INSERT OR UPDATE ON aprendiz_cancelado
+FOR EACH ROW EXECUTE PROCEDURE fun_act_tabla();

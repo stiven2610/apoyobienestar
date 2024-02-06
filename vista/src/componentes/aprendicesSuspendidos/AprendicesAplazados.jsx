@@ -35,19 +35,19 @@ const AprendicesAplazados = () => {
                 <th>Nombre Completo del Aprendiz</th>
                 <th>Tipo de Documento</th>
                 <th>Número de Documento</th>
-                <th>Motivo de suspensión</th>
-                <th>Numero de resolución</th>
-                <th>fecha de inicio de suspensión</th>
-                <th>fecha fin de suspensión</th>
+                <th>Motivo de Suspensión</th>
+                <th>Número de Resolución</th>
+                <th>fecha de Inicio de Suspensión</th>
+                <th>fecha fin de Suspensión</th>
                 <th>Teléfono Móvil</th>
                 <th>Correo Electrónico del Aprendiz</th>
-                <th>Nombre instructor lider</th>
+                <th>Nombre Instructor Líder</th>
               </tr>
             </thead>
             <tbody>
               {cargando ? (
                 <tr>
-                  <td colSpan="21">Cargando datos...</td>
+                  <td colSpan="21">Cargando Datos...</td>
                 </tr>
               ) : (
                 datos.map((item) => (

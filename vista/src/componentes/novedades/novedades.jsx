@@ -1,51 +1,77 @@
-import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useEffect, useState } from 'react';
 import Navadministrador from '../Navadministrador/navAdministrador';
+import Boton from '../botones/Boton';
+import "./styles.css";
+
+
 const NovedadComponent = ({ novedades, eliminarNovedad }) => {
+  const [datos, setDatos] = useState([]);
+  const [cargando, setCargando] = useState(true);
+  useEffect(() => {
+    fetch("http://localhost:4000/novedades").then((response) => response.json()).then((data) => {
+      if (data.data && Array.isArray(data.data)) {
+        setDatos(data.data);
+        setCargando(false);
+      }
+    }).catch((error) => {
+      console.error("Error en la solicitud:", error);
+      setCargando(false);
+    });
+  }, []);
   return (
     <>
-    <Navadministrador/>
-    <div className="table-responsive">
-      <table className="table table-bordered table-striped">
-        <thead className="thead-dark"> {/* Cambié la clase a thead-dark */}
-          <tr>
-            <th>Número de Documento</th>
-            <th>Fecha de Novedad</th>
-            <th>Nombre del Aprendiz</th>
-            <th>Novedad</th>
-            <th>Motivo de la Novedad</th>
-            <th>Estado del Aprendiz</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          {novedades && novedades.length > 0 ? (
-            novedades.map((aprendiz, index) => (
-              <tr key={index}>
-                <td>{aprendiz.numeroDocumento}</td>
-                <td>{aprendiz.fecha}</td>
-                <td>{aprendiz.nombre}</td>
-                <td>{aprendiz.novedad}</td>
-                <td>{aprendiz.motivo}</td>
-                <td>{aprendiz.estado}</td>
-                <td>
-                  <button
-                    className="btn btn-danger"
-                    onClick={() => eliminarNovedad(index)}
-                  >
-                    Eliminar
-                  </button>
-                </td>
-              </tr>
-            ))
-          ) : (
-            <tr>
-              <td colSpan="7">No hay novedades para mostrar.</td>
-            </tr>
-          )}
-        </tbody>
-      </table>
-    </div>
+      <Navadministrador />
+      <div className="container-novedades">
+        <div className="table-container">
+
+          <h4 className="titulos">Novedades prensentadas</h4>
+          <div className="table-responsive">
+            <table className="table table-bordered table-striped">
+              <thead className="">
+                <tr>
+                  <th>Gestión</th>
+                  <th>Número de Documento</th>
+                  <th>Nombre Completo del Aprendiz</th>
+                  <th>Motivo Novedad</th>
+                  <th>Nombre Programa </th>
+                  <th>Novedad</th>
+                  <th>Fecha novedad</th>
+                  <th>Estado del Aprendiz</th>
+                  <th>Nombre Usuario que Registra</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {cargando ? (
+                  <tr>
+                    <td colSpan="21">Cargando datos...</td>
+                  </tr>
+                ) : (
+                  datos.map((item) => (
+                    <tr key={item.id_tipo_novedad}>
+                      <td>
+                        
+                          <div>
+                          <Boton />
+                        </div>
+                      </td>
+                      <td>{item.numero_documento_aprendiz}</td>
+                      <td>{item.nombre_completo_aprendiz}</td>
+                      <td>{item.id_tipo_novedad}</td>
+                      <td>{item.nombre_programa}</td>
+                      <td>{item.fecha_novedad}</td>
+                      <td>{ }</td>
+                      <td>{item.numero_documento_usuario}</td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
     </>
 
   );
