@@ -25,7 +25,7 @@ const AprendicesLectiva = () => {
 
   return (
     <div className="container_body">
-      <h4>Aprendices a punto de cumplir etapa lectiva</h4>
+      <h4>Aprendices a Punto de Cumplir Étapa Lectiva</h4>
       <div className="table-container">
         <div className="table-responsive">
           <table className="table table-bordered table-striped">
@@ -36,7 +36,7 @@ const AprendicesLectiva = () => {
                 <th>Tipo de Documento</th>
                 <th>Número de Documento</th>
                 <th>Obligación Mensual</th>
-                <th>Fecha fin lectiva </th>
+                <th>Fecha Fin lectiva </th>
                 <th>Fecha de Adjudicación</th>
                 <th>Teléfono Fijo</th>
                 <th>Teléfono Móvil</th>
@@ -47,7 +47,7 @@ const AprendicesLectiva = () => {
             <tbody>
               {cargando ? (
                 <tr>
-                  <td colSpan="21">Cargando datos...</td>
+                  <td colSpan="21">Cargando Datos...</td>
                 </tr>
               ) : (
                 datos.map((item) => (

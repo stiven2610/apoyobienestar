@@ -47,7 +47,7 @@ const FormularioActualizacionAprendiz = () => {
           <form onSubmit={handleSubmit} autoComplete="off">
             <div className="form-group mb-2 text-center">
               <label htmlFor="numero_documento_aprendiz" className="form_label mb-3" style={{ color: "#39A900" }}>
-                Numero de Documento del Aprendiz
+                Número de Documento del Aprendiz
               </label>
               <input
                 placeholder="Ingrese el numero de documento del aprendiz"
@@ -67,7 +67,7 @@ const FormularioActualizacionAprendiz = () => {
             </div>
             <div className="form-group mb-2 text-center">
               <label htmlFor="nombre_completo_aprendiz" className="form_label mb-3" style={{ color: "#39A900" }}>
-                Nombre completo del aprendiz
+                Nombre Completo del Aprendiz
               </label>
               <input
                 placeholder="Ingrese el nombre completo del aprendiz"
@@ -87,7 +87,7 @@ const FormularioActualizacionAprendiz = () => {
             </div>
             <div className="form-group mb-2 text-center">
               <label htmlFor="codigo_ficha" className="form_label mb-3" style={{ color: "#39A900" }}>
-                Codigo de Ficha
+                Código de Ficha
               </label>
               <input
                 placeholder="Ingrese el codigo de ficha"
@@ -119,7 +119,7 @@ const FormularioActualizacionAprendiz = () => {
                 value={formData.id_tipo_documento || ""}
               >
                 <option value="">Selecciona...</option>
-                <option value="1">Cedula de Ciudadania</option>
+                <option value="1">Cédula de Ciudadanía</option>
                 <option value="2">Tarjeta de identidad</option>
               </select>
               {errors.id_tipo_documento && (
@@ -141,7 +141,7 @@ const FormularioActualizacionAprendiz = () => {
                 value={formData.id_estado_aprendiz || ""}
               >
                 <option value="">Selecciona...</option>
-                <option value="1">Etapa Lectiva</option>
+                <option value="1">Étapa Lectiva</option>
                 <option value="2">Mes de Gracia</option>
                 <option value="3">Suspendido</option>
                 <option value="4">Proyecto Productivo</option>
@@ -154,7 +154,7 @@ const FormularioActualizacionAprendiz = () => {
             </div>
             <div className="form-group mb-2 text-center">
               <label htmlFor="id_estado_aprendiz" className="form_label mb-3" style={{ color: "#39A900" }}>
-                obligación mensual
+                Obligación Mensual
               </label>
               <select
                 name="id_obligacion_mensual"
@@ -177,7 +177,7 @@ const FormularioActualizacionAprendiz = () => {
             </div>
             <div className="form-group mb-2 text-center">
               <label htmlFor="numero_consecutivo" className="form_label mb-3" style={{ color: "#39A900" }}>
-                Numero de consecutivo del aprendiz
+                NÚmero de Consecutivo del Aprendiz
               </label>
               <input
                 placeholder="Ingrese el numero de consecutivo del aprendiz"
@@ -197,7 +197,7 @@ const FormularioActualizacionAprendiz = () => {
             </div>
             <div className="form-group mb-2 text-center">
               <label htmlFor="numero_resolucion_adjudicacion" className="form_label mb-3" style={{ color: "#39A900" }}>
-                Numero de resolución de adjudicación
+                Número de Resolución de Adjudicación
               </label>
               <input
                 placeholder="Ingrese el numero de resolución de adjudicación"

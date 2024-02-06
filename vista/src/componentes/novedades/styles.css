@@ -1,4 +1,4 @@
-.container-cancelados{
+.container-novedades{
     width: 100%;
     height: auto;
     text-align: center;
@@ -14,4 +14,10 @@
 .table-container{
     display: flex;
     flex-direction: column;
+}
+.container-boton{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }

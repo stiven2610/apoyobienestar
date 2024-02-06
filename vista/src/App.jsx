@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import Navadministrador from './componentes/Navadministrador/navAdministrador';
 import Footer from "./componentes/Footer/Footer";
 import FormCreacionAprendiz from "./componentes/FormularioCreacionAprendiz/FormularioCreacionAprendiz";
 import FormularioTaller from "./componentes/FormularioCreacionTaller/formularioCreacionTaller";
+import Navadministrador from './componentes/Navadministrador/navAdministrador';
 import Tabla_adjudicados from "./componentes/adjudicados/adjudicados";
 import AprendicesCancelados from "./componentes/aprendicesCancelados/AprendicesCancelados";
 import AprendicesAplazados from "./componentes/aprendicesSuspendidos/AprendicesAplazados";

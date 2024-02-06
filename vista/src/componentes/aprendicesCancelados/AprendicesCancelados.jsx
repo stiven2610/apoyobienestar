@@ -1,8 +1,8 @@
 
 
 import { useEffect, useState } from "react";
-import "./styles.css";
 import Navadministrador from "../Navadministrador/navAdministrador";
+import "./styles.css";
 const AprendicesCancelados= () => {
   const [datos, setDatos] = useState([]);
   const [cargando, setCargando] = useState(true);
@@ -28,9 +28,10 @@ const AprendicesCancelados= () => {
   return (
     <>
     <Navadministrador/>
-    <div className="container_body">
-      <h4>Aprendices cancelados</h4>
+    <div className="container-cancelados">
       <div className="table-container">
+      <h4 className="titulos">Aprendices cancelados</h4>
+
         <div className="table-responsive">
           <table className="table table-bordered table-striped">
             <thead>
@@ -55,7 +56,7 @@ const AprendicesCancelados= () => {
                   <tr key={item.numero_documento_aprendiz}>
                     <td>
                       <div className="iconos_gestion h-100 d-flex flex-column align-items-center ">
-                        {/* Enlace a="/gestiondatosaprendiz" y estado con el registro */}
+
                       </div>
                     </td>
                     <td>{item.nombre_completo_aprendiz}</td>

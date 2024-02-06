@@ -59,20 +59,21 @@ CREATE TABLE instructor_lider(
 CREATE TABLE ficha
 (
     codigo_ficha                       INT             NOT NULL,    
+    id_modalidad             INT NOT NULL     ,                      
     numero_documento_instructor_lider   INT NOT NULL,         
     fecha_inicio_ficha                 DATE            NOT NULL,                      
     fecha_inicio_etapa_productiva      DATE          ,               
     fecha_fin_ficha                    DATE            NOT NULL,                       
     nivel_formacion                    VARCHAR        ,                       
     nombre_programa                    VARCHAR(100)    NOT NULL,                       
-    modalidad_formacion                VARCHAR(50)     ,                      
     user_insert                        VARCHAR         NOT NULL,                      
     fecha_insert                       TIMESTAMP WITHOUT TIME ZONE NOT NULL,         
     user_update                        VARCHAR,                                        
     fecha_update                       TIMESTAMP WITHOUT TIME ZONE,                   
 
     PRIMARY KEY (codigo_ficha),
-    FOREIGN KEY (numero_documento_instructor_lider) REFERENCES instructor_lider (numero_documento_instructor_lider)
+    FOREIGN KEY (numero_documento_instructor_lider) REFERENCES instructor_lider (numero_documento_instructor_lider);
+    FOREIGN KEY (id_modalidad) REFERENCES modalidad (id_modalidad)
 );
 CREATE TABLE beneficio
 (
@@ -161,16 +162,14 @@ CREATE TABLE novedad (
     id_novedad  INT NOT NULL,
     id_tipo_novedad  INT NOT NULL ,
     numero_documento_aprendiz  INT NOT NULL ,
-    fecha_novedad     TIMESTAMP  WITHOUT  TIME ZONE NOT NULL,
+    numero_documento_usuario  INT NOT NULL ,
+    fecha_novedad    DATE NOT NULL,
     numero_resolucion_adjudicacion  INT NOT NULL ,
     motivo_novedad    VARCHAR NOT NULL,
-    usuario_registra    VARCHAR NOT NULL ,
-    documento_usuario_registra  INT NOT NULL,
-    fecha_asignacion_novedad   INT NOT NULL,
 PRIMARY KEY (id_novedad),
 FOREIGN KEY (id_tipo_novedad ) REFERENCES tipo_novedad (id_tipo_novedad),
-FOREIGN KEY (numero_documento_aprendiz) REFERENCES aprendiz  (numero_documento_aprendiz)
-
+FOREIGN KEY (numero_documento_aprendiz) REFERENCES aprendiz  (numero_documento_aprendiz),
+FOREIGN KEY (numero_documento_usuario)  REFERENCES usuario (numero_documento_usuario)
 );
 CREATE TABLE novedad_formato_seguimiento (
 

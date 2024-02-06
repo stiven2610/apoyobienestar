@@ -1,6 +1,6 @@
 import { useState, } from "react";
 import Navegacion from "../navIndex/navbar";
-import "./styles.css"
+import "./styles.css";
 const FormContactos = () => {
 
 
@@ -38,7 +38,7 @@ const FormContactos = () => {
     <div  className="container-contactanos bg-light shadow   ">
       <h3 className="text-center ">Contáctanos</h3>
       <form onSubmit={handleSubmit}>
-          <label className="form-label">Nombre completo</label>
+          <label className="form-label">Nombre Completo</label>
           <input
             type="text"
             name="nombre"
@@ -58,7 +58,7 @@ const FormContactos = () => {
             className="form-control"
             required
           />
-          <label className="form-label">Correo electrónico</label>
+          <label className="form-label">Correo Electrónico</label>
           <input
             type="email"
             name="email"

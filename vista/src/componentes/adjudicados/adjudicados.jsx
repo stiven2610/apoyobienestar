@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import "./styles.css";
 import Navadministrador from "../Navadministrador/navAdministrador";
+import Boton from "../botones/Boton";
+import "./styles.css";
 const TablaAdjudicados = () => {
   const [datos, setDatos] = useState([]);
   const [cargando, setCargando] = useState(true);
@@ -90,12 +91,7 @@ const TablaAdjudicados = () => {
           </div>
 
           <div className="container-boton col-md-4 mb-3">
-            <button
-              className="boton "
-              onClick={agregarNuevoAprendiz}
-            >
-            Adjudicar Aprendiz
-            </button>
+          <Boton  texto="Adjudicar nuevo aprendiz"  color="#39A900" textcolor="#ffffff"/>
           </div>
         </div>
 
@@ -111,7 +107,7 @@ const TablaAdjudicados = () => {
                 <th>Estado de Aprendiz</th>
                 <th>Obligación Mensual</th>
                 <th>Código de Ficha</th>
-                <th>Codigo de beneficio</th>
+                <th>Nombre Beneficio</th>
                 <th>Fecha de Adjudicación</th>
                 <th>Modalidad</th>
                 <th>Teléfono Fijo</th>
@@ -130,19 +126,20 @@ const TablaAdjudicados = () => {
                   <tr key={item.numero_documento_aprendiz}>
                     <td>
                       <div className="iconos_gestion d-flex flex-column align-items-center ">
-                        <button className="btn btn-primary">Editar</button>
+                        <Boton texto="Editar" color="#A2F5EC"/>
+
                       </div>
                     </td>
                     <td>{item.numero_consecutivo}</td>
                     <td>{item.nombre_completo_aprendiz}</td>
-                    <td>{item.id_tipo_documento}</td>
+                    <td>{item.nombre_documento}</td>
                     <td>{item.numero_documento_aprendiz}</td>
-                    <td>{item.id_estado_aprendiz}</td>
-                    <td>{item.id_obligacion_mensual}</td>
+                    <td>{item.nombre_estado_aprendiz}</td>
+                    <td>{item.nombre_obligacion_mensual}</td>
                     <td>{item.codigo_ficha}</td>
-                    <td>{item.codigo_beneficio}</td>
+                    <td>{item.nombre_beneficio}</td>
                     <td>{item.fecha_adjudicacion}</td>
-                    <td>{item.id_modalidad}</td>
+                    <td>{item.nombre_modalidad}</td>
                     <td>{item.numero_telefono_fijo}</td>
                     <td>{item.numero_telefono_movil}</td>
                     <td>{item.direccion_residencia_aprendiz}</td>

@@ -1,15 +1,33 @@
+select a.numero_documento_aprendiz, a.nombre_completo_aprendiz, a.codigo_ficha , f.nombre_modalidad ,b.nombre_documento, c.nombre_estado_aprendiz, d.nombre_obligacion_mensual,a.numero_consecutivo, a.numero_resolucion_adjudicacion, e.nombre_beneficio , a.fecha_adjudicacion, a.numero_telefono_fijo, a.numero_telefono_movil, a.direccion_residencia_aprendiz, a.email_aprendiz FROM aprendiz AS a , tipo_documento AS b , estado_aprendiz AS c ,obligacion_mensual AS d ,  beneficio AS e , modalidad AS f  WHERE a.id_tipo_documento  = b.id_tipo_documento AND a.id_estado_aprendiz = c.id_estado_aprendiz AND a.id_obligacion_mensual = d.id_obligacion_mensual AND a.codigo_beneficio = e.codigo_beneficio AND a.id_modalidad  = f.id_modalidad;
+
+select a.numero_documento_aprendiz ,a.nombre_completo_aprendiz , c.nombre_documento  FROM  aprendiz AS a , tipo_documento AS c WHERE a.id_tipo_documento = c.id_tipo_documento;
 select *from beneficio;
 select * from usuario;
 select * FROM APRENDIZ;
+select * from estado_aprendiz;
+select * from modalidad;
 select * from aprendiz_cancelado;
-alter table beneficio drop column numero_documento_aprendiz
-ALTER TABLE beneficio 
-ADD numero_documento_aprendiz INT NOT NULL;
+select * from tipo_documento; 
+select * from ficha;
+select * from obligacion_mensual;
+select * from tipo_novedad;
+select * from novedad;
+alter table ficha drop column modalidad_formacion;
+drop table novedad;
+ALTER TABLE ficha
+ADD id_modalidad  INT  ;
+ALTER TABLE ficha
+insert into ficha (id_modalidad) values ('1');
+ADD CONSTRAINT id_modalidad FOREIGN KEY (id_modalidad) REFERENCES modalidad(id_modalidad);
 SELECT * FROM pg_stat_activity;
 select * from instructor_lider;
+insert into tipo_novedad values ('1','Aprendiz no presento formato de seguimiento');
+insert into tipo_novedad values ('2','Aprendiz fue citado a comite academico');
+insert into tipo_novedad values ('3','Aprendiz esta a punto de cumplir etapa lectiva');
+insert into tipo_novedad values ('4','Aprendiz no fue registrado en el taller mensual');
 insert into usuario (numero_documento_usuario,nombre_usuario,apellidos_usuario,contrasenha_usuario) values ('1094778783','Yeison Stiven','Gutierrez Rozo','1234567890');
-insert into modalidad ( id_modalidad,nombre_modalidad) values ('1','Virtual');
-insert into modalidad ( id_modalidad,nombre_modalidad) values ('2','Presencial');
+insert into modalidad ( id_modalidad,nombre_modalidad) values ('2','Virtual');
+insert into modalidad ( id_modalidad,nombre_modalidad) values ('1','Presencial');
 insert into tipo_documento (id_tipo_documento,nombre_documento) values (1,'Cedula de ciudadania');
 insert into tipo_documento (id_tipo_documento,nombre_documento) values (2,'Tarjeta de identidad');
 insert into tipo_documento (id_tipo_documento,nombre_documento) values (3,'PPT');
@@ -24,7 +42,7 @@ insert into estado_aprendiz(id_estado_aprendiz,nombre_estado_aprendiz)  values (
 insert into estado_aprendiz(id_estado_aprendiz,nombre_estado_aprendiz)  values ('3','Proyecto productivo');
 insert into estado_aprendiz(id_estado_aprendiz,nombre_estado_aprendiz)  values ('4','Aplazado');
 insert into estado_aprendiz(id_estado_aprendiz,nombre_estado_aprendiz)  values ('5','Etapa lectiva');
-select * from ficha;
+
 select * from obligacion_mensual;
 insert into obligacion_mensual ( id_obligacion_mensual,nombre_obligacion_mensual) values ('1','Taller Mensual');
 insert into obligacion_mensual ( id_obligacion_mensual,nombre_obligacion_mensual) values ('2','Plan de actividades');
@@ -50,4 +68,10 @@ INSERT INTO aprendiz VALUES ('1809477895','Camila Ramirez','2619702','3','3','2'
 INSERT INTO aprendiz VALUES ('1909477896','Alejandro Herrera','2619701','2','2','1','21','100001','123456789','2025-07-21','3242343450','3103558240','Calle 47 #28-116 Lagos 19','alejandroherrera@gmail.com');
 INSERT INTO aprendiz VALUES ('2009477897','Lucía Gomez','2619702','1','1','2','21','100001','123456789','2025-09-26','3242343451','3103558241','Calle 48 #29-117 Lagos 20','luciagomez@gmail.com');
 
-INSERT INTO  aprendiz_cancelado values ('0001','2619702','1609477893','No presento formato de siguimiento mensual','2024-02-17','12345678')
+INSERT INTO novedad values ('001','1','1209477889','1094778783','2024-03-12','12345678');
+INSERT INTO novedad values ('002','2','1709477894','1094778783','2024-04-01','12345677');
+INSERT INTO novedad values ('003','3','809477885','1094778783','2024-03-20','123456756');
+INSERT INTO novedad values ('004','4','609477883','1094778783','2024-04-03','123456722');
+
+INSERT INTO  aprendiz_cancelado values ('0001','2619702','1609477893','No presento formato de siguimiento mensual','2024-02-17','12345678');
+INSERT INTO  aprendiz_cancelado values ('0002','2619701','1094778783','Se fue a contrato de aprendizaje','2024-03-05','123456790');

@@ -28,7 +28,7 @@ const Tabla_asistencia = () => {
   return (
     <div className="container_body v-100">
       
-      <h4>Tabla de asistencia a taller</h4>
+      <h4>Tabla de Asistencia a Taller</h4>
    
       <div className="table-container">
         <div className="table-responsive">
@@ -43,7 +43,7 @@ const Tabla_asistencia = () => {
             <tbody>
               {cargando ? (
                 <tr>
-                  <td colSpan="3">Cargando datos...</td>
+                  <td colSpan="3">Cargando Datos...</td>
                 </tr>
               ) : (
                 data.map((item) => (
