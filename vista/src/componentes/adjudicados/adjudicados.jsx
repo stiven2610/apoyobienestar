@@ -126,6 +126,7 @@ const TablaAdjudicados = () => {
                   <tr key={item.numero_documento_aprendiz}>
                     <td>
                       <div className="iconos_gestion d-flex flex-column align-items-center ">
+                        
                         <Boton texto="Editar" color="#A2F5EC"/>
 
                       </div>
