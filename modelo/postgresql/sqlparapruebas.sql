@@ -1,6 +1,6 @@
-select a.numero_documento_aprendiz, a.nombre_completo_aprendiz, a.codigo_ficha , f.nombre_modalidad ,b.nombre_documento, c.nombre_estado_aprendiz, d.nombre_obligacion_mensual,a.numero_consecutivo, a.numero_resolucion_adjudicacion, e.nombre_beneficio , a.fecha_adjudicacion, a.numero_telefono_fijo, a.numero_telefono_movil, a.direccion_residencia_aprendiz, a.email_aprendiz FROM aprendiz AS a , tipo_documento AS b , estado_aprendiz AS c ,obligacion_mensual AS d ,  beneficio AS e , modalidad AS f  WHERE a.id_tipo_documento  = b.id_tipo_documento AND a.id_estado_aprendiz = c.id_estado_aprendiz AND a.id_obligacion_mensual = d.id_obligacion_mensual AND a.codigo_beneficio = e.codigo_beneficio AND a.id_modalidad  = f.id_modalidad;
-
-select a.numero_documento_aprendiz ,a.nombre_completo_aprendiz , c.nombre_documento  FROM  aprendiz AS a , tipo_documento AS c WHERE a.id_tipo_documento = c.id_tipo_documento;
+select a.numero_documento_aprendiz, a.nombre_completo_aprendiz, a.codigo_ficha , g.nombre_modalidad ,b.nombre_documento, c.nombre_estado_aprendiz, d.nombre_obligacion_mensual,a.numero_consecutivo, a.numero_resolucion_adjudicacion, e.nombre_beneficio , a.fecha_adjudicacion, a.numero_telefono_fijo, a.numero_telefono_movil, a.direccion_residencia_aprendiz, a.email_aprendiz FROM aprendiz AS a , tipo_documento AS b , estado_aprendiz AS c ,obligacion_mensual AS d ,  beneficio AS e ,  ficha AS f ,modalidad AS g WHERE a.id_tipo_documento  = b.id_tipo_documento AND a.id_estado_aprendiz = c.id_estado_aprendiz AND a.id_obligacion_mensual = d.id_obligacion_mensual AND a.codigo_beneficio = e.codigo_beneficio AND f.id_modalidad  = g.id_modalidad;
+select a.codigo_ficha ,b.nombre_documento,a.numero_documento_aprendiz, c.nombre_completo_aprendiz, a.motivo_cancelacion , a.fecha_cancelacion ,a.numero_resolucion FROM aprendiz_cancelado AS a ,tipo_documento AS b,aprendiz AS c   WHERE a.numero_documento_aprendiz = c.numero_documento_aprendiz AND b.id_tipo_documento = c.id_tipo_documento;
+select a.numero_documento_aprendiz ,a.nombre_completo_aprendiz , g.nombre_documento  FROM  aprendiz AS a ,aprendiz AS d,tipo_documento AS g WHERE a.numero_documento_aprendiz = d.numero_documento_aprendiz;
 select *from beneficio;
 select * from usuario;
 select * FROM APRENDIZ;
@@ -16,7 +16,8 @@ alter table ficha drop column modalidad_formacion;
 drop table novedad;
 ALTER TABLE ficha
 ADD id_modalidad  INT  ;
-ALTER TABLE ficha
+
+
 insert into ficha (id_modalidad) values ('1');
 ADD CONSTRAINT id_modalidad FOREIGN KEY (id_modalidad) REFERENCES modalidad(id_modalidad);
 SELECT * FROM pg_stat_activity;
@@ -32,8 +33,8 @@ insert into tipo_documento (id_tipo_documento,nombre_documento) values (1,'Cedul
 insert into tipo_documento (id_tipo_documento,nombre_documento) values (2,'Tarjeta de identidad');
 insert into tipo_documento (id_tipo_documento,nombre_documento) values (3,'PPT');
 insert into instructor_lider (numero_documento_instructor_lider,nombre_instructor_lider,email_instructor_lider) values ('1234567891','Magda milena','milenaGarcia@gmail.com');
-insert into ficha (codigo_ficha,numero_documento_instructor_lider,fecha_inicio_ficha,fecha_inicio_etapa_productiva,fecha_fin_ficha,nivel_formacion,nombre_programa,modalidad_formacion) values ('2619702','1234567891','2023-10-05','2024-02-15','2024-10-05','Tecnologia','Gestión Administrativa','2');
-insert into ficha (codigo_ficha,numero_documento_instructor_lider,fecha_inicio_ficha,fecha_inicio_etapa_productiva,fecha_fin_ficha,nivel_formacion,nombre_programa,modalidad_formacion) values ('2619701','1234567890','2023-10-05','2024-02-15','2024-10-05','Tecnologia','ADSO','2');
+insert into ficha (codigo_ficha,id_modalidad,numero_documento_instructor_lider,fecha_inicio_ficha,fecha_inicio_etapa_productiva,fecha_fin_ficha,nivel_formacion,nombre_programa) values ('2619702','2','1234567891','2023-10-05','2024-02-15','2024-10-05','Tecnologia','Gestión Administrativa');
+insert into ficha (codigo_ficha,id_modalidad,numero_documento_instructor_lider,fecha_inicio_ficha,fecha_inicio_etapa_productiva,fecha_fin_ficha,nivel_formacion,nombre_programa) values ('2619701','1','1234567890','2023-10-05','2024-02-15','2024-10-05','Tecnologia','ADSO');
 
 
 insert into beneficio ( codigo_beneficio,nombre_beneficio,fecha_inicio_beneficio,fecha_fin_beneficio,cupos_beneficio) values ('123456789','convocatoria I  Apoyo de sostenimiento Regular','2024-02-15','2024-12-18','55');
