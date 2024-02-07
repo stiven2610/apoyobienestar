@@ -1,27 +1,24 @@
 import React, { useState } from 'react';
 
-const FormularioActualizacionAprendiz = () => {
+const FormularioActualizacionAprendiz = ({aprendiz}) => {
   const [formData, setFormData] = useState({
-    numero_documento_aprendiz: '',
-    codigo_ficha: '',
-    id_tipo_documento: '',
-    id_estado_aprendiz: '',
-    id_obligacion_mensual: '',
-    numero_consecutivo: '',
-    numero_resolucion_adjudicacion: '',
-    codigo_beneficio: '',
-    nombre_completo_aprendiz: '',
-    fecha_adjudicacion: '',
-    numero_telefono_fijo: '',
-    numero_telefono_movil: '',
-    direccion_residencia_aprendiz: '',
-    email_aprendiz: '',
-    user_insert: '',
-    fecha_insert: '',
-    user_update: '',
-    fecha_update: ''
+    numero_documento_aprendiz: aprendiz.numero_documento_aprendiz ||'',
+    codigo_ficha: aprendiz.codigo_ficha ||'',
+    id_tipo_documento: aprendiz.nombre_documento ||'',
+    id_estado_aprendiz: aprendiz.nombre_estado_aprendiz||'',
+    id_obligacion_mensual: aprendiz.nombre_obligacion_mensual || '',
+    numero_consecutivo: aprendiz.numero_consecutivo ||'',
+    numero_resolucion_adjudicacion: aprendiz.numero_resolucion_adjudicacion || '',
+    codigo_beneficio: aprendiz.nombre_beneficio ||'',
+    nombre_completo_aprendiz: aprendiz.nombre_completo_aprendiz ||'',
+    fecha_adjudicacion: aprendiz.fecha_adjudicacion ||'',
+    numero_telefono_fijo: aprendiz.numero_telefono_fijo   ||'',
+    numero_telefono_movil: aprendiz.numero_telefono_movil ||'',
+    direccion_residencia_aprendiz: aprendiz.direccion_residencia_aprendiz ||'',
+    email_aprendiz: aprendiz.email_aprendiz ||'' ,
+   
   });
-
+console.log(formData);
   const [errors, setErrors] = useState({}); // Asegúrate de inicializar errors
   const handleChange = (e) => {
     const { name, value } = e.target;
