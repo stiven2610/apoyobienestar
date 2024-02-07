@@ -72,7 +72,7 @@ CREATE TABLE ficha
     fecha_update                       TIMESTAMP WITHOUT TIME ZONE,                   
 
     PRIMARY KEY (codigo_ficha),
-    FOREIGN KEY (numero_documento_instructor_lider) REFERENCES instructor_lider (numero_documento_instructor_lider);
+    FOREIGN KEY (numero_documento_instructor_lider) REFERENCES instructor_lider (numero_documento_instructor_lider),
     FOREIGN KEY (id_modalidad) REFERENCES modalidad (id_modalidad)
 );
 CREATE TABLE beneficio
