@@ -1,8 +1,8 @@
-import { useState} from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Navegacion from "../navIndex/navbar";
-import "./styles.css"
-const Login = ({onLogin}) => {
+import "./styles.css";
+
+const Login = ({ onLogin }) => {
   const navigate = useNavigate();
 
   const [user, setUser] = useState({
@@ -84,64 +84,50 @@ const Login = ({onLogin}) => {
     }
   };
 
-
-    
-  
-
   return (
     <>
-    <Navegacion/>
-    <div className="container-login">
-
+      <div className="container-login">
         <div id="form-container" className="bg-light p-4 shadow col-md-4 text-center">
           <form onSubmit={handleSubmit} method="POST">
-            <h2 className="titulo mb-4">
-              Iniciar Sesión
-            </h2>
-              <label htmlFor="numero_documento_usuario" className="titulo form-label">
-                Número documento usuario
-              </label>
-              <input
-                name="numero_documento_usuario"
-                onChange={handleChange}
-                type="tel"
-                className={`form-control ${errors.numero_documento_usuario ? "is-invalid" : ""}`}
-                id="numero_documento_usuario"
-                placeholder="Ingrese su número de documento"
-                maxLength="10"
-                required
-              />
-              {errors.numero_documento_usuario && (
-                <div className="invalid-feedback">
-                  {errors.numero_documento_usuario}
-                </div>
-              )}
-              <label htmlFor="Password" className="titulo form-label">
-                Contraseña
-              </label>
-              <input
-                onChange={handleChange}
-                name="contrasenha_usuario"
-                placeholder="Ingrese su contraseña"
-                type="password"
-                className={`form-control ${errors.contrasenha_usuario ? "is-invalid" : ""}`}
-                id="Password"
-                maxLength="10"
-                required
-              />
-              {errors.contrasenha_usuario && (
-                <div className="invalid-feedback">
-                  {errors.contrasenha_usuario}
-                </div>
-              )}
-              <button type="submit" className="boton-iniciar btn-block" >
-                Iniciar sesión
-              </button>
-
+            <h2 className="titulo mb-4">Iniciar Sesión</h2>
+            <label htmlFor="numero_documento_usuario" className="titulo form-label">
+              Número documento usuario
+            </label>
+            <input
+              name="numero_documento_usuario"
+              onChange={handleChange}
+              type="tel"
+              className={`form-control ${errors.numero_documento_usuario ? "is-invalid" : ""}`}
+              id="numero_documento_usuario"
+              placeholder="Ingrese su número de documento"
+              maxLength="10"
+              required
+            />
+            {errors.numero_documento_usuario && (
+              <div className="invalid-feedback">{errors.numero_documento_usuario}</div>
+            )}
+            <label htmlFor="Password" className="titulo form-label">
+              Contraseña
+            </label>
+            <input
+              onChange={handleChange}
+              name="contrasenha_usuario"
+              placeholder="Ingrese su contraseña"
+              type="password"
+              className={`form-control ${errors.contrasenha_usuario ? "is-invalid" : ""}`}
+              id="Password"
+              maxLength="10"
+              required
+            />
+            {errors.contrasenha_usuario && (
+              <div className="invalid-feedback">{errors.contrasenha_usuario}</div>
+            )}
+            <button type="submit" className="boton-iniciar btn-block">
+              Iniciar sesión
+            </button>
           </form>
         </div>
-    </div>
-
+      </div>
     </>
   );
 };

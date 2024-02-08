@@ -1,6 +1,5 @@
-import { useState } from 'react';
-import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import Footer from "./componentes/Footer/Footer";
+import { Route, Routes } from 'react-router-dom';
+import Footer from './componentes/Footer/Footer';
 import FormCreacionAprendiz from "./componentes/FormularioCreacionAprendiz/FormularioCreacionAprendiz";
 import FormularioTaller from "./componentes/FormularioCreacionTaller/formularioCreacionTaller";
 import Navadministrador from './componentes/Navadministrador/navAdministrador';
@@ -15,52 +14,43 @@ import FormularioCreaBeneficio from "./componentes/formularioCreacionBeneficio/F
 import Inicio from "./componentes/index/index";
 import Login from "./componentes/login/Login";
 import AprendicesMesGracia from "./componentes/mesGracia/aprendicesMesGracia";
+import Navegacion from './componentes/navIndex/navbar';
 import NovedadComponent from "./componentes/novedades/novedades";
 import RegistroNovedades from "./componentes/registroNovedadesFormato/registroNovedades";
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+ 
 
-  // Esta función se llamará después de un inicio de sesión exitoso
-  const handleLogin = () => {
-    setLoggedIn(true);
-  };
 
   return (
-    <Router>
-      <div>
-        {!loggedIn && (
-          <>
-            <Routes>
-              <Route path="/contacto" element={<FormContactos />} />
-              <Route path="/login" element={<Login onLogin={handleLogin} />} />
-            <Route path="/" element={<Inicio/>} />
+    <div>
+      <Navegacion/>
+      <Routes>
 
-            </Routes>
-          </>
-        )}
+        <Route path="/" element={<Inicio />} />
+        <Route path="/contacto" element={<FormContactos />} />
+        <Route path="/login" element={<Login  />} />
 
-        {loggedIn && (
-          <Routes>
-            <Route path="/navadmin" element={<Navadministrador />} />
-            <Route path="/asistenciataller" element={<Tabla_asistencia />} />
-            <Route path="/beneficio" element={<FormularioCreaBeneficio />} />
-            <Route path="/adjudicados" element={<Tabla_adjudicados />} />
-            <Route path="/mesgracia" element={<AprendicesMesGracia />} />
-            <Route path="/lectiva" element={<AprendicesLectiva />} />
-            <Route path="/aplazados" element={<AprendicesAplazados />} />
-            <Route path="/cancelados" element={<AprendicesCancelados />} />
-            <Route path="/creacionaprendiz" element={<FormCreacionAprendiz />} />
-            <Route path="/creaciontaller" element={<FormularioTaller />} />
-            <Route path="/novedades" element={<RegistroNovedades />} />
-            <Route path="/novedadcomponent" element={<NovedadComponent />} />
-            <Route path="/actualizacionaprendiz" element={<FormularioActualizacionAprendiz />} />
-          </Routes>
-        )}
+        <Route path="/navadmin" element={<Navadministrador />} />
+        <Route path="/asistenciataller" element={<Tabla_asistencia />} />
+        <Route path="/beneficio" element={<FormularioCreaBeneficio />} />
+        <Route path="/adjudicados" element={<Tabla_adjudicados />} />
+        <Route path="/mesgracia" element={<AprendicesMesGracia />} />
+        <Route path="/lectiva" element={<AprendicesLectiva />} />
+        <Route path="/aplazados" element={<AprendicesAplazados />} />
+        <Route path="/cancelados" element={<AprendicesCancelados />} />
+        <Route path="/creacionaprendiz" element={<FormCreacionAprendiz />} />
+        <Route path="/creaciontaller" element={<FormularioTaller />} />
+        <Route path="/novedades" element={<RegistroNovedades />} />
+        <Route path="/novedadcomponent" element={<NovedadComponent />} />
+        <Route path="/actualizacionaprendiz" element={<FormularioActualizacionAprendiz />} />
 
-        <Footer />
-      </div>
-    </Router>
+
+
+      </Routes>
+      <Footer/>
+      
+    </div>
   );
 }
 

@@ -1,5 +1,4 @@
 import { useState, } from "react";
-import Navegacion from "../navIndex/navbar";
 import "./styles.css";
 const FormContactos = () => {
 
@@ -33,7 +32,6 @@ const FormContactos = () => {
 
   return (
     <>
-    <Navegacion/>
     <div className="container ">
     <div  className="container-contactanos bg-light shadow   ">
       <h3 className="text-center ">Contáctanos</h3>
