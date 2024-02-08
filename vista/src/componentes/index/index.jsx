@@ -1,10 +1,8 @@
 import { Carousel } from "react-bootstrap"; // Importa el componente Carousel de Bootstrap
-import Navegacion from "../navIndex/navbar";
 import "./styles.css";
 const Inicio= () => {
   return (
     <>
-    <Navegacion/>
     <div className="container-inicio ">
       
         <div className="row">
@@ -155,7 +153,6 @@ const Inicio= () => {
           </div>
         </div>
       </div>
-
     </>
   );
 };
