@@ -1,7 +1,6 @@
 
 
 import { useEffect, useState } from "react";
-import Navadministrador from "../Navadministrador/navAdministrador";
 import "./styles.css";
 const AprendicesCancelados= () => {
   const [datos, setDatos] = useState([]);
@@ -27,7 +26,6 @@ const AprendicesCancelados= () => {
 
   return (
     <>
-    <Navadministrador/>
     <div className="container-cancelados">
       <div className="table-container">
       <h4 className="titulos">Aprendices cancelados</h4>

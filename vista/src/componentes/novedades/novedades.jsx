@@ -1,6 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useEffect, useState } from 'react';
-import Navadministrador from '../Navadministrador/navAdministrador';
 import Boton from '../botones/Boton';
 import "./styles.css";
 
@@ -21,7 +20,6 @@ const NovedadComponent = ({ novedades, eliminarNovedad }) => {
   }, []);
   return (
     <>
-      <Navadministrador />
       <div className="container-novedades">
         <div className="table-container">
 
