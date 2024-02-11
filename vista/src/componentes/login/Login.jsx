@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../AppRoutes/Authcontext";
 import "./styles.css";
 
-const Login = ({ onLogin }) => {
+const Login = () => {
+  const { login } = useContext(AuthContext); // Obtiene la función de login del contexto
   const navigate = useNavigate();
 
   const [user, setUser] = useState({
@@ -49,7 +51,7 @@ const Login = ({ onLogin }) => {
     }
   };
 
-  const handleSubmit = async (e) => {
+  const onlogin = async (e) => {
     e.preventDefault();
 
     try {
@@ -62,8 +64,8 @@ const Login = ({ onLogin }) => {
       });
 
       if (res.ok) {
-        onLogin();
-        navigate("/navadmin");
+        login();
+        navigate("/adjudicados");
       } else {
         const errorData = await res.json();
 
@@ -87,24 +89,34 @@ const Login = ({ onLogin }) => {
   return (
     <>
       <div className="container-login">
-        <div id="form-container" className="bg-light p-4 shadow col-md-4 text-center">
-          <form onSubmit={handleSubmit} method="POST">
+        <div
+          id="form-container"
+          className="bg-light p-4 shadow col-md-4 text-center"
+        >
+          <form onSubmit={onlogin} method="POST">
             <h2 className="titulo mb-4">Iniciar Sesión</h2>
-            <label htmlFor="numero_documento_usuario" className="titulo form-label">
+            <label
+              htmlFor="numero_documento_usuario"
+              className="titulo form-label"
+            >
               Número documento usuario
             </label>
             <input
               name="numero_documento_usuario"
               onChange={handleChange}
               type="tel"
-              className={`form-control ${errors.numero_documento_usuario ? "is-invalid" : ""}`}
+              className={`form-control ${
+                errors.numero_documento_usuario ? "is-invalid" : ""
+              }`}
               id="numero_documento_usuario"
               placeholder="Ingrese su número de documento"
               maxLength="10"
               required
             />
             {errors.numero_documento_usuario && (
-              <div className="invalid-feedback">{errors.numero_documento_usuario}</div>
+              <div className="invalid-feedback">
+                {errors.numero_documento_usuario}
+              </div>
             )}
             <label htmlFor="Password" className="titulo form-label">
               Contraseña
@@ -114,13 +126,17 @@ const Login = ({ onLogin }) => {
               name="contrasenha_usuario"
               placeholder="Ingrese su contraseña"
               type="password"
-              className={`form-control ${errors.contrasenha_usuario ? "is-invalid" : ""}`}
+              className={`form-control ${
+                errors.contrasenha_usuario ? "is-invalid" : ""
+              }`}
               id="Password"
               maxLength="10"
               required
             />
             {errors.contrasenha_usuario && (
-              <div className="invalid-feedback">{errors.contrasenha_usuario}</div>
+              <div className="invalid-feedback">
+                {errors.contrasenha_usuario}
+              </div>
             )}
             <button type="submit" className="boton-iniciar btn-block">
               Iniciar sesión

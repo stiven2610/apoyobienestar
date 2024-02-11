@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 import "./styles.css";
-import Navadministrador from "../Navadministrador/navAdministrador";
 const FormularioCreaBeneficio = () => {
   const [beneficio, setBeneficio] = useState({
     codigo_beneficio: "",
@@ -61,8 +60,6 @@ const FormularioCreaBeneficio = () => {
 
   return (
     <>
-    
-    <Navadministrador/>
     <div className="padre p-4">
       <div
         className="container d-flex justify-content-center"

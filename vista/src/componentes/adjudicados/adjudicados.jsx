@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Navadministrador from "../Navadministrador/navAdministrador";
 import Boton from "../botones/Boton";
 import "./styles.css";
 const TablaAdjudicados = () => {
@@ -34,10 +33,6 @@ const TablaAdjudicados = () => {
     setFiltroBusqueda(e.target.value);
   };
 
-  const agregarNuevoAprendiz = () => {
-    // Implementa la lógica para agregar un nuevo aprendiz
-    console.log("Agregando nuevo aprendiz");
-  };
 
   const filteredDatos = datos.filter((item) => {
     const estadoMatch =
@@ -52,7 +47,6 @@ const TablaAdjudicados = () => {
 
   return (
     <>
-      <Navadministrador />
       <div className="container ">
         <h4 className="mb-4">Gestión de Aprendices adjudicados</h4>
         <div className="container-filtros">
