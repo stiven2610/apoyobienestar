@@ -1,69 +1,66 @@
-import React, { useState } from 'react';
+import  { useState } from "react";
+import Boton from "../botones/Boton";
+import "./styles.css";
 
-const FormularioActualizacionAprendiz = ({aprendiz}) => {
+const FormularioActualizacionAprendiz = ({ aprendiz }) => {
   const [formData, setFormData] = useState({
-    numero_documento_aprendiz: aprendiz.numero_documento_aprendiz ||'',
-    codigo_ficha: aprendiz.codigo_ficha ||'',
-    id_tipo_documento: aprendiz.nombre_documento ||'',
-    id_estado_aprendiz: aprendiz.nombre_estado_aprendiz||'',
-    id_obligacion_mensual: aprendiz.nombre_obligacion_mensual || '',
-    numero_consecutivo: aprendiz.numero_consecutivo ||'',
-    numero_resolucion_adjudicacion: aprendiz.numero_resolucion_adjudicacion || '',
-    codigo_beneficio: aprendiz.nombre_beneficio ||'',
-    nombre_completo_aprendiz: aprendiz.nombre_completo_aprendiz ||'',
-    fecha_adjudicacion: aprendiz.fecha_adjudicacion ||'',
-    numero_telefono_fijo: aprendiz.numero_telefono_fijo   ||'',
-    numero_telefono_movil: aprendiz.numero_telefono_movil ||'',
-    direccion_residencia_aprendiz: aprendiz.direccion_residencia_aprendiz ||'',
-    email_aprendiz: aprendiz.email_aprendiz ||'' ,
-   
+    numero_documento_aprendiz: aprendiz.numero_documento_aprendiz || "",
+    codigo_ficha: aprendiz.codigo_ficha || "",
+    id_tipo_documento: aprendiz.id_tipo_documento || "",
+    id_estado_aprendiz: aprendiz.id_estado_aprendiz || "",
+    id_obligacion_mensual: aprendiz.id_obligacion_mensual || "",
+    numero_consecutivo: aprendiz.numero_consecutivo || "",
+    numero_resolucion_adjudicacion:aprendiz.numero_resolucion_adjudicacion || "",
+    codigo_beneficio: aprendiz.nombre_beneficio || "",
+    nombre_completo_aprendiz: aprendiz.nombre_completo_aprendiz || "",
+    fecha_adjudicacion: aprendiz.fecha_adjudicacion || "",
+    numero_telefono_fijo: aprendiz.numero_telefono_fijo || "",
+    numero_telefono_movil: aprendiz.numero_telefono_movil || "",
+    direccion_residencia_aprendiz: aprendiz.direccion_residencia_aprendiz || "",
+    email_aprendiz: aprendiz.email_aprendiz || "",
   });
-console.log(formData);
-  const [errors, setErrors] = useState({}); // Asegúrate de inicializar errors
+  const [errors] = useState({});
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: value
+      [name]: value,
     });
   };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
-    // Agrega aquí la lógica para enviar los datos a tu servidor
+
+    try {
+      const res = await fetch("http://localhost:4000/actualizardatos", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!res.ok) {
+        // Si la respuesta del servidor no está en el rango de 200 a 299, lanzamos un error
+        throw new Error("Error al enviar el formulario");
+      }
+
+      // Aquí puedes manejar la respuesta exitosa del servidor, si es necesario
+    } catch (error) {
+      // Aquí manejas los errores del servidor
+      console.log("Error:", error);
+    }
   };
 
   return (
-    <div className="container-fluid d-flex flex-column justify-content-center align-items-center" style={{ minHeight: "70vh" }}>
-      <div className="col-md-5" id="form-container">
-        <div className="container_form bg-light p-4 rounded text-center">
-          <p className="titulo_beneficio font-weight-bold" style={{ color: "#084416" }}>
-            ACTUALIZACIÓN DE DATOS DEL APRENDIZ
-          </p>
-          <form onSubmit={handleSubmit} autoComplete="off">
-            <div className="form-group mb-2 text-center">
-              <label htmlFor="numero_documento_aprendiz" className="form_label mb-3" style={{ color: "#39A900" }}>
-                Número de Documento del Aprendiz
-              </label>
-              <input
-                placeholder="Ingrese el numero de documento del aprendiz"
-                name="numero_documento_aprendiz"
-                onChange={handleChange}
-                type="text"
-                required
-                className={`form-control form_input ${errors.numero_documento_aprendiz && "is-invalid"}`}
-                id="numero_documento_aprendiz"
-                value={formData.numero_documento_aprendiz || ""}
-              />
-              {errors.numero_documento_aprendiz && (
-                <span className="invalid-feedback">
-                  {errors.numero_documento_aprendiz}
-                </span>
-              )}
-            </div>
-            <div className="form-group mb-2 text-center">
-              <label htmlFor="nombre_completo_aprendiz" className="form_label mb-3" style={{ color: "#39A900" }}>
+    <div className="datos">
+      <div className="" id="form-container">
+        <form className="" onSubmit={handleSubmit} autoComplete="off">
+          <h3>Datos de aprendiz</h3>
+
+          <div className="datos_personales">
+            <div className="container_input">
+              <label htmlFor="nombre_completo_aprendiz" className="">
                 Nombre Completo del Aprendiz
               </label>
               <input
@@ -72,7 +69,9 @@ console.log(formData);
                 onChange={handleChange}
                 type="text"
                 required
-                className={`form-control form_input ${errors.nombre_completo_aprendiz && "is-invalid"}`}
+                className={` ${
+                  errors.nombre_completo_aprendiz && "is-invalid"
+                }`}
                 id="nombre_completo_aprendiz"
                 value={formData.nombre_completo_aprendiz || ""}
               />
@@ -82,36 +81,16 @@ console.log(formData);
                 </span>
               )}
             </div>
-            <div className="form-group mb-2 text-center">
-              <label htmlFor="codigo_ficha" className="form_label mb-3" style={{ color: "#39A900" }}>
-                Código de Ficha
-              </label>
-              <input
-                placeholder="Ingrese el codigo de ficha"
-                name="codigo_ficha"
-                onChange={handleChange}
-                type="text"
-                required
-                className={`form-control form_input ${errors.codigo_ficha && "is-invalid"}`}
-                id="codigo_ficha"
-                value={formData.codigo_ficha || ""}
-              />
-              {errors.codigo_ficha && (
-                <span className="invalid-feedback">
-                  {errors.codigo_ficha}
-                </span>
-              )}
-            </div>
 
-            <div className="form-group mb-2 text-center">
-              <label htmlFor="id_tipo_documento" className="form_label mb-3" style={{ color: "#39A900" }}>
+            <div className="container_input">
+              <label htmlFor="id_tipo_documento" className="">
                 Tipo de Documento
               </label>
               <select
                 name="id_tipo_documento"
                 onChange={handleChange}
                 required
-                className={`form-control form_input ${errors.id_tipo_documento && "is-invalid"}`}
+                className={` ${errors.id_tipo_documento && "is-invalid"}`}
                 id="id_tipo_documento"
                 value={formData.id_tipo_documento || ""}
               >
@@ -125,15 +104,166 @@ console.log(formData);
                 </span>
               )}
             </div>
-            <div className="form-group mb-2 text-center">
-              <label htmlFor="id_estado_aprendiz" className="form_label mb-3" style={{ color: "#39A900" }}>
+
+            <div className="container_input">
+              <label htmlFor="numero_documento_aprendiz" className="">
+                Número de Documento del Aprendiz
+              </label>
+              <input
+                placeholder="Ingrese el numero de documento del aprendiz"
+                name="numero_documento_aprendiz"
+                onChange={handleChange}
+                type="text"
+                required
+                className={` ${
+                  errors.numero_documento_aprendiz && "is-invalid"
+                }`}
+                id="numero_documento_aprendiz"
+                value={formData.numero_documento_aprendiz || ""}
+              />
+              {errors.numero_documento_aprendiz && (
+                <span className="invalid-feedback">
+                  {errors.numero_documento_aprendiz}
+                </span>
+              )}
+            </div>
+
+            <div className="container_input">
+              <label htmlFor="numero_consecutivo" className="form_label">
+                NÚmero de Consecutivo del Aprendiz
+              </label>
+              <input
+                placeholder="Ingrese el numero de consecutivo del aprendiz"
+                name="numero_consecutivo"
+                onChange={handleChange}
+                type="text"
+                required
+                className={` ${errors.numero_consecutivo && "is-invalid"}`}
+                id="numero_consecutivo"
+                value={formData.numero_consecutivo || ""}
+              />
+              {errors.numero_consecutivo && (
+                <span className="invalid-feedback">
+                  {errors.numero_consecutivo}
+                </span>
+              )}
+            </div>
+
+            <div className="container_input">
+              <label htmlFor="numero_telefono_fijo" className="">
+                Número de Teléfono Fijo
+              </label>
+              <input
+                placeholder="Ingrese el número de teléfono fijo"
+                name="numero_telefono_fijo"
+                onChange={handleChange}
+                type="text"
+                required
+                className={` ${errors.numero_telefono_fijo && "is-invalid"}`}
+                id="numero_telefono_fijo"
+                value={formData.numero_telefono_fijo || ""}
+              />
+              {errors.numero_telefono_fijo && (
+                <span className="invalid-feedback">
+                  {errors.numero_telefono_fijo}
+                </span>
+              )}
+            </div>
+            <div className="container_input">
+              <label htmlFor="numero_telefono_movil" className="">
+                Número de Teléfono Móvil
+              </label>
+              <input
+                placeholder="Ingrese el número de teléfono móvil"
+                name="numero_telefono_movil"
+                onChange={handleChange}
+                type="text"
+                required
+                className={` ${errors.numero_telefono_movil && "is-invalid"}`}
+                id="numero_telefono_movil"
+                value={formData.numero_telefono_movil || ""}
+              />
+              {errors.numero_telefono_movil && (
+                <span className="invalid-feedback">
+                  {errors.numero_telefono_movil}
+                </span>
+              )}
+            </div>
+
+            <div className="container_input">
+              <label htmlFor="direccion_residencia_aprendiz" className="">
+                Dirección de Residencia del Aprendiz
+              </label>
+              <input
+                placeholder="Ingrese la dirección de residencia del aprendiz"
+                name="direccion_residencia_aprendiz"
+                onChange={handleChange}
+                type="text"
+                required
+                className={` ${
+                  errors.direccion_residencia_aprendiz && "is-invalid"
+                }`}
+                id="direccion_residencia_aprendiz"
+                value={formData.direccion_residencia_aprendiz || ""}
+              />
+              {errors.direccion_residencia_aprendiz && (
+                <span className="invalid-feedback">
+                  {errors.direccion_residencia_aprendiz}
+                </span>
+              )}
+            </div>
+            <div className="container_input">
+              <label htmlFor="email_aprendiz" className="">
+                Email del Aprendiz
+              </label>
+              <input
+                placeholder="Ingrese el email del aprendiz"
+                name="email_aprendiz"
+                onChange={handleChange}
+                type="email"
+                required
+                className={` ${errors.email_aprendiz && "is-invalid"}`}
+                id="email_aprendiz"
+                value={formData.email_aprendiz || ""}
+              />
+              {errors.email_aprendiz && (
+                <span className="invalid-feedback">
+                  {errors.email_aprendiz}
+                </span>
+              )}
+            </div>
+          </div>
+          <h3>Datos de beneficio</h3>
+
+          <div className="datos_beneficio">
+            <div className="container_input">
+              <label htmlFor="codigo_ficha" className="">
+                Código de Ficha
+              </label>
+              <input
+                placeholder="Ingrese el codigo de ficha"
+                name="codigo_ficha"
+                onChange={handleChange}
+                type="text"
+                required
+                className={` ${errors.codigo_ficha && "is-invalid"}`}
+                id="codigo_ficha"
+                value={formData.codigo_ficha || ""}
+              />
+              {errors.codigo_ficha && (
+                <span className="invalid-feedback">{errors.codigo_ficha}</span>
+              )}
+            </div>
+
+            <div className="container_input">
+              <label htmlFor="id_estado_aprendiz" className="">
                 Estado del Aprendiz
               </label>
               <select
                 name="id_estado_aprendiz"
                 onChange={handleChange}
                 required
-                className={`form-control form_input ${errors.id_estado_aprendiz && "is-invalid"}`}
+                className={` ${errors.id_estado_aprendiz && "is-invalid"}`}
                 id="id_estado_aprendiz"
                 value={formData.id_estado_aprendiz || ""}
               >
@@ -149,22 +279,21 @@ console.log(formData);
                 </span>
               )}
             </div>
-            <div className="form-group mb-2 text-center">
-              <label htmlFor="id_estado_aprendiz" className="form_label mb-3" style={{ color: "#39A900" }}>
+            <div className="container_input">
+              <label htmlFor="id_estado_aprendiz" className="">
                 Obligación Mensual
               </label>
               <select
                 name="id_obligacion_mensual"
                 onChange={handleChange}
                 required
-                className={`form-control form_input ${errors.id_obligacion_mensual && "is-invalid"}`}
+                className={` ${errors.id_obligacion_mensual && "is-invalid"}`}
                 id="id_obligacion_mensual"
                 value={formData.id_obligacion_mensual || ""}
               >
                 <option value="">Selecciona...</option>
                 <option value="1">Taller Mensual</option>
                 <option value="2">Plan de Actividades</option>
-
               </select>
               {errors.id_obligacion_mensual && (
                 <span className="invalid-feedback">
@@ -172,28 +301,12 @@ console.log(formData);
                 </span>
               )}
             </div>
-            <div className="form-group mb-2 text-center">
-              <label htmlFor="numero_consecutivo" className="form_label mb-3" style={{ color: "#39A900" }}>
-                NÚmero de Consecutivo del Aprendiz
-              </label>
-              <input
-                placeholder="Ingrese el numero de consecutivo del aprendiz"
-                name="numero_consecutivo"
-                onChange={handleChange}
-                type="text"
-                required
-                className={`form-control form_input ${errors.numero_consecutivo && "is-invalid"}`}
-                id="numero_consecutivo"
-                value={formData.numero_consecutivo || ""}
-              />
-              {errors.numero_consecutivo && (
-                <span className="invalid-feedback">
-                  {errors.numero_consecutivo}
-                </span>
-              )}
-            </div>
-            <div className="form-group mb-2 text-center">
-              <label htmlFor="numero_resolucion_adjudicacion" className="form_label mb-3" style={{ color: "#39A900" }}>
+
+            <div className="container_input ">
+              <label
+                htmlFor="numero_resolucion_adjudicacion"
+                className="form_label"
+              >
                 Número de Resolución de Adjudicación
               </label>
               <input
@@ -202,7 +315,9 @@ console.log(formData);
                 onChange={handleChange}
                 type="text"
                 required
-                className={`form-control form_input ${errors.numero_resolucion_adjudicacion && "is-invalid"}`}
+                className={` ${
+                  errors.numero_resolucion_adjudicacion && "is-invalid"
+                }`}
                 id="numero_resolucion_adjudicacion"
                 value={formData.numero_resolucion_adjudicacion || ""}
               />
@@ -212,8 +327,8 @@ console.log(formData);
                 </span>
               )}
             </div>
-            <div className="form-group mb-2 text-center">
-              <label htmlFor="codigo_beneficio" className="form_label mb-3" style={{ color: "#39A900" }}>
+            <div className="container_input">
+              <label htmlFor="codigo_beneficio" className="">
                 Código de Beneficio
               </label>
               <input
@@ -222,7 +337,7 @@ console.log(formData);
                 onChange={handleChange}
                 type="text"
                 required
-                className={`form-control form_input ${errors.codigo_beneficio && "is-invalid"}`}
+                className={` ${errors.codigo_beneficio && "is-invalid"}`}
                 id="codigo_beneficio"
                 value={formData.codigo_beneficio || ""}
               />
@@ -233,8 +348,8 @@ console.log(formData);
               )}
             </div>
 
-            <div className="form-group mb-2 text-center">
-              <label htmlFor="fecha_adjudicacion" className="form_label mb-3" style={{ color: "#39A900" }}>
+            <div className="container_input">
+              <label htmlFor="fecha_adjudicacion" className="">
                 Fecha de Adjudicación
               </label>
               <input
@@ -242,7 +357,7 @@ console.log(formData);
                 onChange={handleChange}
                 type="date"
                 required
-                className={`form-control form_input ${errors.fecha_adjudicacion && "is-invalid"}`}
+                className={` ${errors.fecha_adjudicacion && "is-invalid"}`}
                 id="fecha_adjudicacion"
                 value={formData.fecha_adjudicacion || ""}
               />
@@ -252,96 +367,9 @@ console.log(formData);
                 </span>
               )}
             </div>
-            <div className="form-group mb-2 text-center">
-              <label htmlFor="numero_telefono_fijo" className="form_label mb-3" style={{ color: "#39A900" }}>
-                Número de Teléfono Fijo
-              </label>
-              <input
-                placeholder="Ingrese el número de teléfono fijo"
-                name="numero_telefono_fijo"
-                onChange={handleChange}
-                type="text"
-                required
-                className={`form-control form_input ${errors.numero_telefono_fijo && "is-invalid"}`}
-                id="numero_telefono_fijo"
-                value={formData.numero_telefono_fijo || ""}
-              />
-              {errors.numero_telefono_fijo && (
-                <span className="invalid-feedback">
-                  {errors.numero_telefono_fijo}
-                </span>
-              )}
-            </div>
-            <div className="form-group mb-2 text-center">
-              <label htmlFor="numero_telefono_movil" className="form_label mb-3" style={{ color: "#39A900" }}>
-                Número de Teléfono Móvil
-              </label>
-              <input
-                placeholder="Ingrese el número de teléfono móvil"
-                name="numero_telefono_movil"
-                onChange={handleChange}
-                type="text"
-                required
-                className={`form-control form_input ${errors.numero_telefono_movil && "is-invalid"}`}
-                id="numero_telefono_movil"
-                value={formData.numero_telefono_movil || ""}
-              />
-              {errors.numero_telefono_movil && (
-                <span className="invalid-feedback">
-                  {errors.numero_telefono_movil}
-                </span>
-              )}
-            </div>
-            <div className="form-group mb-2 text-center">
-              <label htmlFor="direccion_residencia_aprendiz" className="form_label mb-3" style={{ color: "#39A900" }}>
-                Dirección de Residencia del Aprendiz
-              </label>
-              <input
-                placeholder="Ingrese la dirección de residencia del aprendiz"
-                name="direccion_residencia_aprendiz"
-                onChange={handleChange}
-                type="text"
-                required
-                className={`form-control form_input ${errors.direccion_residencia_aprendiz && "is-invalid"}`}
-                id="direccion_residencia_aprendiz"
-                value={formData.direccion_residencia_aprendiz || ""}
-              />
-              {errors.direccion_residencia_aprendiz && (
-                <span className="invalid-feedback">
-                  {errors.direccion_residencia_aprendiz}
-                </span>
-              )}
-            </div>
-            <div className="form-group mb-2 text-center">
-              <label htmlFor="email_aprendiz" className="form_label mb-3" style={{ color: "#39A900" }}>
-                Email del Aprendiz
-              </label>
-              <input
-                placeholder="Ingrese el email del aprendiz"
-                name="email_aprendiz"
-                onChange={handleChange}
-                type="email"
-                required
-                className={`form-control form_input ${errors.email_aprendiz && "is-invalid"}`}
-                id="email_aprendiz"
-                value={formData.email_aprendiz || ""}
-              />
-              {errors.email_aprendiz && (
-                <span className="invalid-feedback">
-                  {errors.email_aprendiz}
-                </span>
-              )}
-            </div>
-
-            <button
-              className="btn boton_crear m-4 btn-success"
-              style={{ background: "#39A900" }}
-              type="submit"
-            >
-              Crear Aprendiz
-            </button>
-          </form>
-        </div>
+          </div>
+          <Boton textcolor="#fffff" color="#39A900" texto="Actualizar datos" />
+        </form>
       </div>
     </div>
   );

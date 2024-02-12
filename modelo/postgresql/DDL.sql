@@ -165,7 +165,6 @@ CREATE TABLE novedad (
     numero_documento_usuario  INT NOT NULL ,
     fecha_novedad    DATE NOT NULL,
     numero_resolucion_adjudicacion  INT NOT NULL ,
-    motivo_novedad    VARCHAR NOT NULL,
 PRIMARY KEY (id_novedad),
 FOREIGN KEY (id_tipo_novedad ) REFERENCES tipo_novedad (id_tipo_novedad),
 FOREIGN KEY (numero_documento_aprendiz) REFERENCES aprendiz  (numero_documento_aprendiz),

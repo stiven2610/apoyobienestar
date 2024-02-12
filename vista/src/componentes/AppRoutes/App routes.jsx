@@ -10,6 +10,7 @@ import NovedadComponent from "../novedades/novedades";
 import FormularioTaller from "../FormularioCreacionTaller/formularioCreacionTaller";
 import FormularioCreaBeneficio from "../formularioCreacionBeneficio/Formulario_Crea_Bene";
 import NovedadesForm from "../registroNovedadesFormato/registroNovedades";
+import FormularioActualizacionAprendiz from "../actualizacionAprendiz/ActualizacionAPrendiz";
 
 const Approutes = () => {
   return (
@@ -64,6 +65,14 @@ const Approutes = () => {
             element={
               <PrivateRoute>
                 <NovedadesForm />
+              </PrivateRoute>
+            }
+          />
+           <Route
+            path="/actualizaraprendiz/:id"
+            element={
+              <PrivateRoute>
+                <FormularioActualizacionAprendiz/>
               </PrivateRoute>
             }
           />
