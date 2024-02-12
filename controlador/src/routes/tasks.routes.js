@@ -6,7 +6,7 @@ const {
   deleteUsuario,
   updateUsuario,
 } = require("../controllers/users.controllers");
-
+const {actualizardatos} = require ("../controllers/actualizardatos.controller")
 const { validarUsuario } = require("../controllers/login.controllers");
 const { crearBeneficio} = require("../controllers/beneficio.controller");
 const { formularioRegistroAsistencia } = require("../controllers/asistencia.controller");
@@ -38,7 +38,7 @@ router.post("/aprendiz", pruebaControlador);
 router.post("/asistenciataller",formularioRegistroAsistencia )
 
 router.get("/adjudicados",obtenerAdjudicados)
-
+router.post ("/actualizardatos",actualizardatos)
 router.get("/asistencias",asistencias)
 //ruta para registro de asistencia
 router.get("/novedades",obtenerNovedades)
