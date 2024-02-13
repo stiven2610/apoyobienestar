@@ -1,9 +1,11 @@
 import { useState } from "react";
+import Boton from "../botones/Boton";
+import "./styles.css";
 const FormularioTaller = () => {
   // Estado para almacenar los valores del formulario
   const [formData, setFormData] = useState({
     codigo_taller: "",
-    tema_taller: "",
+    nombre_taller: "",
     fecha_taller: "",
     contrasenha_taller: "",
   });
@@ -58,80 +60,48 @@ const FormularioTaller = () => {
 
   return (
     <>
-    <div className="padre p-4">
-      <div className="container d-flex justify-content-center">
-        <div className="col-md-5">
-          <div className="container_form bg-light p-4 rounded text-center">
-            <p className="titulo_beneficio text-success font-weight-bold">
-              TALLER
-            </p>
-            <form onSubmit={handleSubmit}>
-              <div className="form-group mb-2 text-center">
-                <label htmlFor="codigo_taller" className="form_label mb-3">
-                  Numero Taller
-                </label>
-                <input
-                  type="number"
-                  className={`form-control form_input ${errors.codigo_taller && "is-invalid"}`}
-                  id="codigo_taller"
-                  name="codigo_taller"
-                  value={formData.codigo_taller}
-                  onChange={handleChange}
-                />
-                {errors.codigo_taller && (
-                  <div className="invalid-feedback">{errors.codigo_taller}</div>
-                )}
-              </div>
-              <div className="form-group mb-2 text-center">
-                <label htmlFor="tema_taller" className="form_label mb-3">
-                  Tema taller
-                </label>
-                <input
-                  type="text"
-                  className="form-control form_input"
-                  id="tema_taller"
-                  name="tema_taller"
-                  value={formData.tema_taller}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="form-group mb-2 text-center">
-                <label htmlFor="fecha_taller" className="form_label mb-3">
-                  Fecha taller
-                </label>
-                <input
-                  type="date"
-                  className="form-control form_input"
-                  id="fecha_taller"
-                  name="fecha_taller"
-                  value={formData.fecha_taller}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="form-group mb-2 text-center">
-                <label htmlFor="contrasenha_taller" className="form_label mb-3">
-                  Contraseña Taller
-                </label>
-                <input
-                  type="password"
-                  className="form-control form_input"
-                  id="contrasenha_taller"
-                  name="contrasenha_taller"
-                  value={formData.contrasenha_taller}
-                  onChange={handleChange}
-                />
-              </div>
-              <button className="btn boton_crear m-4 btn-success" type="submit">
-                CREAR
-              </button>
-            </form>
-            {result && <p>{result}</p>}
-          </div>
-        </div>
-      </div>
-    </div>
-    </>
+      <div className="container_form_taller">
+        <form className="formulario_taller" onSubmit={handleSubmit}>
+          <p className="taller">TALLER</p>
+          <label htmlFor="nombre_taller" className="label_taller">
+            Nombre
+          </label>
+          <input
+            type="text"
+            className="form-control form_input"
+            id="nombre_taller"
+            name="nombre_taller"
+            value={formData.nombre_taller}
+            onChange={handleChange}
+          />
+          <label htmlFor="fecha_taller" className="label_taller">
+            Fecha
+          </label>
+          <input
+            type="date"
+            className="form-control form_input"
+            id="fecha_taller"
+            name="fecha_taller"
+            value={formData.fecha_taller}
+            onChange={handleChange}
+          />
+          <label htmlFor="contrasenha_taller" className="label_taller">
+            Contraseña
+          </label>
+          <input
+            type="password"
+            className="form-control form_input mb-4"
+            id="contrasenha_taller"
+            name="contrasenha_taller"
+            value={formData.contrasenha_taller}
+            onChange={handleChange}
+          />
+          <Boton texto="crear taller"  textcolor="#fefefe" color="#39A900" />
+        {result && <p>{result}</p>}
 
+        </form>
+      </div>
+    </>
   );
 };
 
