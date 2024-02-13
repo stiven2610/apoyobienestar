@@ -1,6 +1,5 @@
-
-
 import { useEffect, useState } from "react";
+import Boton from "../botones/Boton"
 import "./styles.css";
 const AprendicesCancelados= () => {
   const [datos, setDatos] = useState([]);
@@ -34,7 +33,7 @@ const AprendicesCancelados= () => {
           <table className="table table-bordered table-striped">
             <thead>
               <tr>
-                <th>GESTIONAR</th>
+             
                 <th>Nombre Completo del Aprendiz</th>
                 <th>Código de Ficha</th>
                 <th>Tipo de Documento</th>
@@ -52,11 +51,7 @@ const AprendicesCancelados= () => {
               ) : (
                 datos.map((item) => (
                   <tr key={item.numero_documento_aprendiz}>
-                    <td>
-                      <div className="iconos_gestion h-100 d-flex flex-column align-items-center ">
-
-                      </div>
-                    </td>
+        
                     <td>{item.nombre_completo_aprendiz}</td>
                     <td>{item.codigo_ficha}</td>
                     <td>{item.nombre_documento}</td>
