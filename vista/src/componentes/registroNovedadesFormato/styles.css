@@ -1,0 +1,10 @@
+.padre {
+    display: flex;
+    justify-content: center;
+text-align: center;
+}
+.container_novedades{
+    background: #f8f8f8;
+    padding: 2rem;
+    margin-top: 3rem;
+}

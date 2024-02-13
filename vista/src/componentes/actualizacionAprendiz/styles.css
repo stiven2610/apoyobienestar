@@ -1,36 +1,25 @@
+
 .datos_personales {
     width: auto;
     display: flex;
-    background: #a4ff7a;
+    background: #f8f8f8;
     padding: 20px;
-    border-radius: 20px;
+    border-radius: 20px 20px 0px 0px;
     justify-content: space-between;
     flex-wrap: wrap;
 }
 .datos_beneficio{
     width: auto;
     display: flex;
-    background: #e2e2e1;
+    background: #f8f8f8;
     padding: 20px;
-    border-radius: 20px;
+    border-radius: 0px 0px 20px 20px;
     justify-content: space-between;
     flex-wrap: wrap;
 }
-label {
-padding: 10px;
-color: #000000;
-font-weight: bold;
-}
-
-input, select{
-    color: #000000;
-    border: none;
-    border-radius: 10px;
-    font-weight: bold;
-    }
 .container_input {
     width: auto;
     display: flex;
     align-items: center;
-padding: 10px;
+    padding: 10px;
 }

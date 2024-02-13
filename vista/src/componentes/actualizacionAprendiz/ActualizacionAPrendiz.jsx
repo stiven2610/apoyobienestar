@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import { useState } from "react";
 import Boton from "../botones/Boton";
 import "./styles.css";
 
@@ -53,11 +53,7 @@ const FormularioActualizacionAprendiz = ({ aprendiz }) => {
   };
 
   return (
-    <div className="datos">
-      <div className="" id="form-container">
         <form className="" onSubmit={handleSubmit} autoComplete="off">
-          <h3>Datos de aprendiz</h3>
-
           <div className="datos_personales">
             <div className="container_input">
               <label htmlFor="nombre_completo_aprendiz" className="">
@@ -233,8 +229,7 @@ const FormularioActualizacionAprendiz = ({ aprendiz }) => {
               )}
             </div>
           </div>
-          <h3>Datos de beneficio</h3>
-
+        
           <div className="datos_beneficio">
             <div className="container_input">
               <label htmlFor="codigo_ficha" className="">
@@ -367,11 +362,11 @@ const FormularioActualizacionAprendiz = ({ aprendiz }) => {
                 </span>
               )}
             </div>
+
           </div>
           <Boton textcolor="#fffff" color="#39A900" texto="Actualizar datos" />
+
         </form>
-      </div>
-    </div>
   );
 };
 

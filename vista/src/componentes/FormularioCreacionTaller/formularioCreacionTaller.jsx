@@ -63,7 +63,7 @@ const FormularioTaller = () => {
       <div className="container_form_taller">
         <form className="formulario_taller" onSubmit={handleSubmit}>
           <p className="taller">TALLER</p>
-          <label htmlFor="nombre_taller" className="label_taller">
+          <label htmlFor="nombre_taller" className="titulos">
             Nombre
           </label>
           <input
@@ -74,7 +74,7 @@ const FormularioTaller = () => {
             value={formData.nombre_taller}
             onChange={handleChange}
           />
-          <label htmlFor="fecha_taller" className="label_taller">
+          <label htmlFor="fecha_taller" className="titulos">
             Fecha
           </label>
           <input
@@ -85,7 +85,7 @@ const FormularioTaller = () => {
             value={formData.fecha_taller}
             onChange={handleChange}
           />
-          <label htmlFor="contrasenha_taller" className="label_taller">
+          <label htmlFor="contrasenha_taller" className="titulos">
             Contraseña
           </label>
           <input
@@ -96,7 +96,7 @@ const FormularioTaller = () => {
             value={formData.contrasenha_taller}
             onChange={handleChange}
           />
-          <Boton texto="crear taller"  textcolor="#fefefe" color="#39A900" />
+          <Boton texto="crear"  textcolor="#fefefe" color="#39A900" />
         {result && <p>{result}</p>}
 
         </form>
