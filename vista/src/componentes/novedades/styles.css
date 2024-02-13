@@ -7,10 +7,6 @@
     margin-top: 2rem;
 }
 
-.titulos{
-    color:#39A900 ;
-    margin: 2rem;
-}
 .table-container{
     display: flex;
     flex-direction: column;

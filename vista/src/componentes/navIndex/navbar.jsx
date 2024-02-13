@@ -1,5 +1,5 @@
-import { Nav, Navbar } from "react-bootstrap";
 import { useContext } from "react";
+import { Nav, Navbar } from "react-bootstrap";
 import { Link, Outlet } from "react-router-dom";
 import { AuthContext } from "../AppRoutes/Authcontext";
 import Boton from "../botones/Boton";
@@ -26,9 +26,7 @@ const Navegacion = () => {
                   <Link to="/adjudicados" className="link-nav">
                     Adjudicados
                   </Link>
-                  <Link to="/cancelados" className="link-nav">
-                    Aprendices Cancelados
-                  </Link>
+                 
                   <Link to="/creaciondetaller" className="link-nav">
                     Creación de taller
                   </Link>
@@ -41,6 +39,9 @@ const Navegacion = () => {
                   </Link>
                   <Link to="creacionbeneficio" className="link-nav">
                     Creación de beneficio
+                  </Link>
+                  <Link to="/cancelados" className="link-nav">
+                    Aprendices Cancelados
                   </Link>
                 </Nav>
               </Navbar.Collapse>

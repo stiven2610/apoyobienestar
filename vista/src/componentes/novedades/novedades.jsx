@@ -20,11 +20,9 @@ const NovedadComponent = ({ novedades, eliminarNovedad }) => {
   }, []);
   return (
     <>
-      <div className="container-novedades">
-        <div className="table-container">
+      <div className="container-novedades m-4">
 
           <h4 className="titulos">Novedades prensentadas</h4>
-          <div className="table-responsive">
             <table className="table table-bordered table-striped">
               <thead className="">
                 <tr>
@@ -37,7 +35,6 @@ const NovedadComponent = ({ novedades, eliminarNovedad }) => {
                   <th>Fecha novedad</th>
                   <th>Estado del Aprendiz</th>
                   <th>Nombre Usuario que Registra</th>
-                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -49,9 +46,9 @@ const NovedadComponent = ({ novedades, eliminarNovedad }) => {
                   datos.map((item) => (
                     <tr key={item.id_tipo_novedad}>
                       <td>
-                        
+
                           <div>
-                          <Boton />
+                          <Boton texto="cambiar estado"  color="#39A900" textcolor="#fefefe"/>
                         </div>
                       </td>
                       <td>{item.nombre_documento}</td>
@@ -68,8 +65,6 @@ const NovedadComponent = ({ novedades, eliminarNovedad }) => {
               </tbody>
             </table>
           </div>
-        </div>
-      </div>
 
     </>
 

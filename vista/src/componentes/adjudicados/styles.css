@@ -1,16 +1,18 @@
-.container {
-    width: 100%;
-    height: auto;
+.container_adjudicados {
     display: flex;
     flex-direction: column;
     text-align: center;
+    align-items: center;
 }
-
-.container-filtros {
+.adjudicados{
+width: 90%;
+}
+.container_filtros {
     width: 100%;
     height: auto;
-    text-align: center;
     display: flex;
+    text-align: center;
     align-items: center;
-    background: #f7fcf5;
+    background: #f8f8f8;
+    padding: 1rem;
 }

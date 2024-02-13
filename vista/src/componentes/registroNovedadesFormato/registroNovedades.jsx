@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Boton from "../botones/Boton";
 const NovedadesForm = () => {
   const [numeroDocumento, setNumeroDocumento] = useState('');
   const [nombreAprendiz, setNombreAprendiz] = useState('');
@@ -40,9 +41,6 @@ const NovedadesForm = () => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    // Lógica para enviar los datos al backend o realizar acciones necesarias.
-    // Aquí puedes enviar los datos del formulario al servidor.
-    // Luego, puedes restablecer los estados para limpiar el formulario.
     setNumeroDocumento('');
     setNombreAprendiz('');
     setActividadesCumplidas(false);
@@ -55,13 +53,8 @@ const NovedadesForm = () => {
 
   return (
     <>
-    <div className="padre p-4">
-      <div className="container d-flex justify-content-center">
-        <div className="col-md-8">
-          <div className="container_form bg-light p-4 rounded text-center">
-            <p className="titulo_beneficio text-success font-weight-bold">
-              REGISTRAR NOVEDADES DE APRENDIZ EN TALLER MENSUAL
-            </p>
+    <div className="padre ">
+        <div className="container_novedades col-md-8">
             <div className="form-group mb-2 text-center">
               <label htmlFor="numeroDocumento" className="form_label mb-3">
                 Número de Documento del Aprendiz
@@ -91,7 +84,7 @@ const NovedadesForm = () => {
               <table className="table table-bordered">
                 <thead>
                   <tr>
-                    <th>Novedad</th>
+                    <th>Evaluación del aprendiz</th>
                     <th>Observaciones</th>
                   </tr>
                 </thead>
@@ -158,14 +151,10 @@ const NovedadesForm = () => {
                   </tr>
                 </tbody>
               </table>
-              <button className="btn boton_crear m-4 btn-success" type="submit">
-                REGISTRAR
-              </button>
+              <Boton texto="Registrar"  color="#41be07"  ex/>
             </form>
           </div>
         </div>
-      </div>
-    </div>
     </>
 
   );

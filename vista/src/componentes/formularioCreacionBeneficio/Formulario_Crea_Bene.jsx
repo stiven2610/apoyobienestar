@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import Boton from "../botones/Boton";
 import "./styles.css";
 const FormularioCreaBeneficio = () => {
   const [beneficio, setBeneficio] = useState({
@@ -60,19 +60,14 @@ const FormularioCreaBeneficio = () => {
 
   return (
     <>
-    <div className="padre p-4">
-      <div
-        className="container d-flex justify-content-center"
-        id="form-container"
-      >
-        <div className="col-md-5">
-          <div className="container_form bg-light p-4 rounded text-center">
-            <p className="titulo_beneficio text-dark font-weight-bold">
+    <div className="container_beneficio">
+          <div className="container_formulario">
+            <p className="titulo_beneficio">
               BENEFICIO
             </p>
             <form onSubmit={handleSubmit} encType="multipart/form-data">
               
-              <div className="form-group mb-2 text-center" style={{ color: "#39A900" }}>
+              <div className="" style={{ color: "#39A900" }}>
                 <label htmlFor="nombre_beneficio" className="form_label mb-3">
                   Nombre Beneficio
                 </label>
@@ -80,7 +75,7 @@ const FormularioCreaBeneficio = () => {
                   onChange={handleChange}
                   name="nombre_beneficio"
                   type="text"
-                  className={`form-control form_input ${
+                  className={`form-control  ${
                     errors.nombre_beneficio ? "is-invalid" : ""
                   }`}
                   id="nombre_beneficio"
@@ -93,15 +88,14 @@ const FormularioCreaBeneficio = () => {
                   </span>
                 )}
               </div>
-              <div className="form-group mb-2 text-center" style={{ color: "#39A900" }}>
-                <label htmlFor="cupos_beneficio" className="form_label mb-3">
+                <label htmlFor="cupos_beneficio" className="">
                   Ingrese número de cupos
                 </label>
                 <input
                   onChange={handleChange}
                   name="cupos_beneficio"
                   type="number"
-                  className={`form-control form_input ${
+                  className={`form-control  ${
                     errors.cupos_beneficio ? "is-invalid" : ""
                   }`}
                   id="numeroCupos"
@@ -113,19 +107,17 @@ const FormularioCreaBeneficio = () => {
                     {errors.cupos_beneficio}
                   </span>
                 )}
-              </div>
-              <div className="form-group mb-2 text-center" style={{ color: "#39A900" }}>
                 <label
                   htmlFor="fecha_inicio_beneficio"
-                  className="form_label mb-3"
+                  className=""
                 >
-                  Fecha inicio beneficio
+                  Fecha inicio 
                 </label>
                 <input
                   onChange={handleChange}
                   name="fecha_inicio_beneficio"
                   type="date"
-                  className={`form-control form_input ${
+                  className={`form-control  ${
                     errors.fecha_inicio_beneficio ? "is-invalid" : ""
                   }`}
                   id="fechaInicio"
@@ -137,19 +129,17 @@ const FormularioCreaBeneficio = () => {
                     {errors.fecha_inicio_beneficio}
                   </span>
                 )}
-              </div>
-              <div className="form-group text-center" style={{ color: "#39A900" }}>
                 <label
                   htmlFor="fecha_fin_beneficio"
                   className="form_label mb-3"
                 >
-                  Fecha fin beneficio
+                  Fecha fin 
                 </label>
                 <input
                   onChange={handleChange}
                   name="fecha_fin_beneficio"
                   type="date"
-                  className={`form-control form_input ${
+                  className={`form-control  ${
                     errors.fecha_fin_beneficio ? "is-invalid" : ""
                   }`}
                   id="fechaFin"
@@ -161,8 +151,6 @@ const FormularioCreaBeneficio = () => {
                     {errors.fecha_fin_beneficio}
                   </span>
                 )}
-              </div>
-              <div className="form-group text-center" style={{ color: "#39A900" }}>
                 <label
                   htmlFor="archivo_excel"
                   className="form_label mb-3"
@@ -173,7 +161,7 @@ const FormularioCreaBeneficio = () => {
                   onChange={handleChange}
                   name="archivo_excel"
                   type="text"
-                  className={`form-control form_input ${
+                  className={`form-control  mb-3 ${
                     errors.archivo_excel ? "is-invalid" : ""
                   }`}
                   id="archivo_excel"
@@ -185,18 +173,13 @@ const FormularioCreaBeneficio = () => {
                     {errors.archivo_excel}
                   </span>
                 )}
-              </div>
-              <button className="btn boton_crear m-2 btn-success" style={{ background: "#39A900" }} type="submit">
-                CREAR
-              </button>
+              <Boton texto="Crear" color="#41be07" textcolor="#fefefe" />
               {successMessage && (
                 <div className="text-success">{successMessage}</div>
               )}
             </form>
           </div>
         </div>
-      </div>
-    </div>
     </>
 
   );

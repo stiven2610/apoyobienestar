@@ -3,4 +3,13 @@
     border: 2px solid red;
     background-color: #ffebeb;
   }
-  
+  .container_beneficio{
+    background: #f8f8f8;
+    padding: 2rem;
+    margin-top: 3rem;
+    border-radius: 20px;
+  }
+  .titulo_beneficio{
+    color: #41be07;
+    font-weight: bold;
+  }
