@@ -7,10 +7,6 @@
     margin-top: 2rem;
 }
 
-.table-container{
-    display: flex;
-    flex-direction: column;
-}
 .container-boton{
     display: flex;
     flex-direction: column;

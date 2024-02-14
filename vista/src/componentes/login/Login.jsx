@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../AppRoutes/Authcontext";
 import "./styles.css";
+import Boton from "../botones/Boton";
 
 const Login = () => {
   const { login } = useContext(AuthContext); // Obtiene la función de login del contexto
@@ -91,13 +92,13 @@ const Login = () => {
       <div className="container-login">
         <div
           id="form-container"
-          className="bg-light p-4 shadow col-md-4 text-center"
+          className="form_login"
         >
           <form onSubmit={onlogin} method="POST">
-            <h2 className="titulo mb-4">Iniciar Sesión</h2>
+            <h2 className="titulos ">Iniciar Sesión</h2>
             <label
               htmlFor="numero_documento_usuario"
-              className="titulo form-label"
+              className="subtitulos "
             >
               Número documento usuario
             </label>
@@ -118,7 +119,7 @@ const Login = () => {
                 {errors.numero_documento_usuario}
               </div>
             )}
-            <label htmlFor="Password" className="titulo form-label">
+            <label htmlFor="Password" className="subtitulos">
               Contraseña
             </label>
             <input
@@ -126,7 +127,7 @@ const Login = () => {
               name="contrasenha_usuario"
               placeholder="Ingrese su contraseña"
               type="password"
-              className={`form-control ${
+              className={`form-control mb-2 ${
                 errors.contrasenha_usuario ? "is-invalid" : ""
               }`}
               id="Password"
@@ -138,9 +139,7 @@ const Login = () => {
                 {errors.contrasenha_usuario}
               </div>
             )}
-            <button type="submit" className="boton-iniciar btn-block">
-              Iniciar sesión
-            </button>
+          <Boton texto="Ingresar"  textcolor="#fefefe" color="#39A900"/>
           </form>
         </div>
       </div>

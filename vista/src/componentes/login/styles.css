@@ -1,20 +1,21 @@
 .error-container {
-    border: 2px solid red;
-    background-color: #ffebeb;
-  }
-  
-  .container-login{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 3rem;
-  
-  }
+  border: 2px solid red;
+  background-color: #ffebeb;
+}
 
-  .boton-iniciar{
-    background: #39A900;
-    border: none;
-    margin: 2rem;
-    padding: 10px;
-    border-radius: 10px;
-  }
+.container-login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.form_login {
+  text-align: center;
+  margin-top: 3rem;
+  width: 25rem;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 0 10px #9beb6e;
+  background: #f8f8f8;
+}

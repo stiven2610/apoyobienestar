@@ -1,4 +1,5 @@
 import { useState, } from "react";
+import Boton from "../botones/Boton";
 import "./styles.css";
 const FormContactos = () => {
 
@@ -32,11 +33,11 @@ const FormContactos = () => {
 
   return (
     <>
-    <div className="container ">
-    <div  className="container-contactanos bg-light shadow   ">
-      <h3 className="text-center ">Contáctanos</h3>
+    <div className="container_contacta ">
+    <div  className="container-contactanos  ">
+      <h3 className="titulos">Contáctanos</h3>
       <form onSubmit={handleSubmit}>
-          <label className="form-label">Nombre Completo</label>
+          <label className="subtitulos">Nombre Completo</label>
           <input
             type="text"
             name="nombre"
@@ -46,7 +47,7 @@ const FormContactos = () => {
             className="form-control"
             required
           />
-          <label className="form-label">Asunto</label>
+          <label className="subtitulos">Asunto</label>
           <input
             type="text"
             name="asunto"
@@ -56,7 +57,7 @@ const FormContactos = () => {
             className="form-control"
             required
           />
-          <label className="form-label">Correo Electrónico</label>
+          <label className="subtitulos">Correo Electrónico</label>
           <input
             type="email"
             name="email"
@@ -66,16 +67,16 @@ const FormContactos = () => {
             className="form-control"
             required
           />
-          <label className="form-label">Mensaje</label>
+          <label className="subtitulos">Mensaje</label>
           <textarea
             name="mensaje"
             placeholder="Ingrese un mensaje describiendo el motivo de su contacto "
             value={formulario.mensaje}
             onChange={handleInputChange}
-            className="form-control"
+            className="form-control mb-3"
             required
           />
-        <button type="submit" className="boton-contactos ">Enviar</button>
+<Boton texto="Enviar" color="#39A900"  texcolor="#f8f8f8#" tamaño="20%"/>
       </form>
     </div>
     </div>

@@ -69,41 +69,45 @@ const TablaAdjudicados = () => {
   return (
     <>
       <div className="container_adjudicados">
+        <div className="container_filtros">
+          <label htmlFor="estado" className="subtitulos">
+            Filtrar Aprendices:
+          </label>
+          <select
+            id="estado"
+            className="select form-control"
+            value={filtroEstado}
+            onChange={handleEstadoChange}
+          >
+            <option value="">Todos</option>
+            <option value="1">
+              Aprendices a punto de cumplir etapa lectiva
+            </option>
+            <option value="2">Aprendices en mes de gracia</option>
+            <option value="3">Aprendices en proyecto productivo</option>
+            <option value="4">Aprendices Aplazados</option>
+            <option value="5">Aprendices en etapa lectiva</option>
+          </select>
+
+          <label htmlFor="busqueda" className="subtitulos">
+            Buscar Aprendiz:
+          </label>
+          <input
+            type="text"
+            id="busqueda"
+            className="form-control m-1"
+            value={filtroBusqueda}
+            onChange={handleBusquedaChange}
+          />
+
+          <Boton
+            texto="Agregar"
+            tamaño="20%"
+            color="#39A900"
+            textcolor="#ffffff"
+          />
+        </div>
         <div className="adjudicados">
-          <div className="container_filtros">
-            <label htmlFor="estado" className="subtitulos">
-              Filtrar Aprendices:
-            </label>
-            <select
-              id="estado"
-              className="select form-control"
-              value={filtroEstado}
-              onChange={handleEstadoChange}
-            >
-              <option value="">Todos</option>
-              <option value="1">
-                Aprendices a punto de cumplir etapa lectiva
-              </option>
-              <option value="2">Aprendices en mes de gracia</option>
-              <option value="3">Aprendices en proyecto productivo</option>
-              <option value="4">Aprendices Aplazados</option>
-              <option value="5">Aprendices en etapa lectiva</option>
-            </select>
-
-            <label htmlFor="busqueda" className="subtitulos">
-              Buscar Aprendiz:
-            </label>
-            <input
-              type="text"
-              id="busqueda"
-              className="form-control"
-              value={filtroBusqueda}
-              onChange={handleBusquedaChange}
-            />
-
-            <Boton texto="Agregar" color="#39A900" textcolor="#ffffff" />
-          </div>
-
           <table className="table table-bordered table-striped">
             <thead>
               <tr>
@@ -161,17 +165,16 @@ const TablaAdjudicados = () => {
           </table>
           {mostrarFormulario && aprendizSeleccionado && (
             <div ref={formularioRef} className="container_">
-              <FormularioActualizacionAprendiz aprendiz={aprendizSeleccionado} />
-              <div
-                onClick={handleCloseForm}>
+              <FormularioActualizacionAprendiz
+                aprendiz={aprendizSeleccionado}
+              />
+              <div onClick={handleCloseForm}>
                 <Boton texto="Cancelar" textcolor="#fffff" color="#fa4711" />
-
               </div>
             </div>
           )}
         </div>
       </div>
-
     </>
   );
 };
