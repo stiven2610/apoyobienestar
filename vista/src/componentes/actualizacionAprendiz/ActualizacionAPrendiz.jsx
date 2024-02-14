@@ -53,7 +53,9 @@ const FormularioActualizacionAprendiz = ({ aprendiz }) => {
   };
 
   return (
-        <form className="" onSubmit={handleSubmit} autoComplete="off">
+    <form className="container" onSubmit={handleSubmit} autoComplete="off">
+      <div className="row">
+        <div className="col-md-6">
           <div className="datos_personales">
             <div className="container_input">
               <label htmlFor="nombre_completo_aprendiz" className="">
@@ -65,7 +67,7 @@ const FormularioActualizacionAprendiz = ({ aprendiz }) => {
                 onChange={handleChange}
                 type="text"
                 required
-                className={` ${
+                className={`form-control ${
                   errors.nombre_completo_aprendiz && "is-invalid"
                 }`}
                 id="nombre_completo_aprendiz"
@@ -77,7 +79,7 @@ const FormularioActualizacionAprendiz = ({ aprendiz }) => {
                 </span>
               )}
             </div>
-
+  
             <div className="container_input">
               <label htmlFor="id_tipo_documento" className="">
                 Tipo de Documento
@@ -86,7 +88,7 @@ const FormularioActualizacionAprendiz = ({ aprendiz }) => {
                 name="id_tipo_documento"
                 onChange={handleChange}
                 required
-                className={` ${errors.id_tipo_documento && "is-invalid"}`}
+                className={`form-control ${errors.id_tipo_documento && "is-invalid"}`}
                 id="id_tipo_documento"
                 value={formData.id_tipo_documento || ""}
               >
@@ -100,7 +102,7 @@ const FormularioActualizacionAprendiz = ({ aprendiz }) => {
                 </span>
               )}
             </div>
-
+  
             <div className="container_input">
               <label htmlFor="numero_documento_aprendiz" className="">
                 Número de Documento del Aprendiz
@@ -113,7 +115,7 @@ const FormularioActualizacionAprendiz = ({ aprendiz }) => {
                 required
                 className={` ${
                   errors.numero_documento_aprendiz && "is-invalid"
-                }`}
+                } form-control`}
                 id="numero_documento_aprendiz"
                 value={formData.numero_documento_aprendiz || ""}
               />
@@ -123,10 +125,10 @@ const FormularioActualizacionAprendiz = ({ aprendiz }) => {
                 </span>
               )}
             </div>
-
+  
             <div className="container_input">
               <label htmlFor="numero_consecutivo" className="form_label">
-                NÚmero de Consecutivo del Aprendiz
+                Número de Consecutivo del Aprendiz
               </label>
               <input
                 placeholder="Ingrese el numero de consecutivo del aprendiz"
@@ -134,7 +136,7 @@ const FormularioActualizacionAprendiz = ({ aprendiz }) => {
                 onChange={handleChange}
                 type="text"
                 required
-                className={` ${errors.numero_consecutivo && "is-invalid"}`}
+                className={` ${errors.numero_consecutivo && "is-invalid"} form-control`}
                 id="numero_consecutivo"
                 value={formData.numero_consecutivo || ""}
               />
@@ -144,7 +146,7 @@ const FormularioActualizacionAprendiz = ({ aprendiz }) => {
                 </span>
               )}
             </div>
-
+  
             <div className="container_input">
               <label htmlFor="numero_telefono_fijo" className="">
                 Número de Teléfono Fijo
@@ -155,7 +157,7 @@ const FormularioActualizacionAprendiz = ({ aprendiz }) => {
                 onChange={handleChange}
                 type="text"
                 required
-                className={` ${errors.numero_telefono_fijo && "is-invalid"}`}
+                className={` ${errors.numero_telefono_fijo && "is-invalid"} form-control`}
                 id="numero_telefono_fijo"
                 value={formData.numero_telefono_fijo || ""}
               />
@@ -165,6 +167,7 @@ const FormularioActualizacionAprendiz = ({ aprendiz }) => {
                 </span>
               )}
             </div>
+  
             <div className="container_input">
               <label htmlFor="numero_telefono_movil" className="">
                 Número de Teléfono Móvil
@@ -175,7 +178,7 @@ const FormularioActualizacionAprendiz = ({ aprendiz }) => {
                 onChange={handleChange}
                 type="text"
                 required
-                className={` ${errors.numero_telefono_movil && "is-invalid"}`}
+                className={` ${errors.numero_telefono_movil && "is-invalid"} form-control`}
                 id="numero_telefono_movil"
                 value={formData.numero_telefono_movil || ""}
               />
@@ -185,7 +188,7 @@ const FormularioActualizacionAprendiz = ({ aprendiz }) => {
                 </span>
               )}
             </div>
-
+  
             <div className="container_input">
               <label htmlFor="direccion_residencia_aprendiz" className="">
                 Dirección de Residencia del Aprendiz
@@ -198,7 +201,7 @@ const FormularioActualizacionAprendiz = ({ aprendiz }) => {
                 required
                 className={` ${
                   errors.direccion_residencia_aprendiz && "is-invalid"
-                }`}
+                } form-control`}
                 id="direccion_residencia_aprendiz"
                 value={formData.direccion_residencia_aprendiz || ""}
               />
@@ -208,6 +211,7 @@ const FormularioActualizacionAprendiz = ({ aprendiz }) => {
                 </span>
               )}
             </div>
+  
             <div className="container_input">
               <label htmlFor="email_aprendiz" className="">
                 Email del Aprendiz
@@ -218,18 +222,18 @@ const FormularioActualizacionAprendiz = ({ aprendiz }) => {
                 onChange={handleChange}
                 type="email"
                 required
-                className={` ${errors.email_aprendiz && "is-invalid"}`}
+                className={` ${errors.email_aprendiz && "is-invalid"} form-control`}
                 id="email_aprendiz"
                 value={formData.email_aprendiz || ""}
               />
               {errors.email_aprendiz && (
-                <span className="invalid-feedback">
-                  {errors.email_aprendiz}
-                </span>
+                <span className="invalid-feedback">{errors.email_aprendiz}</span>
               )}
             </div>
           </div>
-        
+        </div>
+  
+        <div className="col-md-6">
           <div className="datos_beneficio">
             <div className="container_input">
               <label htmlFor="codigo_ficha" className="">
@@ -241,7 +245,7 @@ const FormularioActualizacionAprendiz = ({ aprendiz }) => {
                 onChange={handleChange}
                 type="text"
                 required
-                className={` ${errors.codigo_ficha && "is-invalid"}`}
+                className={`form-control ${errors.codigo_ficha && "is-invalid"}`}
                 id="codigo_ficha"
                 value={formData.codigo_ficha || ""}
               />
@@ -249,7 +253,7 @@ const FormularioActualizacionAprendiz = ({ aprendiz }) => {
                 <span className="invalid-feedback">{errors.codigo_ficha}</span>
               )}
             </div>
-
+  
             <div className="container_input">
               <label htmlFor="id_estado_aprendiz" className="">
                 Estado del Aprendiz
@@ -258,7 +262,7 @@ const FormularioActualizacionAprendiz = ({ aprendiz }) => {
                 name="id_estado_aprendiz"
                 onChange={handleChange}
                 required
-                className={` ${errors.id_estado_aprendiz && "is-invalid"}`}
+                className={`form-control ${errors.id_estado_aprendiz && "is-invalid"}`}
                 id="id_estado_aprendiz"
                 value={formData.id_estado_aprendiz || ""}
               >
@@ -274,15 +278,16 @@ const FormularioActualizacionAprendiz = ({ aprendiz }) => {
                 </span>
               )}
             </div>
+  
             <div className="container_input">
-              <label htmlFor="id_estado_aprendiz" className="">
+              <label htmlFor="id_obligacion_mensual" className="">
                 Obligación Mensual
               </label>
               <select
                 name="id_obligacion_mensual"
                 onChange={handleChange}
                 required
-                className={` ${errors.id_obligacion_mensual && "is-invalid"}`}
+                className={`form-control ${errors.id_obligacion_mensual && "is-invalid"}`}
                 id="id_obligacion_mensual"
                 value={formData.id_obligacion_mensual || ""}
               >
@@ -296,12 +301,9 @@ const FormularioActualizacionAprendiz = ({ aprendiz }) => {
                 </span>
               )}
             </div>
-
-            <div className="container_input ">
-              <label
-                htmlFor="numero_resolucion_adjudicacion"
-                className="form_label"
-              >
+  
+            <div className="container_input">
+              <label htmlFor="numero_resolucion_adjudicacion" className="form_label">
                 Número de Resolución de Adjudicación
               </label>
               <input
@@ -310,9 +312,7 @@ const FormularioActualizacionAprendiz = ({ aprendiz }) => {
                 onChange={handleChange}
                 type="text"
                 required
-                className={` ${
-                  errors.numero_resolucion_adjudicacion && "is-invalid"
-                }`}
+                className={` ${errors.numero_resolucion_adjudicacion && "is-invalid"} form-control`}
                 id="numero_resolucion_adjudicacion"
                 value={formData.numero_resolucion_adjudicacion || ""}
               />
@@ -322,6 +322,7 @@ const FormularioActualizacionAprendiz = ({ aprendiz }) => {
                 </span>
               )}
             </div>
+  
             <div className="container_input">
               <label htmlFor="codigo_beneficio" className="">
                 Código de Beneficio
@@ -332,7 +333,7 @@ const FormularioActualizacionAprendiz = ({ aprendiz }) => {
                 onChange={handleChange}
                 type="text"
                 required
-                className={` ${errors.codigo_beneficio && "is-invalid"}`}
+                className={`form-control ${errors.codigo_beneficio && "is-invalid"}`}
                 id="codigo_beneficio"
                 value={formData.codigo_beneficio || ""}
               />
@@ -342,7 +343,7 @@ const FormularioActualizacionAprendiz = ({ aprendiz }) => {
                 </span>
               )}
             </div>
-
+  
             <div className="container_input">
               <label htmlFor="fecha_adjudicacion" className="">
                 Fecha de Adjudicación
@@ -352,7 +353,7 @@ const FormularioActualizacionAprendiz = ({ aprendiz }) => {
                 onChange={handleChange}
                 type="date"
                 required
-                className={` ${errors.fecha_adjudicacion && "is-invalid"}`}
+                className={` ${errors.fecha_adjudicacion && "is-invalid"} form-control`}
                 id="fecha_adjudicacion"
                 value={formData.fecha_adjudicacion || ""}
               />
@@ -362,12 +363,14 @@ const FormularioActualizacionAprendiz = ({ aprendiz }) => {
                 </span>
               )}
             </div>
-
           </div>
-          <Boton textcolor="#fffff" color="#39A900" texto="Actualizar datos" />
-
-        </form>
+        </div>
+      </div>
+  
+      <Boton textcolor="#ffffff" color="#39A900" texto="Actualizar datos" />
+    </form>
   );
+  
 };
 
 export default FormularioActualizacionAprendiz;

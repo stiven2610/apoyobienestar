@@ -8,8 +8,3 @@
     transition: background-color 0.3s ease;
 }
 
-.boton:hover {
-    width: 35%;
-    background-color: #59d900; /* Cambia el color del botón al pasar el ratón */
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); /* Agrega una sombra al pasar el ratón */
-}
