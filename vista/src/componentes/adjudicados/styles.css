@@ -1,14 +1,15 @@
 .container_adjudicados {
+    width: 100%;
     display: flex;
     flex-direction: column;
     text-align: center;
     align-items: center;
 }
 .adjudicados{
-width: 90%;
+    width: 95%;
 }
 .container_filtros {
-    width: 100%;
+    width: 90%;
     height: auto;
     display: flex;
     text-align: center;

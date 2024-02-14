@@ -22,7 +22,7 @@ const NovedadComponent = ({ novedades, eliminarNovedad }) => {
     <>
       <div className="container-novedades m-4">
 
-          <h4 className="titulos">Novedades prensentadas</h4>
+          <h4 className="titulos">Novedades presentadas</h4>
             <table className="table table-bordered table-striped">
               <thead className="">
                 <tr>
@@ -32,7 +32,7 @@ const NovedadComponent = ({ novedades, eliminarNovedad }) => {
                   <th>Nombre Completo del Aprendiz</th>
                   <th>Motivo Novedad</th>
                   <th>Nombre Programa </th>
-                  <th>Fecha novedad</th>
+                  <th>Fecha Novedad</th>
                   <th>Estado del Aprendiz</th>
                   <th>Nombre Usuario que Registra</th>
                 </tr>
