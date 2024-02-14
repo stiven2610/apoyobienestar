@@ -40,13 +40,9 @@ const FormularioTaller = () => {
       });
 
       if (response.ok) {
-        // La solicitud se completó exitosamente
         setResult("Taller creado");
-        // Puedes realizar otras acciones después de un envío exitoso
       } else {
-        // La solicitud tuvo un error
         setResult("Error en la solicitud");
-        // Manejar errores específicos aquí
         if (response.status === 400) {
           const errorData = await response.json();
           setErrors({ ...errors, codigo_taller: errorData.error });
