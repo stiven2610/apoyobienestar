@@ -41,13 +41,10 @@ const FormularioActualizacionAprendiz = ({ aprendiz }) => {
       });
 
       if (!res.ok) {
-        // Si la respuesta del servidor no está en el rango de 200 a 299, lanzamos un error
         throw new Error("Error al enviar el formulario");
       }
 
-      // Aquí puedes manejar la respuesta exitosa del servidor, si es necesario
     } catch (error) {
-      // Aquí manejas los errores del servidor
       console.log("Error:", error);
     }
   };

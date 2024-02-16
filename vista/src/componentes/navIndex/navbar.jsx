@@ -35,7 +35,7 @@ const Navegacion = () => {
                     Novedades
                   </Link>
                   <Link to="registronovedad" className="link-nav">
-                    Registro de novedades de taller mensual
+                    Novedades formato de seguimiento
                   </Link>
                   <Link to="creacionbeneficio" className="link-nav">
                     Creación de beneficio
