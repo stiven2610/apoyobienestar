@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import Registro_asistencia from "../FormRegAsiTaller/formularioRegistroAsistencia";
 import FormularioTaller from "../FormularioCreacionTaller/formularioCreacionTaller";
 import FormularioActualizacionAprendiz from "../actualizacionAprendiz/ActualizacionAPrendiz";
 import TablaAdjudicados from "../adjudicados/adjudicados";
@@ -82,6 +83,15 @@ const Approutes = () => {
             element={
               <PrivateRoute>
                 <Talleres/>
+              </PrivateRoute>
+            }
+
+          />
+            <Route
+            path="/registroasistencia"
+            element={
+              <PrivateRoute>
+                <Registro_asistencia/>
               </PrivateRoute>
             }
 

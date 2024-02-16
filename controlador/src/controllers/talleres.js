@@ -27,7 +27,16 @@ const  get_talleres = async(req,res) => {
     res.status(500).json({succes:false, message: 'Error en la consulta'});
   }
 }
+
+const registrar_asistencia = async(req,res ) => {
+  try {
+    
+  } catch (error) {
+    
+  }
+}
 module.exports = {
   creacion_taller,
-  get_talleres
+  get_talleres,
+  registrar_asistencia
 };
