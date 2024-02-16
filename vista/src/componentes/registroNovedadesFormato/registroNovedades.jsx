@@ -1,6 +1,6 @@
 import React from 'react';
 import Boton from "../botones/Boton";
-import "./styles.css"
+import "./styles.css";
 
 const NovedadesForm = () => {
   return (

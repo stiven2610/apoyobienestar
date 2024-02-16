@@ -43,6 +43,9 @@ const Navegacion = () => {
                   <Link to="/cancelados" className="link-nav">
                     Aprendices Cancelados
                   </Link>
+                  <Link to="/talleres" className="link-nav">
+                    Talleres
+                  </Link>
                 </Nav>
               </Navbar.Collapse>
             </Navbar>

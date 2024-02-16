@@ -1,0 +1,6 @@
+.container_talleres{
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 4rem;
+}

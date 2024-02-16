@@ -214,7 +214,7 @@ const FormularioActualizacionAprendiz = ({ aprendiz }) => {
   
             <div className="container_input">
               <label htmlFor="email_aprendiz" className="">
-                Email del Aprendiz
+              Correo Electrónico del Aprendiz
               </label>
               <input
                 placeholder="Ingrese el email del aprendiz"

@@ -1,35 +1,27 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
 import Boton from "../botones/Boton";
 import "./styles.css";
 const FormularioTaller = () => {
+  const navigate = useNavigate();
+
   // Estado para almacenar los valores del formulario
   const [formData, setFormData] = useState({
-    codigo_taller: "",
     nombre_taller: "",
     fecha_taller: "",
     contrasenha_taller: "",
   });
-
-  // Estado para manejar los errores
   const [errors, setErrors] = useState({
     codigo_taller: "",
   });
-
-  // Estado para manejar el resultado de la solicitud a la API
   const [result, setResult] = useState(null);
-
-  // Manejar cambios en los campos del formulario
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-    // Limpiar el error si el usuario comienza a escribir en el campo
     setErrors({ ...errors, [name]: "" });
   };
-
-  // Manejar el envío del formulario
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const response = await fetch("http://localhost:4000/creaciontaller", {
         method: "POST",
@@ -40,7 +32,8 @@ const FormularioTaller = () => {
       });
 
       if (response.ok) {
-        setResult("Taller creado");
+        alert("Taller creado exitosamente");
+        navigate('/talleres');
       } else {
         setResult("Error en la solicitud");
         if (response.status === 400) {
@@ -53,7 +46,6 @@ const FormularioTaller = () => {
       setResult("Error en la solicitud");
     }
   };
-
   return (
     <>
       <div className="container_form_taller">
@@ -63,6 +55,7 @@ const FormularioTaller = () => {
             Nombre
           </label>
           <input
+            required
             type="text"
             className="form-control form_input"
             id="nombre_taller"
@@ -74,6 +67,7 @@ const FormularioTaller = () => {
             Fecha
           </label>
           <input
+            required
             type="date"
             className="form-control form_input"
             id="fecha_taller"
@@ -85,6 +79,7 @@ const FormularioTaller = () => {
             Contraseña
           </label>
           <input
+            required
             type="password"
             className="form-control form_input mb-4"
             id="contrasenha_taller"
@@ -93,8 +88,7 @@ const FormularioTaller = () => {
             onChange={handleChange}
           />
           <Boton className="boton_taller" texto="crear" tamaño="30%" textcolor="#fefefe" color="#50bb1b" />
-        {result && <p>{result}</p>}
-
+          {result && <p>{result}</p>}
         </form>
       </div>
     </>
