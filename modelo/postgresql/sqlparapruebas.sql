@@ -13,10 +13,11 @@ select * from obligacion_mensual;
 select * from tipo_novedad;
 select * from novedad;
 alter table ficha drop column modalidad_formacion;
+alter table taller_mensual drop column codigo_taller;
 drop table novedad;
-ALTER TABLE ficha
-ADD id_modalidad  INT  ;
-
+ALTER TABLE ficha;
+select * from taller_mensual;
+insert into taller_mensual values ( 12,'Taller 1 mentalidad de liderazgo','2024-10-05','taller123')
 
 insert into ficha (id_modalidad) values ('1');
 ADD CONSTRAINT id_modalidad FOREIGN KEY (id_modalidad) REFERENCES modalidad(id_modalidad);
@@ -73,6 +74,14 @@ INSERT INTO novedad values ('001','1','1209477889','1094778783','2024-03-12','12
 INSERT INTO novedad values ('002','2','1709477894','1094778783','2024-04-01','12345677');
 INSERT INTO novedad values ('003','3','809477885','1094778783','2024-03-20','123456756');
 INSERT INTO novedad values ('004','4','609477883','1094778783','2024-04-03','123456722');
+CREATE SEQUENCE codigo_seq
+START WITH 10001
+INCREMENT BY 1
+NO MAXVALUE
+NO MINVALUE
+CACHE 1;
+
+
 
 INSERT INTO  aprendiz_cancelado values ('0001','2619702','1609477893','No presento formato de siguimiento mensual','2024-02-17','12345678');
 INSERT INTO  aprendiz_cancelado values ('0002','2619701','1094778783','Se fue a contrato de aprendizaje','2024-03-05','123456790');

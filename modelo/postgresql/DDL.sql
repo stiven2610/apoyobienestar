@@ -194,7 +194,7 @@ CREATE TABLE novedad_formato_seguimiento (
  );
  
  CREATE TABLE  taller_mensual (
-    codigo_taller               INT NOT NULL,
+    codigo_taller INT DEFAULT 1000 + NEXTVAL('codigo_seq') NOT NULL,
     nombre_taller                VARCHAR(50) NOT NULL,
     fecha_taller                DATE NOT NULL,
     contrasenha_taller          VARCHAR(10)  NOT NULL,

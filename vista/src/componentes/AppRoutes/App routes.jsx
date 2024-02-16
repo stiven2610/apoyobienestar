@@ -1,16 +1,17 @@
 import { Route, Routes } from "react-router-dom";
-import Navegacion from "../navIndex/navbar";
+import FormularioTaller from "../FormularioCreacionTaller/formularioCreacionTaller";
+import FormularioActualizacionAprendiz from "../actualizacionAprendiz/ActualizacionAPrendiz";
+import TablaAdjudicados from "../adjudicados/adjudicados";
+import AprendicesCancelados from "../aprendicesCancelados/AprendicesCancelados";
+import FormContactos from "../contactanos/contactanos";
+import FormularioCreaBeneficio from "../formularioCreacionBeneficio/Formulario_Crea_Bene";
 import Inicio from "../index/index";
 import Login from "../login/Login";
-import FormContactos from "../contactanos/contactanos";
-import TablaAdjudicados from "../adjudicados/adjudicados";
-import PrivateRoute from "./PrivateRouter";
-import AprendicesCancelados from "../aprendicesCancelados/AprendicesCancelados";
+import Navegacion from "../navIndex/navbar";
 import NovedadComponent from "../novedades/novedades";
-import FormularioTaller from "../FormularioCreacionTaller/formularioCreacionTaller";
-import FormularioCreaBeneficio from "../formularioCreacionBeneficio/Formulario_Crea_Bene";
 import NovedadesForm from "../registroNovedadesFormato/registroNovedades";
-import FormularioActualizacionAprendiz from "../actualizacionAprendiz/ActualizacionAPrendiz";
+import Talleres from "../talleres/Talleres";
+import PrivateRoute from "./PrivateRouter";
 
 const Approutes = () => {
   return (
@@ -68,13 +69,22 @@ const Approutes = () => {
               </PrivateRoute>
             }
           />
-           <Route
+          <Route
             path="/actualizaraprendiz/:id"
             element={
               <PrivateRoute>
-                <FormularioActualizacionAprendiz/>
+                <FormularioActualizacionAprendiz />
               </PrivateRoute>
             }
+          />
+          <Route
+            path="/talleres"
+            element={
+              <PrivateRoute>
+                <Talleres/>
+              </PrivateRoute>
+            }
+
           />
         </Route>
       </Routes>
