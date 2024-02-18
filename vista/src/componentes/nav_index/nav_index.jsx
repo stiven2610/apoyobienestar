@@ -5,7 +5,7 @@ import { AuthContext } from "../AppRoutes/Authcontext";
 import Boton from "../botones/Boton";
 import "./styles.css";
 
-const Navegacion = () => {
+const Nav_index = () => {
   const { logout, isAuthenticated } = useContext(AuthContext);
   return (
     <>
@@ -27,10 +27,6 @@ const Navegacion = () => {
                     Adjudicados
                   </Link>
                  
-                  <Link to="/creaciondetaller" className="link-nav">
-                    Creación de taller
-                  </Link>
-
                   <Link to="novedades" className="link-nav">
                     Novedades
                   </Link>
@@ -107,4 +103,4 @@ const Navegacion = () => {
   );
 };
 
-export default Navegacion;
+export default Nav_index;

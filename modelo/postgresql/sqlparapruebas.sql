@@ -10,12 +10,15 @@ select * from modalidad;
 select * from aprendiz_cancelado;
 select * from tipo_documento; 
 select * from ficha;
+select * from asistencia_taller;
 select * from obligacion_mensual;
 select * from tipo_novedad;
 select * from novedad;
-alter table ficha drop column modalidad_formacion;
+select * from asistencia_taller;
+alter table asistencia_taller drop column fecha_asistencia;
 alter table taller_mensual drop column codigo_taller;
 drop table novedad;
+drop table taller_mensual;
 ALTER TABLE ficha;
 select * from taller_mensual;
 insert into taller_mensual values ( 12,'Taller 1 mentalidad de liderazgo','2024-10-05','taller123')

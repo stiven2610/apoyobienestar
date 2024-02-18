@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import Boton from "../botones/Boton"
 import "./styles.css";
-const AprendicesCancelados= () => {
+const Aprendices_cancelados = () => {
   const [datos, setDatos] = useState([]);
   const [cargando, setCargando] = useState(true);
 
@@ -72,4 +71,4 @@ const AprendicesCancelados= () => {
   );
 };
 
-export default AprendicesCancelados;
+export default Aprendices_cancelados;

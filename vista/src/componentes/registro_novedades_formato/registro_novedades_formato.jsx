@@ -1,8 +1,7 @@
-import React from 'react';
 import Boton from "../botones/Boton";
 import "./styles.css";
 
-const NovedadesForm = () => {
+const Registro_novedades_formato = () => {
   return (
     <>
     <div className="padre">
@@ -94,4 +93,4 @@ const NovedadesForm = () => {
   );
 };
 
-export default NovedadesForm;
+export default Registro_novedades_formato;

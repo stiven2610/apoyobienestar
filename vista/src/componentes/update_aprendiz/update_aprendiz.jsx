@@ -2,7 +2,7 @@ import { useState } from "react";
 import Boton from "../botones/Boton";
 import "./styles.css";
 
-const FormularioActualizacionAprendiz = ({ aprendiz }) => {
+const Update_aprendiz = ({ aprendiz }) => {
   const [formData, setFormData] = useState({
     numero_documento_aprendiz: aprendiz.numero_documento_aprendiz || "",
     codigo_ficha: aprendiz.codigo_ficha || "",
@@ -370,4 +370,4 @@ const FormularioActualizacionAprendiz = ({ aprendiz }) => {
   
 };
 
-export default FormularioActualizacionAprendiz;
+export default Update_aprendiz;

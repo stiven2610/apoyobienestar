@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 
-const FormCreacionAprendiz = () => {
+const Formulario_insert_aprendiz= () => {
   const [formData, setFormData] = useState({
     numero_documento_aprendiz: '',
     codigo_ficha: '',
@@ -22,7 +22,7 @@ const FormCreacionAprendiz = () => {
     fecha_update: ''
   });
 
-  const [errors, setErrors] = useState({}); // Asegúrate de inicializar errors
+  const [errors, ] = useState({}); // Asegúrate de inicializar errors
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -350,4 +350,4 @@ const FormCreacionAprendiz = () => {
   );
 };
 
-export default FormCreacionAprendiz;
+export default Formulario_insert_aprendiz;
