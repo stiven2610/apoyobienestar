@@ -2,14 +2,14 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import Boton from "../botones/Boton";
 import "./styles.css";
-const FormularioTaller = () => {
+const Formulario_create_taller = () => {
   const navigate = useNavigate();
 
   // Estado para almacenar los valores del formulario
   const [formData, setFormData] = useState({
     nombre_taller: "",
     fecha_taller: "",
-    contrasenha_taller: "",
+    
   });
   const [errors, setErrors] = useState({
     codigo_taller: "",
@@ -69,24 +69,13 @@ const FormularioTaller = () => {
           <input
             required
             type="date"
-            className="form-control form_input"
+            className="form-control form_input mb-3"
             id="fecha_taller"
             name="fecha_taller"
             value={formData.fecha_taller}
             onChange={handleChange}
           />
-          <label htmlFor="contrasenha_taller" className="subtitulos">
-            Contraseña
-          </label>
-          <input
-            required
-            type="password"
-            className="form-control form_input mb-4"
-            id="contrasenha_taller"
-            name="contrasenha_taller"
-            value={formData.contrasenha_taller}
-            onChange={handleChange}
-          />
+        
           <Boton className="boton_taller" texto="crear" tamaño="30%" textcolor="#fefefe" color="#50bb1b" />
           {result && <p>{result}</p>}
         </form>
@@ -95,4 +84,4 @@ const FormularioTaller = () => {
   );
 };
 
-export default FormularioTaller;
+export default Formulario_create_taller;

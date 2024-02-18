@@ -1,7 +1,7 @@
 import { useState, } from "react";
 import Boton from "../botones/Boton";
 import "./styles.css";
-const FormContactos = () => {
+const Formulario_contacto = () => {
 
 
   const [formulario, setFormulario] = useState({
@@ -85,4 +85,4 @@ const FormContactos = () => {
   );
 };
 
-export default FormContactos;
+export default Formulario_contacto;

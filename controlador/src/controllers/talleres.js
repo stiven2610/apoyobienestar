@@ -1,12 +1,11 @@
-const { Navigate } = require("react-router-dom");
 const pool = require("../db.js");
 
 const creacion_taller = async (req, res) => {
   const { nombre_taller, fecha_taller, contrasenha_taller } = req.body;
 
   try {
-      const insertQuery = "INSERT INTO taller_mensual (codigo_taller, nombre_taller, fecha_taller, contrasenha_taller) VALUES (DEFAULT, $1, $2, $3)";
-      const insertValues = [nombre_taller, fecha_taller, contrasenha_taller];
+      const insertQuery = "INSERT INTO taller_mensual (codigo_taller, nombre_taller, fecha_taller) VALUES (DEFAULT, $1, $2)";
+      const insertValues = [nombre_taller, fecha_taller];
       
       await pool.query(insertQuery, insertValues);
 
@@ -20,7 +19,7 @@ const creacion_taller = async (req, res) => {
 
 const  get_talleres = async(req,res) => {
   try {
-    const  {rows} = await pool.query('select nombre_taller,fecha_taller from taller_mensual');
+    const  {rows} = await pool.query('select codigo_taller,nombre_taller,fecha_taller from taller_mensual');
     res.json({succes: true, data:rows});
   } catch (error) {
     console.error('Error en la consulta:', error);

@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
-import FormularioActualizacionAprendiz from "../actualizacionAprendiz/ActualizacionAPrendiz";
+import  { useEffect, useRef, useState } from "react";
 import Boton from "../botones/Boton";
 import "./styles.css";
+import Update_aprendiz from "../update_aprendiz/update_aprendiz";
 
-const TablaAdjudicados = () => {
+const Tabla_adjudicados = () => {
   const [datos, setDatos] = useState([]);
   const [cargando, setCargando] = useState(true);
   const [filtroEstado, setFiltroEstado] = useState("");
@@ -165,7 +165,7 @@ const TablaAdjudicados = () => {
           </table>
           {mostrarFormulario && aprendizSeleccionado && (
             <div ref={formularioRef} className="container_">
-              <FormularioActualizacionAprendiz
+              <Update_aprendiz
                 aprendiz={aprendizSeleccionado}
               />
               <div onClick={handleCloseForm}>
@@ -179,4 +179,4 @@ const TablaAdjudicados = () => {
   );
 };
 
-export default TablaAdjudicados;
+export default Tabla_adjudicados;

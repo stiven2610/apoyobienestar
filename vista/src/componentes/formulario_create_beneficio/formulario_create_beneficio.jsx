@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Boton from "../botones/Boton";
 import "./styles.css";
-const FormularioCreaBeneficio = () => {
+const Formulario_create_beneficio= () => {
   const [beneficio, setBeneficio] = useState({
     codigo_beneficio: "",
     cupos_beneficio: "",
@@ -166,4 +166,4 @@ const FormularioCreaBeneficio = () => {
   );
 };
 
-export default FormularioCreaBeneficio;
+export default Formulario_create_beneficio;

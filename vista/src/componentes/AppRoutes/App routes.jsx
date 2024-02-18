@@ -1,32 +1,33 @@
 import { Route, Routes } from "react-router-dom";
-import Registro_asistencia from "../FormRegAsiTaller/formularioRegistroAsistencia";
-import FormularioTaller from "../FormularioCreacionTaller/formularioCreacionTaller";
-import FormularioActualizacionAprendiz from "../actualizacionAprendiz/ActualizacionAPrendiz";
-import TablaAdjudicados from "../adjudicados/adjudicados";
-import AprendicesCancelados from "../aprendicesCancelados/AprendicesCancelados";
-import FormContactos from "../contactanos/contactanos";
-import FormularioCreaBeneficio from "../formularioCreacionBeneficio/Formulario_Crea_Bene";
 import Inicio from "../index/index";
 import Login from "../login/Login";
-import Navegacion from "../navIndex/navbar";
-import NovedadComponent from "../novedades/novedades";
-import NovedadesForm from "../registroNovedadesFormato/registroNovedades";
 import Talleres from "../talleres/Talleres";
 import PrivateRoute from "./PrivateRouter";
+import Update_aprendiz from "../update_aprendiz/update_aprendiz";
+import Tabla_adjudicados from "../tabla_adjudicados/tabla_adjudicados";
+import Asistencia_taller from "../asistencia_taller/asistencia_taller";
+import Formulario_contacto from "../formulario_contacto/formulario_contacto";
+import Formulario_registro_asistencia_taller from "../formulario_registro_asistencia_taller/formulario_registro_asistencia_taller";
+import Nav_index from "../nav_index/nav_index";
+import Aprendices_cancelados from "../aprendicesCancelados/aprendices_cancelados";
+import Novedades_presentadas from "../novedades_presentadas/novedades_presentadas";
+import Formulario_create_taller from "../formulario_create_taller/formulario_create_taller";
+import Formulario_create_beneficio from "../formulario_create_beneficio/formulario_create_beneficio";
+import Registro_novedades_formato from "../registro_novedades_formato/registro_novedades_formato";
 
 const Approutes = () => {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<Navegacion />}>
+        <Route path="/" element={<Nav_index />}>
           <Route index element={<Inicio />} />
           <Route path="login" element={<Login />} />
-          <Route path="contacto" element={<FormContactos />} />
+          <Route path="contacto" element={<Formulario_contacto />} />
           <Route
             path="/adjudicados"
             element={
               <PrivateRoute>
-                <TablaAdjudicados />
+                <Tabla_adjudicados/>
               </PrivateRoute>
             }
           />
@@ -34,7 +35,7 @@ const Approutes = () => {
             path="/cancelados"
             element={
               <PrivateRoute>
-                <AprendicesCancelados />
+                <Aprendices_cancelados/>
               </PrivateRoute>
             }
           />
@@ -42,7 +43,7 @@ const Approutes = () => {
             path="/novedades"
             element={
               <PrivateRoute>
-                <NovedadComponent />
+                <Novedades_presentadas/>
               </PrivateRoute>
             }
           />
@@ -50,7 +51,7 @@ const Approutes = () => {
             path="/creaciondetaller"
             element={
               <PrivateRoute>
-                <FormularioTaller />
+                <Formulario_create_taller />
               </PrivateRoute>
             }
           />
@@ -58,7 +59,7 @@ const Approutes = () => {
             path="/creacionbeneficio"
             element={
               <PrivateRoute>
-                <FormularioCreaBeneficio />
+                <Formulario_create_beneficio />
               </PrivateRoute>
             }
           />
@@ -66,7 +67,7 @@ const Approutes = () => {
             path="/registronovedad"
             element={
               <PrivateRoute>
-                <NovedadesForm />
+                <Registro_novedades_formato />
               </PrivateRoute>
             }
           />
@@ -74,7 +75,7 @@ const Approutes = () => {
             path="/actualizaraprendiz/:id"
             element={
               <PrivateRoute>
-                <FormularioActualizacionAprendiz />
+                <Update_aprendiz/>
               </PrivateRoute>
             }
           />
@@ -82,19 +83,25 @@ const Approutes = () => {
             path="/talleres"
             element={
               <PrivateRoute>
-                <Talleres/>
+                <Talleres />
               </PrivateRoute>
             }
-
           />
-            <Route
-            path="/registroasistencia"
+          <Route
+            path="/asistencia/:codigo_taller"
             element={
               <PrivateRoute>
-                <Registro_asistencia/>
+                <Asistencia_taller />
               </PrivateRoute>
             }
-
+          />
+          <Route
+            path="/registroasistencia/:codigo_taller"
+            element={
+              <PrivateRoute>
+                <Formulario_registro_asistencia_taller/>
+              </PrivateRoute>
+            }
           />
         </Route>
       </Routes>
