@@ -9,6 +9,7 @@ select * from estado_aprendiz;
 select * from modalidad;
 select * from aprendiz_cancelado;
 select * from tipo_documento; 
+select * from motivo_suspension;
 select * from ficha;
 select * from asistencia_taller;
 select * from obligacion_mensual;
@@ -17,7 +18,7 @@ select * from novedad;
 select * from asistencia_taller;
 alter table asistencia_taller drop column fecha_asistencia;
 alter table taller_mensual drop column codigo_taller;
-drop table novedad;
+drop table asistencia_taller;
 drop table taller_mensual;
 ALTER TABLE ficha;
 select * from taller_mensual;
@@ -40,7 +41,6 @@ insert into tipo_documento (id_tipo_documento,nombre_documento) values (3,'PPT')
 insert into instructor_lider (numero_documento_instructor_lider,nombre_instructor_lider,email_instructor_lider) values ('1234567891','Magda milena','milenaGarcia@gmail.com');
 insert into ficha (codigo_ficha,id_modalidad,numero_documento_instructor_lider,fecha_inicio_ficha,fecha_inicio_etapa_productiva,fecha_fin_ficha,nivel_formacion,nombre_programa) values ('2619702','2','1234567891','2023-10-05','2024-02-15','2024-10-05','Tecnologia','Gestión Administrativa');
 insert into ficha (codigo_ficha,id_modalidad,numero_documento_instructor_lider,fecha_inicio_ficha,fecha_inicio_etapa_productiva,fecha_fin_ficha,nivel_formacion,nombre_programa) values ('2619701','1','1234567890','2023-10-05','2024-02-15','2024-10-05','Tecnologia','ADSO');
-
 
 insert into beneficio ( codigo_beneficio,nombre_beneficio,fecha_inicio_beneficio,fecha_fin_beneficio,cupos_beneficio) values ('123456789','convocatoria I  Apoyo de sostenimiento Regular','2024-02-15','2024-12-18','55');
 insert into estado_aprendiz(id_estado_aprendiz,nombre_estado_aprendiz)  values ('1','A punto de cumplir etapa lectiva');
@@ -73,6 +73,7 @@ INSERT INTO aprendiz VALUES ('1709477894','Francisco Jiménez','2619701','2','4'
 INSERT INTO aprendiz VALUES ('1809477895','Camila Ramirez','2619702','3','3','2','19','100001','123456789','2025-05-16','3242343449','3103558239','Calle 46 #27-115 Lagos 18','camilaramirez@gmail.com');
 INSERT INTO aprendiz VALUES ('1909477896','Alejandro Herrera','2619701','2','2','1','21','100001','123456789','2025-07-21','3242343450','3103558240','Calle 47 #28-116 Lagos 19','alejandroherrera@gmail.com');
 INSERT INTO aprendiz VALUES ('2009477897','Lucía Gomez','2619702','1','1','2','21','100001','123456789','2025-09-26','3242343451','3103558241','Calle 48 #29-117 Lagos 20','luciagomez@gmail.com');
+INSERT INTO aprendiz VALUES ('2009477897','Lucía Gomez','2619702','1','1','2','21','100001','123456789','2025-09-26','3242343451','3103558241','Calle 48 #29-117 Lagos 20','luciagomez@gmail.com');
 
 INSERT INTO novedad values ('001','1','1209477889','1094778783','2024-03-12','12345678');
 INSERT INTO novedad values ('002','2','1709477894','1094778783','2024-04-01','12345677');
@@ -85,7 +86,6 @@ NO MAXVALUE
 NO MINVALUE
 CACHE 1;
 
-
-
 INSERT INTO  aprendiz_cancelado values ('0001','2619702','1609477893','No presento formato de siguimiento mensual','2024-02-17','12345678');
 INSERT INTO  aprendiz_cancelado values ('0002','2619701','1094778783','Se fue a contrato de aprendizaje','2024-03-05','123456790');
+
