@@ -1,22 +1,16 @@
-import  { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Boton from "../botones/Boton";
-import "./styles.css";
 import Update_aprendiz from "../update_aprendiz/update_aprendiz";
+import "./styles.css";
 
 const Tabla_adjudicados = () => {
   const [datos, setDatos] = useState([]);
   const [cargando, setCargando] = useState(true);
-  const [filtroEstado, setFiltroEstado] = useState("");
   const [filtroBusqueda, setFiltroBusqueda] = useState("");
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
   const [aprendizSeleccionado, setAprendizSeleccionado] = useState(null);
 
   const formularioRef = useRef(null);
-
-  const handleEditarClick = (aprendiz) => {
-    setAprendizSeleccionado(aprendiz);
-    setMostrarFormulario(true);
-  };
 
   useEffect(() => {
     fetch("http://localhost:4000/adjudicados")
@@ -42,12 +36,13 @@ const Tabla_adjudicados = () => {
     }
   }, [mostrarFormulario]);
 
-  const handleEstadoChange = (e) => {
-    setFiltroEstado(e.target.value);
-  };
-
   const handleBusquedaChange = (e) => {
     setFiltroBusqueda(e.target.value);
+  };
+
+  const handleEditarClick = (aprendiz) => {
+    setAprendizSeleccionado(aprendiz);
+    setMostrarFormulario(true);
   };
 
   const handleCloseForm = () => {
@@ -56,39 +51,18 @@ const Tabla_adjudicados = () => {
   };
 
   const filteredDatos = datos.filter((item) => {
-    const estadoMatch =
-      filtroEstado === "" || String(item.id_estado_aprendiz) === filtroEstado;
-    const busquedaMatch =
+    return (
       item.nombre_completo_aprendiz
         .toLowerCase()
         .includes(filtroBusqueda.toLowerCase()) ||
-      String(item.numero_documento_aprendiz).includes(String(filtroBusqueda));
-    return estadoMatch && busquedaMatch;
+      String(item.numero_documento_aprendiz).includes(String(filtroBusqueda))
+    );
   });
 
   return (
     <>
       <div className="container_adjudicados">
         <div className="container_filtros">
-          <label htmlFor="estado" className="subtitulos">
-            Filtrar Aprendices:
-          </label>
-          <select
-            id="estado"
-            className="select form-control"
-            value={filtroEstado}
-            onChange={handleEstadoChange}
-          >
-            <option value="">Todos</option>
-            <option value="1">
-              Aprendices a punto de cumplir etapa lectiva
-            </option>
-            <option value="2">Aprendices en mes de gracia</option>
-            <option value="3">Aprendices en proyecto productivo</option>
-            <option value="4">Aprendices Aplazados</option>
-            <option value="5">Aprendices en etapa lectiva</option>
-          </select>
-
           <label htmlFor="busqueda" className="subtitulos">
             Buscar Aprendiz:
           </label>
@@ -165,9 +139,7 @@ const Tabla_adjudicados = () => {
           </table>
           {mostrarFormulario && aprendizSeleccionado && (
             <div ref={formularioRef} className="container_">
-              <Update_aprendiz
-                aprendiz={aprendizSeleccionado}
-              />
+              <Update_aprendiz aprendiz={aprendizSeleccionado} />
               <div onClick={handleCloseForm}>
                 <Boton texto="Cancelar" textcolor="#fffff" color="#fa4711" />
               </div>

@@ -126,8 +126,7 @@ CREATE TABLE aprendiz(
 	foreign Key  (id_tipo_documento)  REFERENCES tipo_documento (id_tipo_documento),
     FOREIGN  KEY (id_estado_aprendiz)  REFERENCES  estado_aprendiz ( id_estado_aprendiz),
     FOREIGN KEY (id_obligacion_mensual)  REFERENCES obligacion_mensual (id_obligacion_mensual),
-        FOREIGN KEY (codigo_beneficio)  REFERENCES beneficio (codigo_beneficio)
-
+    FOREIGN KEY (codigo_beneficio)  REFERENCES beneficio (codigo_beneficio)
   );
 
 CREATE TABLE motivo_suspension (
@@ -205,16 +204,9 @@ CREATE TABLE novedad_formato_seguimiento (
 
     PRIMARY KEY   (codigo_taller)
  );
-
-
  CREATE TABLE asistencia_taller (
     codigo_taller               INT      NOT NULL,
     numero_documento_aprendiz   INT      NOT NULL,
-    fecha_asistencia            DATE     NOT NULL,
-    user_insert                 VARCHAR       NOT NULL,                      
-    fecha_insert                TIMESTAMP WITHOUT TIME ZONE NOT NULL,         
-    user_update                 VARCHAR,                                        
-    fecha_update                TIMESTAMP WITHOUT TIME ZONE, 
 
     PRIMARY KEY  (codigo_taller,numero_documento_aprendiz)
  );
