@@ -85,7 +85,8 @@ INCREMENT BY 1
 NO MAXVALUE
 NO MINVALUE
 CACHE 1;
+insert into instructor_lider values ('1234567893','Magda milena','milenaGarcia@gmail.com');
+insert into ficha values ('2670702','1','1234567893','2023-10-05','2024-02-29','2025-01-20','tecnologia','Talento humano')
 
 INSERT INTO  aprendiz_cancelado values ('0001','2619702','1609477893','No presento formato de siguimiento mensual','2024-02-17','12345678');
 INSERT INTO  aprendiz_cancelado values ('0002','2619701','1094778783','Se fue a contrato de aprendizaje','2024-03-05','123456790');
-
