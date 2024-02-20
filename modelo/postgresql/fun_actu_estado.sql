@@ -1,6 +1,11 @@
-CREATE OR REPLACE PROCEDURE fun_act_est()
-LANGUAGE plpgsql
-AS $$
+-- PROCEDURE: public.fun_act_est()
+
+-- DROP PROCEDURE IF EXISTS public.fun_act_est();
+
+CREATE OR REPLACE PROCEDURE public.fun_act_est(
+	)
+LANGUAGE 'plpgsql'
+AS $BODY$
 DECLARE
     fecha_actual DATE;
     numero_documento INT;
@@ -18,31 +23,20 @@ BEGIN
         dias := fecha_fin - fecha_actual;
 
         IF dias <= 15 AND dias > 0 THEN
-		update aprendiz set id_estado_aprendiz = "?" where numero_documento = numero_documento_aprendiz;
-            RAISE NOTICE 'dias :%',dias;
-            RAISE NOTICE 'codigo ficha :%',codigo;
-            RAISE NOTICE 'POR CUMPLIR ETAPA LECTIVA';
+		    update aprendiz set id_estado_aprendiz = 1 where numero_documento = numero_documento_aprendiz;
+            
         ELSIF fecha_fin = fecha_actual AND dias <= 30 THEN
-            RAISE NOTICE 'dias :%',dias;
-            RAISE NOTICE 'codigo ficha :%',codigo;
-            RAISE NOTICE 'mes de gracia';
+            update aprendiz set id_estado_aprendiz = 2 where numero_documento = numero_documento_aprendiz;
+           
         ELSIF dias <=  0 THEN
-            RAISE NOTICE 'dias :%',dias;
-            RAISE NOTICE 'codigo ficha :%',codigo;
-            RAISE NOTICE 'aplazado';
+            update aprendiz set id_estado_aprendiz = 4 where numero_documento = numero_documento_aprendiz;
+           
         ELSE 
-            RAISE NOTICE 'dias :%',dias;
-            RAISE NOTICE 'codigo ficha :%',codigo;
-            RAISE NOTICE 'AUN SE ENCUENTRA EN ETAPA LECTIVA';
+            update aprendiz set id_estado_aprendiz = 5 where numero_documento = numero_documento_aprendiz;
+            
         END IF;
     END LOOP;
 END;
-$$;
-
-
-
-select * from ficha ;
-call fun_act_est()
-select * from aprendiz;
-select * from estado_aprendiz;
-UPDATE ficha SET fecha_fin_lectiva   = '2024-03-05' where codigo_ficha = 2670123;
+$BODY$;
+ALTER PROCEDURE public.fun_act_est()
+    OWNER TO gr_apoyo;
