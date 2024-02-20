@@ -5,11 +5,9 @@ DECLARE
     documento INT;
 BEGIN 
     -- Seleccionar el campo 'numero_documento_aprendiz' y asignarlo a la variable 'documento'
-    SELECT aprendiz.numero_documento_aprendiz INTO documento
     FROM aprendiz
     WHERE aprendiz.numero_documento_aprendiz = numero_documento_aprendiz_param;
 
-    -- Imprimir el valor de 'documento' utilizando RAISE NOTICE
     RAISE NOTICE 'El valor de documento es: %', documento;
 
 END
