@@ -24,13 +24,15 @@ BEGIN
 
         IF dias <= 15 AND dias > 0 THEN
 		    update aprendiz set id_estado_aprendiz = 1 where numero_documento = numero_documento_aprendiz;
+			INSERT INTO novedad (id_novedad,id_tipo_novedad,numero_documento_aprendiz,usuario,fecha_novedad)VALUES (default,1,numero_documento,'sistema',fecha_actual);
             
         ELSIF fecha_fin = fecha_actual AND dias <= 30 THEN
             update aprendiz set id_estado_aprendiz = 2 where numero_documento = numero_documento_aprendiz;
+			INSERT INTO novedad (id_novedad,id_tipo_novedad,numero_documento_aprendiz,usuario,fecha_novedad)VALUES (default,2,numero_documento,'sistema',fecha_actual);
            
         ELSIF dias <=  0 THEN
             update aprendiz set id_estado_aprendiz = 4 where numero_documento = numero_documento_aprendiz;
-           
+            INSERT INTO novedad (id_novedad,id_tipo_novedad,numero_documento_aprendiz,usuario,fecha_novedad)VALUES (default,3,numero_documento,'sistema',fecha_actual);
         ELSE 
             update aprendiz set id_estado_aprendiz = 5 where numero_documento = numero_documento_aprendiz;
             
@@ -38,5 +40,11 @@ BEGIN
     END LOOP;
 END;
 $BODY$;
+select * from estado_aprendiz;
+select * from novedad; 
+select * from tipo_novedad;
+call fun_act_est();
 ALTER PROCEDURE public.fun_act_est()
     OWNER TO gr_apoyo;
+select * from novedad;
+delete from novedad where usuario = 'sistema'

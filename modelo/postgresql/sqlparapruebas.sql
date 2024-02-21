@@ -1,7 +1,7 @@
 select a.numero_documento_aprendiz, a.nombre_completo_aprendiz, a.codigo_ficha , g.nombre_modalidad ,b.nombre_documento, c.nombre_estado_aprendiz, d.nombre_obligacion_mensual,a.numero_consecutivo, a.numero_resolucion_adjudicacion, e.nombre_beneficio , a.fecha_adjudicacion, a.numero_telefono_fijo, a.numero_telefono_movil, a.direccion_residencia_aprendiz, a.email_aprendiz FROM aprendiz AS a , tipo_documento AS b , estado_aprendiz AS c ,obligacion_mensual AS d ,  beneficio AS e ,  ficha AS f ,modalidad AS g WHERE a.id_tipo_documento  = b.id_tipo_documento AND a.id_estado_aprendiz = c.id_estado_aprendiz AND a.id_obligacion_mensual = d.id_obligacion_mensual AND a.codigo_beneficio = e.codigo_beneficio AND f.id_modalidad  = g.id_modalidad;
 select a.codigo_ficha ,b.nombre_documento,a.numero_documento_aprendiz, c.nombre_completo_aprendiz, a.motivo_cancelacion , a.fecha_cancelacion ,a.numero_resolucion FROM aprendiz_cancelado AS a ,tipo_documento AS b,aprendiz AS c   WHERE a.numero_documento_aprendiz = c.numero_documento_aprendiz AND b.id_tipo_documento = c.id_tipo_documento;
 select a.numero_documento_aprendiz ,a.nombre_completo_aprendiz , g.nombre_documento  FROM  aprendiz AS a ,aprendiz AS d,tipo_documento AS g WHERE a.numero_documento_aprendiz = d.numero_documento_aprendiz;
-select a.numero_documento_aprendiz,f.nombre_documento,a.fecha_novedad,a.numero_documento_usuario,a.numero_resolucion_adjudicacion,b.nombre_tipo_novedad,c.nombre_completo_aprendiz,d.nombre_usuario,e.codigo_ficha,e.nombre_programa,h.nombre_estado_aprendiz FROM novedad AS a , tipo_novedad AS b , aprendiz AS c ,usuario As d ,tipo_documento AS f, ficha AS e, estado_aprendiz AS h WHERE a.id_tipo_novedad = b.id_tipo_novedad AND a.numero_documento_aprendiz = c.numero_documento_aprendiz AND a.numero_documento_usuario = d.numero_documento_usuario AND e.codigo_ficha = c.codigo_ficha AND c.id_estado_aprendiz = h.id_estado_aprendiz AND c.id_tipo_documento = f.id_tipo_documento;
+select a.numero_documento_aprendiz,f.nombre_documento,a.fecha_novedad,b.nombre_tipo_novedad,c.nombre_completo_aprendiz,e.codigo_ficha,e.nombre_programa,h.nombre_estado_aprendiz FROM novedad AS a , tipo_novedad AS b , aprendiz AS c ,tipo_documento AS f, ficha AS e, estado_aprendiz AS h WHERE a.id_tipo_novedad = b.id_tipo_novedad AND a.numero_documento_aprendiz = c.numero_documento_aprendiz AND  e.codigo_ficha = c.codigo_ficha AND c.id_estado_aprendiz = h.id_estado_aprendiz AND c.id_tipo_documento = f.id_tipo_documento;
 select *from beneficio;
 select * from usuario;
 select * FROM APRENDIZ;
@@ -28,9 +28,12 @@ insert into ficha (id_modalidad) values ('1');
 ADD CONSTRAINT id_modalidad FOREIGN KEY (id_modalidad) REFERENCES modalidad(id_modalidad);
 SELECT * FROM pg_stat_activity;
 select * from instructor_lider;
-insert into tipo_novedad values ('1','Aprendiz no presento formato de seguimiento');
-insert into tipo_novedad values ('2','Aprendiz fue citado a comite academico');
-insert into tipo_novedad values ('3','Aprendiz esta a punto de cumplir etapa lectiva');
+
+insert into tipo_novedad values ('1','Aprendiz esta a punto de cumplir etapa lectiva');
+insert into tipo_novedad values ('2','Aprendiz entro a mes de gracia');
+insert into tipo_novedad values ('3','Aprendiz no definio etapa practica fue aplazado');
+insert into tipo_novedad values ('4','Aprendiz ');
+insert into tipo_novedad values ('9','Aprendiz fue citado a comite academico');
 insert into tipo_novedad values ('4','Aprendiz no fue registrado en el taller mensual');
 insert into usuario (numero_documento_usuario,nombre_usuario,apellidos_usuario,contrasenha_usuario) values ('1094778783','Yeison Stiven','Gutierrez Rozo','1234567890');
 insert into modalidad ( id_modalidad,nombre_modalidad) values ('2','Virtual');
