@@ -158,12 +158,12 @@ CREATE TABLE tipo_novedad (
     PRIMARY KEY ( id_tipo_novedad)
 );
 CREATE TABLE novedad (
-    id_novedad  INT NOT NULL,
+    id_novedad INT DEFAULT 1 + NEXTVAL('codigo_seq') NOT NULL,
     id_tipo_novedad  INT NOT NULL ,
     numero_documento_aprendiz  INT NOT NULL ,
-    numero_documento_usuario  INT NOT NULL ,
+    numero_documento_usuario  INT  ,
+	usuario varchar NOT NULL,
     fecha_novedad    DATE NOT NULL,
-    numero_resolucion_adjudicacion  INT NOT NULL ,
 PRIMARY KEY (id_novedad),
 FOREIGN KEY (id_tipo_novedad ) REFERENCES tipo_novedad (id_tipo_novedad),
 FOREIGN KEY (numero_documento_aprendiz) REFERENCES aprendiz  (numero_documento_aprendiz),

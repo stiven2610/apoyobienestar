@@ -1,8 +1,8 @@
 // Tabla_asistencia.js
 import { useEffect, useState } from "react";
-import { useNavigate,useLocation,useParams } from "react-router-dom";
-import "./styles.css";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Boton from "../botones/Boton";
+import "./styles.css";
 
 const Asistencia_taller = () => {
   const location = useLocation();
