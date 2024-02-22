@@ -1,4 +1,4 @@
-const pool = require("../db.js");
+/*const pool = require("../db.js");
 const xlsx = require("xlsx");
 const moment = require("moment");
 
@@ -149,4 +149,38 @@ const crearBeneficio = async (req, res, next) => {
 
 module.exports = {
   crearBeneficio,
+};
+*/
+const xlsx = require("xlsx");
+
+// Ruta del archivo de Excel
+
+const extraerDatosExcel = async (req) => {
+  const {
+    archivo_excel,
+  } = req.body;
+  
+  const filePath = archivo_excel; // Reemplaza esto con la ruta de tu archivo
+
+  try {
+    // Leer el archivo de Excel
+    const workbook = xlsx.readFile(filePath);
+    const worksheet = workbook.Sheets[workbook.SheetNames[0]];
+    const jsonData = xlsx.utils.sheet_to_json(worksheet, {
+      raw: false,
+    });
+
+    // Imprimir los datos extraídos
+    console.log("Datos extraídos del archivo Excel:");
+    console.log(jsonData);
+
+    return jsonData;
+  } catch (error) {
+    console.error("Error al extraer datos del archivo Excel:", error);
+    throw error;
+  }
+};
+
+module.exports = {
+  extraerDatosExcel,
 };

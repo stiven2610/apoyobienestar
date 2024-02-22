@@ -31,18 +31,18 @@ const Asistencia_taller = () => {
       });
   }, []);
   const handleCLick = (codigo_taller, nombre_taller) => {
-   
-
-    navigate(`/registroasistencia/${codigo_taller}`, { state: { nombre_taller } });
+    navigate(`/registroasistencia/${codigo_taller}`, {
+      state: { nombre_taller },
+    });
   };
 
   return (
     <div className="container_body v-100">
       <div className="table-container">
-        <div onClick={() => handleCLick(codigo_taller)}>
+        <div className="container_btn_tit" onClick={() => handleCLick(codigo_taller)}>
           <Boton texto="registrar asistencia" textcolor="f8f8f8" />{" "}
         </div>
-        <p>{nombreTaller}</p>
+        <p className="titulos text-center">{nombreTaller}</p>
 
         <div className="table-responsive mt-3">
           <table className="table table-bordered table-striped">
@@ -63,8 +63,11 @@ const Asistencia_taller = () => {
               ) : (
                 data.map((item) => (
                   <tr key={item.id}>
-                    <td>{item.codigo_taller}</td>
+                    <td>{nombreTaller}</td>
                     <td>{item.numero_documento_aprendiz}</td>
+                    <td>{item.nombre_completo_aprendiz}</td>
+                    <td>{item.codigo_ficha}</td>
+                    <td>{item.fecha_insert}</td>
                   </tr>
                 ))
               )}

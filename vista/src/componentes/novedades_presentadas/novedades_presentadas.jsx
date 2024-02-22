@@ -89,7 +89,6 @@ const Novedades_presentadas = () => {
             <th>Nombre Programa</th>
             <th>Fecha Novedad</th>
             <th>Estado del Aprendiz</th>
-            <th>Nombre Usuario que Registra</th>
           </tr>
         </thead>
         <tbody>
@@ -120,7 +119,6 @@ const Novedades_presentadas = () => {
                     ))}
                   </select>
                 </td>
-                <td>{item.numero_documento_usuario}</td>
               </tr>
             ))
           )}
