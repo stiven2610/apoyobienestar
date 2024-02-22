@@ -16,7 +16,7 @@ BEGIN
     fecha_actual := CURRENT_DATE;
     
     FOR numero_documento, codigo, fecha_fin IN
-        SELECT a.numero_documento_aprendiz, a.codigo_ficha, b.fecha_fin_lectiva
+        SELECT a.numero_documento_aprendiz,a.codigo_ficha,b.fecha_fin_lectiva
         FROM aprendiz AS a, ficha AS b 
         WHERE a.codigo_ficha = b.codigo_ficha
     LOOP
@@ -47,5 +47,4 @@ call fun_act_est();
 ALTER PROCEDURE public.fun_act_est()
     OWNER TO gr_apoyo;
 select * from novedad;
-select * from asistencia_taller ;
 delete from novedad where usuario = 'sistema'
