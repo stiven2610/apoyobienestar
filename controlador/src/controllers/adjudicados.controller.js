@@ -1,5 +1,5 @@
 
-const pool = require("../db.js");
+const pool = require("../db");
 
 const obtenerAdjudicados =async (req, res,next) => {
   try {
