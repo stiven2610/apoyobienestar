@@ -10,7 +10,7 @@ const {
   actualizardatos,
 } = require("../controllers/actualizardatos.controller");
 const { validarUsuario } = require("../controllers/login.controllers");
-const { crearBeneficio } = require("../controllers/beneficio.controller");
+const { crearBeneficio, extraerDatosExcel } = require("../controllers/beneficio.controller");
 const {
   formularioRegistroAsistencia,
 } = require("../controllers/asistencia.controller");
@@ -37,7 +37,7 @@ router.put("/usuario/:id", updateUsuario);
 router.post("/login", validarUsuario);
 
 //ruta para creacion de beneficio
-router.post("/beneficio", crearBeneficio);
+router.post("/beneficio", extraerDatosExcel);
 
 //ruta para creacion de Aprendiz
 router.post("/aprendiz", pruebaControlador);

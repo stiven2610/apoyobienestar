@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faTrash } from "@fortawesome/free-solid-svg-icons";
 import Boton from "../botones/Boton";
 import "./styles.css";
 
@@ -36,7 +38,7 @@ const Talleres = () => {
 
   return (
     <div className="container_talleres">
-      <div onClick={irCrearTaller}>
+      <div onClick={irCrearTaller} className="boton_talleres">
         <Boton texto="Crear nuevo taller" color="#" />
       </div>
       <div className="container_table_talleres">
@@ -57,14 +59,21 @@ const Talleres = () => {
               talleres.map((item) => (
                 <tr key={item.codigo_taller}>
                   <td>
-                    <div onClick={() => handleClick(item.codigo_taller, item.nombre_taller)}>
-                      <Boton texto="ver asistencia" textcolor="f8f8f8" />
+                    <div className="container_icons_taller">
+                      <FontAwesomeIcon
+                        icon={faEye}
+                        style={{ cursor: "pointer" }}
+                        title="Ver asistencias"
+                        onClick={() =>
+                          handleClick(item.codigo_taller, item.nombre_taller)
+                        }
+                      />
+                      <FontAwesomeIcon
+                        icon={faTrash}
+                        title="Eliminar taller"
+                        style={{ cursor: "pointer" }}
+                      />
                     </div>
-                    <Boton
-                      texto="eliminar"
-                      color="#FC4132"
-                      textcolor="f8f8f8"
-                    />
                   </td>
                   <td>{item.nombre_taller}</td>
                   <td>{item.fecha_taller}</td>

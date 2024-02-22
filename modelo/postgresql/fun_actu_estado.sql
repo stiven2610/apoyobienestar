@@ -47,4 +47,5 @@ call fun_act_est();
 ALTER PROCEDURE public.fun_act_est()
     OWNER TO gr_apoyo;
 select * from novedad;
+select * from asistencia_taller ;
 delete from novedad where usuario = 'sistema'

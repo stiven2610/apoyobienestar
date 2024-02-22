@@ -28,7 +28,8 @@ insert into ficha (id_modalidad) values ('1');
 ADD CONSTRAINT id_modalidad FOREIGN KEY (id_modalidad) REFERENCES modalidad(id_modalidad);
 SELECT * FROM pg_stat_activity;
 select * from instructor_lider;
-
+select * from tipo_novedad; 
+delete from tipo_novedad where id_tipo_novedad = 3
 insert into tipo_novedad values ('1','Aprendiz esta a punto de cumplir etapa lectiva');
 insert into tipo_novedad values ('2','Aprendiz entro a mes de gracia');
 insert into tipo_novedad values ('3','Aprendiz no definio etapa practica fue aplazado');
