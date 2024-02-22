@@ -10,7 +10,7 @@ const Update_aprendiz = ({ aprendiz }) => {
     id_estado_aprendiz: aprendiz.id_estado_aprendiz || "",
     id_obligacion_mensual: aprendiz.id_obligacion_mensual || "",
     numero_consecutivo: aprendiz.numero_consecutivo || "",
-    numero_resolucion_adjudicacion:aprendiz.numero_resolucion_adjudicacion || "",
+    numero_resolucion_adjudicacion: aprendiz.numero_resolucion_adjudicacion || "",
     codigo_beneficio: aprendiz.nombre_beneficio || "",
     nombre_completo_aprendiz: aprendiz.nombre_completo_aprendiz || "",
     fecha_adjudicacion: aprendiz.fecha_adjudicacion || "",
@@ -19,6 +19,8 @@ const Update_aprendiz = ({ aprendiz }) => {
     direccion_residencia_aprendiz: aprendiz.direccion_residencia_aprendiz || "",
     email_aprendiz: aprendiz.email_aprendiz || "",
   });
+  
+ 
   const [errors] = useState({});
 
   const handleChange = (e) => {
@@ -50,10 +52,12 @@ const Update_aprendiz = ({ aprendiz }) => {
   };
 
   return (
+    <>
     <form className="container" onSubmit={handleSubmit} autoComplete="off">
       <div className="row">
-        <div className="col-md-6">
-          <div className="datos_personales">
+        <div className="col-md-6 datos_beneficio">
+          <div className="">
+            <p className="titulos">Datos personales </p>
             <div className="container_input">
               <label htmlFor="nombre_completo_aprendiz" className="">
                 Nombre Completo del Aprendiz
@@ -64,9 +68,8 @@ const Update_aprendiz = ({ aprendiz }) => {
                 onChange={handleChange}
                 type="text"
                 required
-                className={`form-control ${
-                  errors.nombre_completo_aprendiz && "is-invalid"
-                }`}
+                className={`form-control ${errors.nombre_completo_aprendiz && "is-invalid"
+                  }`}
                 id="nombre_completo_aprendiz"
                 value={formData.nombre_completo_aprendiz || ""}
               />
@@ -76,7 +79,7 @@ const Update_aprendiz = ({ aprendiz }) => {
                 </span>
               )}
             </div>
-  
+
             <div className="container_input">
               <label htmlFor="id_tipo_documento" className="">
                 Tipo de Documento
@@ -99,7 +102,7 @@ const Update_aprendiz = ({ aprendiz }) => {
                 </span>
               )}
             </div>
-  
+
             <div className="container_input">
               <label htmlFor="numero_documento_aprendiz" className="">
                 Número de Documento del Aprendiz
@@ -110,9 +113,8 @@ const Update_aprendiz = ({ aprendiz }) => {
                 onChange={handleChange}
                 type="text"
                 required
-                className={` ${
-                  errors.numero_documento_aprendiz && "is-invalid"
-                } form-control`}
+                className={` ${errors.numero_documento_aprendiz && "is-invalid"
+                  } form-control`}
                 id="numero_documento_aprendiz"
                 value={formData.numero_documento_aprendiz || ""}
               />
@@ -122,7 +124,7 @@ const Update_aprendiz = ({ aprendiz }) => {
                 </span>
               )}
             </div>
-  
+
             <div className="container_input">
               <label htmlFor="numero_consecutivo" className="form_label">
                 Número de Consecutivo del Aprendiz
@@ -143,7 +145,7 @@ const Update_aprendiz = ({ aprendiz }) => {
                 </span>
               )}
             </div>
-  
+
             <div className="container_input">
               <label htmlFor="numero_telefono_fijo" className="">
                 Número de Teléfono Fijo
@@ -164,7 +166,7 @@ const Update_aprendiz = ({ aprendiz }) => {
                 </span>
               )}
             </div>
-  
+
             <div className="container_input">
               <label htmlFor="numero_telefono_movil" className="">
                 Número de Teléfono Móvil
@@ -185,7 +187,7 @@ const Update_aprendiz = ({ aprendiz }) => {
                 </span>
               )}
             </div>
-  
+
             <div className="container_input">
               <label htmlFor="direccion_residencia_aprendiz" className="">
                 Dirección de Residencia del Aprendiz
@@ -196,9 +198,8 @@ const Update_aprendiz = ({ aprendiz }) => {
                 onChange={handleChange}
                 type="text"
                 required
-                className={` ${
-                  errors.direccion_residencia_aprendiz && "is-invalid"
-                } form-control`}
+                className={` ${errors.direccion_residencia_aprendiz && "is-invalid"
+                  } form-control`}
                 id="direccion_residencia_aprendiz"
                 value={formData.direccion_residencia_aprendiz || ""}
               />
@@ -208,10 +209,10 @@ const Update_aprendiz = ({ aprendiz }) => {
                 </span>
               )}
             </div>
-  
+
             <div className="container_input">
               <label htmlFor="email_aprendiz" className="">
-              Correo Electrónico del Aprendiz
+                Correo Electrónico del Aprendiz
               </label>
               <input
                 placeholder="Ingrese el email del aprendiz"
@@ -227,11 +228,14 @@ const Update_aprendiz = ({ aprendiz }) => {
                 <span className="invalid-feedback">{errors.email_aprendiz}</span>
               )}
             </div>
+            <Boton textcolor="#ffffff" color="#39A900"  texto="Actualizar datos" />
           </div>
         </div>
-  
-        <div className="col-md-6">
-          <div className="datos_beneficio">
+
+        <div className="col-md-6 datos_beneficio">
+
+          <div className="">
+            <p className="titulos ">Datos de beneficio</p>
             <div className="container_input">
               <label htmlFor="codigo_ficha" className="">
                 Código de Ficha
@@ -250,7 +254,7 @@ const Update_aprendiz = ({ aprendiz }) => {
                 <span className="invalid-feedback">{errors.codigo_ficha}</span>
               )}
             </div>
-  
+
             <div className="container_input">
               <label htmlFor="id_estado_aprendiz" className="">
                 Estado del Aprendiz
@@ -275,7 +279,7 @@ const Update_aprendiz = ({ aprendiz }) => {
                 </span>
               )}
             </div>
-  
+
             <div className="container_input">
               <label htmlFor="id_obligacion_mensual" className="">
                 Obligación Mensual
@@ -298,7 +302,7 @@ const Update_aprendiz = ({ aprendiz }) => {
                 </span>
               )}
             </div>
-  
+
             <div className="container_input">
               <label htmlFor="numero_resolucion_adjudicacion" className="form_label">
                 Número de Resolución de Adjudicación
@@ -319,7 +323,7 @@ const Update_aprendiz = ({ aprendiz }) => {
                 </span>
               )}
             </div>
-  
+
             <div className="container_input">
               <label htmlFor="codigo_beneficio" className="">
                 Código de Beneficio
@@ -340,7 +344,7 @@ const Update_aprendiz = ({ aprendiz }) => {
                 </span>
               )}
             </div>
-  
+
             <div className="container_input">
               <label htmlFor="fecha_adjudicacion" className="">
                 Fecha de Adjudicación
@@ -360,14 +364,19 @@ const Update_aprendiz = ({ aprendiz }) => {
                 </span>
               )}
             </div>
+        <Boton textcolor="#ffffff" color="#39A900"  texto="Actualizar datos" />
+      
           </div>
+
         </div>
+
       </div>
-  
-      <Boton textcolor="#ffffff" color="#39A900" texto="Actualizar datos" />
+
     </form>
+     
+    </>
   );
-  
+
 };
 
 export default Update_aprendiz;
