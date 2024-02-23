@@ -1,7 +1,7 @@
+import { faEye, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faTrash } from "@fortawesome/free-solid-svg-icons";
 import Boton from "../botones/Boton";
 import "./styles.css";
 
@@ -16,7 +16,7 @@ const Talleres = () => {
   };
 
   useEffect(() => {
-    fetch("http://localhost:4000/talleres")
+    fetch("http://10.200.138.62:4000/talleres")
       .then((response) => response.json())
       .then((data) => {
         if (data.data && Array.isArray(data.data)) {

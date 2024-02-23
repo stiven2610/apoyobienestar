@@ -22,7 +22,7 @@ const Formulario_create_beneficio= () => {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:4000/beneficio", {
+      const res = await fetch("http://10.200.138.62:4000/beneficio", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
