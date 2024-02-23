@@ -1,25 +1,21 @@
-// Tabla_asistencia.js
-import { useEffect, useState } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-import Boton from "../botones/Boton";
+import { useState, useEffect } from "react";
+import { useLocation, useParams } from "react-router-dom";
 import "./styles.css";
+import FormularioRegistroAsistenciaTaller from "../formulario_registro_asistencia_taller/formulario_registro_asistencia_taller";
 
 const Asistencia_taller = () => {
   const location = useLocation();
   const nombreTaller = location.state?.nombre_taller;
   const { codigo_taller } = useParams();
-  const navigate = useNavigate();
   const [data, setDatos] = useState([]);
   const [cargando, setCargando] = useState(true);
   useEffect(() => {
-    // Realiza una solicitud GET a la API (reemplaza la URL con la URL correcta de tu API)
     fetch(`http://localhost:4000/asistencias/${codigo_taller}`)
       .then((response) => response.json())
       .then((data) => {
-        // Verifica si 'data' contiene la propiedad 'data' que contiene el array de datos
         if (data.data && Array.isArray(data.data)) {
-          setDatos(data.data); // Almacena los datos en el estado
-          setCargando(false); // Marca la carga como completa
+          setDatos(data.data);
+          setCargando(false);
         } else {
           console.error("Los datos recibidos no son válidos.");
           setCargando(false);
@@ -27,22 +23,21 @@ const Asistencia_taller = () => {
       })
       .catch((error) => {
         console.error("Error en la solicitud:", error);
-        setCargando(false); // Marca la carga como completa incluso en caso de error
+        setCargando(false);
       });
   }, []);
-  const handleCLick = (codigo_taller, nombre_taller) => {
-    navigate(`/registroasistencia/${codigo_taller}`, {
-      state: { nombre_taller },
-    });
-  };
 
   return (
-    <div className="container_body v-100">
-      <div className="table-container">
-        <div className="container_btn_tit" onClick={() => handleCLick(codigo_taller)}>
-          <Boton texto="registrar asistencia" textcolor="f8f8f8" />{" "}
+    <div className="asistencia_taller">
+      <p className="titulos text-center mt-3">{nombreTaller}</p>
+
+      <div className="table_container_asistencia">
+        <div>
+          <FormularioRegistroAsistenciaTaller
+            nombreTaller={nombreTaller}
+            codigo_taller={codigo_taller}
+          />
         </div>
-        <p className="titulos text-center">{nombreTaller}</p>
 
         <div className="table-responsive mt-3">
           <table className="table table-bordered table-striped">

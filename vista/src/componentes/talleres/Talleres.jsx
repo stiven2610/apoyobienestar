@@ -9,6 +9,7 @@ const Talleres = () => {
   const navigate = useNavigate();
   const [talleres, setTalleres] = useState([]);
   const [cargando, setCargando] = useState(true);
+  const [busqueda, setBusqueda] = useState("");
 
   const irCrearTaller = () => {
     navigate("/creaciondetaller");
@@ -36,11 +37,28 @@ const Talleres = () => {
     navigate(`/asistencia/${codigo_taller}`, { state: { nombre_taller } });
   };
 
+  const handleBusquedaChange = (event) => {
+    setBusqueda(event.target.value);
+  };
+
   return (
     <div className="container_talleres">
-      <div onClick={irCrearTaller} className="boton_talleres">
+      <div  className="boton_talleres">
+        <div onClick={irCrearTaller}>
         <Boton texto="Crear nuevo taller" color="#" />
+
+        </div>
+        <div className="container_busqueda">
+          <input
+            className="form-control m-2"
+            type="text"
+            placeholder="Buscar taller por nombre"
+            value={busqueda}
+            onChange={handleBusquedaChange}
+          />
+        </div>
       </div>
+
       <div className="container_table_talleres">
         <table className="table table-bordered table-striped">
           <thead>
@@ -56,29 +74,35 @@ const Talleres = () => {
                 <td colSpan="4">Cargando Datos...</td>
               </tr>
             ) : (
-              talleres.map((item) => (
-                <tr key={item.codigo_taller}>
-                  <td>
-                    <div className="container_icons_taller">
-                      <FontAwesomeIcon
-                        icon={faEye}
-                        style={{ cursor: "pointer" }}
-                        title="Ver asistencias"
-                        onClick={() =>
-                          handleClick(item.codigo_taller, item.nombre_taller)
-                        }
-                      />
-                      <FontAwesomeIcon
-                        icon={faTrash}
-                        title="Eliminar taller"
-                        style={{ cursor: "pointer" }}
-                      />
-                    </div>
-                  </td>
-                  <td>{item.nombre_taller}</td>
-                  <td>{item.fecha_taller}</td>
-                </tr>
-              ))
+              talleres
+                .filter((taller) =>
+                  taller.nombre_taller
+                    .toLowerCase()
+                    .includes(busqueda.toLowerCase())
+                )
+                .map((item) => (
+                  <tr key={item.codigo_taller}>
+                    <td>
+                      <div className="container_icons_taller">
+                        <FontAwesomeIcon
+                          icon={faEye}
+                          style={{ cursor: "pointer" }}
+                          title="Ver asistencias"
+                          onClick={() =>
+                            handleClick(item.codigo_taller, item.nombre_taller)
+                          }
+                        />
+                        <FontAwesomeIcon
+                          icon={faTrash}
+                          title="Eliminar taller"
+                          style={{ cursor: "pointer" }}
+                        />
+                      </div>
+                    </td>
+                    <td>{item.nombre_taller}</td>
+                    <td>{item.fecha_taller}</td>
+                  </tr>
+                ))
             )}
           </tbody>
         </table>
