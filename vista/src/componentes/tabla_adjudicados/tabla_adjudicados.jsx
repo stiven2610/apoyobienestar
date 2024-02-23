@@ -13,7 +13,7 @@ const Tabla_adjudicados = () => {
   const formularioRef = useRef(null);
 
   useEffect(() => {
-    fetch("http://localhost:4000/adjudicados")
+    fetch("http://10.200.138.62.62:4000/adjudicados")
       .then((response) => response.json())
       .then((data) => {
         if (data.data && Array.isArray(data.data)) {
