@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import "./styles.css"
 import Inicio from "../index/index";
 import Login from "../login/Login";
 import Talleres from "../talleres/Talleres";
@@ -17,7 +18,7 @@ import Registro_novedades_formato from "../registro_novedades_formato/registro_n
 
 const Approutes = () => {
   return (
-    <div>
+    <div className="padre_bac">
       <Routes>
         <Route path="/" element={<Nav_index />}>
           <Route index element={<Inicio />} />

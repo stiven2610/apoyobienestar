@@ -1,10 +1,9 @@
-// Formulario_registro_asistencia_taller.js
 import  { useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import Boton from "../botones/Boton";
+import { useParams } from "react-router-dom";
+import "./styles.css";
 
 const Formulario_registro_asistencia_taller = () => {
-  const location = useLocation();
-  const nombreTaller = location.state?.nombre_taller;
   const { codigo_taller } = useParams();
   const [numero_documento_aprendiz, setNumero_documento_aprendiz] = useState("");
   const [error, setError] = useState("");
@@ -41,22 +40,29 @@ const Formulario_registro_asistencia_taller = () => {
     }
   };
 
+  const handleInputChange = (e) => {
+    // Limpiar el mensaje de error cada vez que el usuario comienza a escribir en el campo de entrada
+    setError("");
+    setNumero_documento_aprendiz(e.target.value);
+  };
+
   return (
-    <div>
-      <h2>Registro de Asistencia para {nombreTaller}</h2>
+    <div className="container_registro_asistencia">
       <form onSubmit={handleSubmit}>
-        <label>
-          Número de documento del aprendiz:
+        <label className="subtitulos m-2">
+          Ingrese el número de documento del aprendiz:
           <input
-            type="text"
+            className="form-control mt-2"
+            type="number"
             value={numero_documento_aprendiz}
-            onChange={(e) => setNumero_documento_aprendiz(e.target.value)}
+            onChange={handleInputChange}
             required
           />
         </label>
+        <Boton texto="Registrar Asistencia" textcolor="#f8f8f8" color="#39A900" />
+
         <br />
         {error && <p style={{ color: "red" }}>{error}</p>}
-        <button type="submit">Registrar Asistencia</button>
       </form>
     </div>
   );
