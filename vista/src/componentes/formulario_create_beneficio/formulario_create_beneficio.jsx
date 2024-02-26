@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Boton from "../botones/Boton";
 import "./styles.css";
-const Formulario_create_beneficio= () => {
+const Formulario_create_beneficio = () => {
   const [beneficio, setBeneficio] = useState({
     codigo_beneficio: "",
     cupos_beneficio: "",
@@ -43,20 +43,41 @@ const Formulario_create_beneficio= () => {
     }
   };
 
+
   const handleChange = (e) => {
     const { name, value } = e.target;
+    
+  // Validar mínimo de caracteres
+  if (name === "nombre_beneficio" && value.trim().length < 3) {
+    setErrors({
+      ...errors,
+      [name]: "El nombre del beneficio debe tener al menos 3 caracteres",
+    });
+  } else {
+    setErrors({
+      ...errors,
+      [name]: "", // Limpiar mensaje de error si el valor es válido
+    });
+  }
 
-    if (e.target.files && e.target.files.length > 0) {
-      const selectedFile = e.target.files[0];
-      setBeneficio({
-        ...beneficio,
-        archivo_excel: selectedFile,
-      });
-    }
+  // Validar que no sea solo espacios en blanco
+  if (name === "nombre_beneficio" && value.trim() === "") {
+    setErrors({
+      ...errors,
+      [name]: "El nombre del beneficio no puede estar vacío",
+    });
+  }
 
-    setBeneficio({ ...beneficio, [name]: value });
-    setErrors({ ...errors, [name]: "" });
-  };
+  if (e.target.files && e.target.files.length > 0) {
+    const selectedFile = e.target.files[0];
+    setBeneficio({
+      ...beneficio,
+      archivo_excel: selectedFile,
+    });
+  }
+
+  setBeneficio({ ...beneficio, [name]: value });
+};
 
   return (
     <>
@@ -64,25 +85,25 @@ const Formulario_create_beneficio= () => {
         <div className="container_bene">
           <p className="titulos">BENEFICIO</p>
           <form onSubmit={handleSubmit} encType="multipart/form-data">
-              <label htmlFor="nombre_beneficio" className="subtitulos">
-                Nombre Beneficio
-              </label>
-              <input
-                onChange={handleChange}
-                name="nombre_beneficio"
-                type="text"
-                className={`form-control  ${
-                  errors.nombre_beneficio ? "is-invalid" : ""
-                }`}
-                id="nombre_beneficio"
-                required
-                value={beneficio.nombre_beneficio}
-              />
-              {errors.nombre_beneficio && (
-                <span className="invalid-feedback">
-                  {errors.nombre_beneficio}
-                </span>
-              )}
+            <label htmlFor="nombre_beneficio" className="subtitulos">
+              Nombre Beneficio
+            </label>
+            <input
+              onChange={handleChange}
+              name="nombre_beneficio"
+              type="text"
+              className={`form-control  ${
+                errors.nombre_beneficio ? "is-invalid" : ""
+              }`}
+              id="nombre_beneficio"
+              required
+              value={beneficio.nombre_beneficio}
+            />
+            {errors.nombre_beneficio && (
+              <span className="invalid-feedback">
+                {errors.nombre_beneficio}
+              </span>
+            )}
             <label htmlFor="cupos_beneficio" className="subtitulos">
               Ingrese número de cupos
             </label>
@@ -95,6 +116,7 @@ const Formulario_create_beneficio= () => {
               }`}
               id="numeroCupos"
               required
+              
               value={beneficio.cupos_beneficio}
             />
             {errors.cupos_beneficio && (
@@ -112,8 +134,10 @@ const Formulario_create_beneficio= () => {
               }`}
               id="fechaInicio"
               required
-              value={beneficio.fecha_inicio_beneficio}
+              min={new Date().toISOString().split("T")[0]} 
+             value={beneficio.fecha_inicio_beneficio}
             />
+
             {errors.fecha_inicio_beneficio && (
               <span className="invalid-feedback">
                 {errors.fecha_inicio_beneficio}
@@ -126,6 +150,7 @@ const Formulario_create_beneficio= () => {
               onChange={handleChange}
               name="fecha_fin_beneficio"
               type="date"
+              min={new Date().toISOString().split("T")[0]}
               className={`form-control  ${
                 errors.fecha_fin_beneficio ? "is-invalid" : ""
               }`}
@@ -144,7 +169,7 @@ const Formulario_create_beneficio= () => {
             <input
               onChange={handleChange}
               name="archivo_excel"
-              type="text"
+              type="file"
               className={`form-control  mb-3 ${
                 errors.archivo_excel ? "is-invalid" : ""
               }`}
@@ -155,7 +180,12 @@ const Formulario_create_beneficio= () => {
             {errors.archivo_excel && (
               <span className="invalid-feedback">{errors.archivo_excel}</span>
             )}
-            <Boton texto="Crear" tamaño="30%" color="#41be07" textcolor="#fefefe" />
+            <Boton
+              texto="Crear"
+              tamaño="30%"
+              color="#41be07"
+              textcolor="#fefefe"
+            />
             {successMessage && (
               <div className="text-success">{successMessage}</div>
             )}

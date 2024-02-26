@@ -16,6 +16,7 @@ const Login = () => {
   const [errors, setErrors] = useState({
     numero_documento_usuario: "",
     contrasenha_usuario: "",
+    general: "",
   });
 
   const handleChange = (e) => {
@@ -29,11 +30,6 @@ const Login = () => {
           ...errors,
           [name]: "Número de documento inválido. Debe ser de 9 o 10 números.",
         });
-      } else {
-        setErrors({
-          ...errors,
-          [name]: "",
-        });
       }
     }
 
@@ -41,12 +37,7 @@ const Login = () => {
       if (value.length < 10) {
         setErrors({
           ...errors,
-          [name]: "La contraseña debe ser de almenos 10 caracteres.",
-        });
-      } else {
-        setErrors({
-          ...errors,
-          [name]: "",
+          [name]: "La contraseña debe tener al menos 10 caracteres.",
         });
       }
     }
@@ -63,24 +54,21 @@ const Login = () => {
         },
         body: JSON.stringify(user),
       });
-
+      console.log(res)
       if (res.ok) {
-        login();
-        navigate("/adjudicados");
-      } else {
-        const errorData = await res.json();
-
-        if (errorData.field === "contrasenha_usuario") {
+        const data = await res.json();
+        if (data.success) {
+          login();
+          navigate("/adjudicados");
+        } else {
           setErrors({
             ...errors,
-            contrasenha_usuario: "Contraseña incorrecta",
-          });
-        } else if (errorData.field === "numero_documento_usuario") {
-          setErrors({
-            ...errors,
-            numero_documento_usuario: "El usuario no existe",
+            general: data.message, // Manejar mensajes de error generales
           });
         }
+      } else {
+        // Si la respuesta no es exitosa, manejar el error
+        throw new Error("Error en la solicitud al servidor.");
       }
     } catch (error) {
       console.error("Error:", error);
@@ -88,62 +76,57 @@ const Login = () => {
   };
 
   return (
-    <>
-      <div className="container-login">
-        <div
-          id="form-container"
-          className="form_login"
-        >
-          <form onSubmit={onlogin} method="POST">
-            <h2 className="titulos ">Iniciar Sesión</h2>
-            <label
-              htmlFor="numero_documento_usuario"
-              className="subtitulos "
-            >
-              Número documento usuario
-            </label>
-            <input
-              name="numero_documento_usuario"
-              onChange={handleChange}
-              type="tel"
-              className={`form-control ${
-                errors.numero_documento_usuario ? "is-invalid" : ""
-              }`}
-              id="numero_documento_usuario"
-              placeholder="Ingrese su número de documento"
-              maxLength="10"
-              required
-            />
-            {errors.numero_documento_usuario && (
-              <div className="invalid-feedback">
-                {errors.numero_documento_usuario}
-              </div>
-            )}
-            <label htmlFor="Password" className="subtitulos">
-              Contraseña
-            </label>
-            <input
-              onChange={handleChange}
-              name="contrasenha_usuario"
-              placeholder="Ingrese su contraseña"
-              type="password"
-              className={`form-control mb-2 ${
-                errors.contrasenha_usuario ? "is-invalid" : ""
-              }`}
-              id="Password"
-              maxLength="10"
-              required
-            />
-            {errors.contrasenha_usuario && (
-              <div className="invalid-feedback">
-                {errors.contrasenha_usuario}
-              </div>
-            )}
-          <Boton texto="Ingresar"  textcolor="#fefefe" color="#39A900"/>
-          </form>
-        </div>
+    <div className="container-login">
+      <div id="form-container" className="form_login">
+        <form onSubmit={onlogin} method="POST">
+          <h2 className="titulos">Iniciar Sesión</h2>
+          {errors.general && (
+            <div className="alert alert-danger">{errors.general}</div>
+          )}
+          <label htmlFor="numero_documento_usuario" className="subtitulos">
+            Número documento usuario
+          </label>
+          <input
+            name="numero_documento_usuario"
+            onChange={handleChange}
+            type="number"
+            className={`form-control ${
+              errors.numero_documento_usuario ? "is-invalid" : ""
+            }`}
+            id="numero_documento_usuario"
+            placeholder="Ingrese su número de documento"
+            maxLength="10"
+            required
+          />
+          {errors.numero_documento_usuario && (
+            <div className="invalid-feedback">
+              {errors.numero_documento_usuario}
+            </div>
+          )}
+          <label htmlFor="Password" className="subtitulos">
+            Contraseña
+          </label>
+          <input
+            onChange={handleChange}
+            name="contrasenha_usuario"
+            placeholder="Ingrese su contraseña"
+            type="password"
+            className={`form-control mb-2 ${
+              errors.contrasenha_usuario ? "is-invalid" : ""
+            }`}
+            id="Password"
+            maxLength="10"
+            required
+          />
+          {errors.contrasenha_usuario && (
+            <div className="invalid-feedback">
+              {errors.contrasenha_usuario}
+            </div>
+          )}
+          <Boton texto="Ingresar" textcolor="#fefefe" color="#39A900" />
+        </form>
       </div>
-    </>
+    </div>
   );
 };
 

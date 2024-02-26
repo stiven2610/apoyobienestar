@@ -72,6 +72,8 @@ const Formulario_create_taller = () => {
             className="form-control form_input mb-3"
             id="fecha_taller"
             name="fecha_taller"
+            min={new Date().toISOString().split("T")[0]} 
+
             value={formData.fecha_taller}
             onChange={handleChange}
           />
