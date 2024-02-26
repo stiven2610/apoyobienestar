@@ -5,8 +5,8 @@ const Novedades_presentadas = () => {
   const [datos, setDatos] = useState([]);
   const [cargando, setCargando] = useState(true);
   const [estados, setEstados] = useState([]);
-  const [ setEstadoSeleccionado] = useState(""); // Estado para almacenar el nombre del estado seleccionado
-
+  const [ setEstadoSeleccionado] = useState(""); 
+  const [filtroBusqueda, setFiltroBusqueda] = useState("");
   useEffect(() => {
     fetch("http://localhost:4000/novedades")
       .then((response) => response.json())
@@ -34,7 +34,17 @@ const Novedades_presentadas = () => {
         console.error("Error en la solicitud:", error);
       });
   }, []);
-
+const handleBusquedaChange=(e) => {
+  setFiltroBusqueda(e.target.value);
+}
+const filteredDatos = datos.filter((item) => {
+  return (
+    item.nombre_completo_aprendiz
+      .toLowerCase()
+      .includes(filtroBusqueda.toLowerCase()) ||
+    String(item.numero_documento_aprendiz).includes(String(filtroBusqueda))
+  );
+});
   const handleChangeEstado = async (index, nuevoEstado) => {
     const confirmacion = window.confirm(
       `¿Estás seguro de cambiar el estado del aprendiz "${nuevoEstado}"?`
@@ -78,7 +88,21 @@ const Novedades_presentadas = () => {
 
   return (
     <div className="container-novedades m-4">
-      <h4 className="titulos">Novedades presentadas</h4>
+      <h4 className="titulos text-center">Novedades presentadas</h4>
+
+      <div className="container_filtros m-2">
+      <label htmlFor="busqueda" className="subtitulos">
+            Buscar Aprendiz:
+          </label>
+          <input
+            type="text"
+            id="busqueda"
+            className="form-control m-1"
+            value={filtroBusqueda}
+            onChange={handleBusquedaChange}
+          />
+
+      </div>
       <table className="table table-bordered table-striped">
         <thead>
           <tr>
@@ -97,7 +121,7 @@ const Novedades_presentadas = () => {
               <td colSpan="8">Cargando datos...</td>
             </tr>
           ) : (
-            datos.map((item, index) => (
+          filteredDatos.map((item, index) => (
               <tr key={index}>
                 <td>{item.nombre_documento}</td>
                 <td>{item.numero_documento_aprendiz}</td>

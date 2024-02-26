@@ -10,6 +10,7 @@ DECLARE
     fecha_actual DATE;
     numero_documento INT;
     codigo INT;
+    estado_actual INT;
     fecha_fin DATE;
     dias INT;
 BEGIN
@@ -19,6 +20,9 @@ BEGIN
         SELECT a.numero_documento_aprendiz,a.codigo_ficha,b.fecha_fin_lectiva
         FROM aprendiz AS a, ficha AS b 
         WHERE a.codigo_ficha = b.codigo_ficha
+
+        SELECT numero_do  INTO   
+        FROM 
     LOOP
         dias := fecha_fin - fecha_actual;
 
