@@ -11,7 +11,6 @@ const formularioRegistroAsistencia = async (req, res, next) => {
     const documento_existe = result.rows[0].documento_existe;
     const taller_existe = result.rows[0].taller_existe;
     const asistencia_existe = result.rows[0].asistencia_existe;
-console.log('documento ' + documento_existe, ' taller '  + taller_existe, ' asistencia ' + asistencia_existe);
     if (!asistencia_existe && documento_existe && taller_existe) {
       res.status(200).json({
         success: true,

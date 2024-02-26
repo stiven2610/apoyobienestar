@@ -27,7 +27,7 @@ const Login = () => {
       if (!/^\d{9,10}$/.test(value)) {
         setErrors({
           ...errors,
-          [name]: "Código de usuario inválido. Debe ser de 9 o 10 números.",
+          [name]: "Número de documento inválido. Debe ser de 9 o 10 números.",
         });
       } else {
         setErrors({
@@ -41,7 +41,7 @@ const Login = () => {
       if (value.length < 10) {
         setErrors({
           ...errors,
-          [name]: "La contraseña debe tener al menos 10 caracteres.",
+          [name]: "La contraseña debe ser de almenos 10 caracteres.",
         });
       } else {
         setErrors({
