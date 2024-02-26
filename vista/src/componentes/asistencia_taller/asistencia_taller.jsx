@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
-import "./styles.css";
 import FormularioRegistroAsistenciaTaller from "../formulario_registro_asistencia_taller/formulario_registro_asistencia_taller";
+import "./styles.css";
 
 const Asistencia_taller = () => {
   const location = useLocation();
@@ -10,7 +10,7 @@ const Asistencia_taller = () => {
   const [data, setDatos] = useState([]);
   const [cargando, setCargando] = useState(true);
   useEffect(() => {
-    fetch(`http://localhost:4000/asistencias/${codigo_taller}`)
+    fetch(`http://10.200.138.62:4000/asistencias/${codigo_taller}`)
       .then((response) => response.json())
       .then((data) => {
         if (data.data && Array.isArray(data.data)) {
