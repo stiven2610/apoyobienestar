@@ -11,7 +11,6 @@ const creacion_taller = async (req, res) => {
 
       res.status(200).json({ message: "Taller creado exitosamente" });
   } catch (error) {
-    // Captura y maneja los errores
     console.error("Error al crear el taller:", error);
     res.status(500).json({ error: "Error en el servidor" });
   }
