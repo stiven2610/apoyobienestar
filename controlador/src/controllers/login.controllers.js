@@ -33,7 +33,6 @@ const validarUsuario = async (req, res, next) => {
       });
     }
   } catch (error) {
-    // Manejo centralizado de errores
     console.error("Error en la validación de usuario:", error);
     res.status(500).json({
       success: false,

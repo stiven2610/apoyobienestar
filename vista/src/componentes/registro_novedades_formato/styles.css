@@ -1,6 +1,7 @@
 .padre {
     display: flex;
     justify-content: center;
+    flex-direction: column;
 }
 .container_novedades{
     border-radius: 20px;
