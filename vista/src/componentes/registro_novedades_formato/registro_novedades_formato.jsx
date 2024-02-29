@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Boton from "../botones/Boton";
 import "./styles.css";
 
@@ -9,7 +9,7 @@ const Registro_novedades_formato = () => {
   const [cargando, setCargando] = useState(true);
 
   useEffect(() => {
-    fetch("http://10.200.138.62:4000/adjudicados")
+    fetch("http://localhost:4000/adjudicados")
       .then((response) => response.json())
       .then((data) => {
         if (data.data && Array.isArray(data.data)) {

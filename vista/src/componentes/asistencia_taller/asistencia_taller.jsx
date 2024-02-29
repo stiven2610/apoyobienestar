@@ -10,7 +10,7 @@ const Asistencia_taller = () => {
   const [data, setDatos] = useState([]);
   const [cargando, setCargando] = useState(true);
   useEffect(() => {
-    fetch(`http://10.200.138.62:4000/asistencias/${codigo_taller}`)
+    fetch(`http://localhost:4000/asistencias/${codigo_taller}`)
       .then((response) => response.json())
       .then((data) => {
         if (data.data && Array.isArray(data.data)) {

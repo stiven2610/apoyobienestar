@@ -23,7 +23,7 @@ const Formulario_create_taller = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://10.200.138.62:4000/creaciontaller", {
+      const response = await fetch("http://localhost:4000/creaciontaller", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

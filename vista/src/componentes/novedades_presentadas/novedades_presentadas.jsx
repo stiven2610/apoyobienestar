@@ -8,7 +8,7 @@ const Novedades_presentadas = () => {
   const [ setEstadoSeleccionado] = useState(""); 
   const [filtroBusqueda, setFiltroBusqueda] = useState("");
   useEffect(() => {
-    fetch("http://10.200.138.62:4000/novedades")
+    fetch("http://localhost:4000/novedades")
       .then((response) => response.json())
       .then((data) => {
         if (data.data && Array.isArray(data.data)) {
@@ -23,7 +23,7 @@ const Novedades_presentadas = () => {
   }, []);
 
   useEffect(() => {
-    fetch("http://10.200.138.62:4000/getestadoaprendiz")
+    fetch("http://localhost:4000/getestadoaprendiz")
       .then((response) => response.json())
       .then((data) => {
         if (data.data && Array.isArray(data.data)) {
@@ -55,7 +55,7 @@ const filteredDatos = datos.filter((item) => {
       const { numero_documento_aprendiz } = aprendiz;
 
       try {
-        const res = await fetch("http://10.200.138.62:4000/updateestado", {
+        const res = await fetch("http://localhost:4000/updateestado", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
