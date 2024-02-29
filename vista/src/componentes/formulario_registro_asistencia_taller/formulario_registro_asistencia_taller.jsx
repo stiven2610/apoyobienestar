@@ -16,7 +16,7 @@ const Formulario_registro_asistencia_taller = () => {
     }
 
     try {
-      const response = await fetch("http://10.200.138.62:4000/asistenciataller", {
+      const response = await fetch("http://localhost:4000/asistenciataller", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -19,3 +19,6 @@
   box-shadow: 0 0 10px #9beb6e;
   background: #f8f8f8;
 }
+.error-credenciales {
+  box-shadow: 0 0 10px #e45757;
+}

@@ -16,7 +16,7 @@ const Talleres = () => {
   };
 
   useEffect(() => {
-    fetch("http://10.200.138.62:4000/talleres")
+    fetch("http://localhost:4000/talleres")
       .then((response) => response.json())
       .then((data) => {
         if (data.data && Array.isArray(data.data)) {

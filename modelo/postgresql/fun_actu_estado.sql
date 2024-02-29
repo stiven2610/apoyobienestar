@@ -1,54 +1,57 @@
--- PROCEDURE: public.fun_act_est()
-
--- DROP PROCEDURE IF EXISTS public.fun_act_est();
-
-CREATE OR REPLACE PROCEDURE public.fun_act_est(
-	)
-LANGUAGE 'plpgsql'
+CREATE OR REPLACE PROCEDURE public.fun_act_est()
+LANGUAGE plpgsql
 AS $BODY$
 DECLARE
     fecha_actual DATE;
     numero_documento INT;
     codigo INT;
-    estado_actual INT;
     fecha_fin DATE;
     dias INT;
+    sql_state VARCHAR(5); -- Cambiado a VARCHAR
+    
+    c_aprendices CURSOR FOR 
+        SELECT a.numero_documento_aprendiz, a.codigo_ficha, b.fecha_fin_lectiva
+        FROM aprendiz AS a
+        JOIN ficha AS b ON a.codigo_ficha = b.codigo_ficha;
 BEGIN
     fecha_actual := CURRENT_DATE;
     
-    FOR numero_documento, codigo, fecha_fin IN
-        SELECT a.numero_documento_aprendiz,a.codigo_ficha,b.fecha_fin_lectiva
-        FROM aprendiz AS a, ficha AS b 
-        WHERE a.codigo_ficha = b.codigo_ficha
-
-        SELECT numero_do  INTO   
-        FROM 
+    OPEN c_aprendices;
+    
     LOOP
-        dias := fecha_fin - fecha_actual;
-
-        IF dias <= 15 AND dias > 0 THEN
-		    update aprendiz set id_estado_aprendiz = 1 where numero_documento = numero_documento_aprendiz;
-			INSERT INTO novedad (id_novedad,id_tipo_novedad,numero_documento_aprendiz,usuario,fecha_novedad)VALUES (default,1,numero_documento,'sistema',fecha_actual);
-            
-        ELSIF fecha_fin = fecha_actual AND dias <= 30 THEN
-            update aprendiz set id_estado_aprendiz = 2 where numero_documento = numero_documento_aprendiz;
-			INSERT INTO novedad (id_novedad,id_tipo_novedad,numero_documento_aprendiz,usuario,fecha_novedad)VALUES (default,2,numero_documento,'sistema',fecha_actual);
-           
-        ELSIF dias <=  0 THEN
-            update aprendiz set id_estado_aprendiz = 4 where numero_documento = numero_documento_aprendiz;
-            INSERT INTO novedad (id_novedad,id_tipo_novedad,numero_documento_aprendiz,usuario,fecha_novedad)VALUES (default,3,numero_documento,'sistema',fecha_actual);
-        ELSE 
-            update aprendiz set id_estado_aprendiz = 5 where numero_documento = numero_documento_aprendiz;
-            
-        END IF;
+        FETCH c_aprendices INTO numero_documento, codigo, fecha_fin;
+        EXIT WHEN NOT FOUND;
+        
+        BEGIN 
+            dias := fecha_fin - fecha_actual;
+            IF dias <= 15 AND dias >= 0 THEN
+                IF NOT EXISTS (SELECT 1 FROM aprendiz WHERE numero_documento_aprendiz = numero_documento AND id_estado_aprendiz = 1) THEN
+                    UPDATE aprendiz SET id_estado_aprendiz = 1 WHERE numero_documento_aprendiz = numero_documento;
+                END IF;
+            ELSIF fecha_fin = fecha_actual AND dias <= 30 THEN
+                IF NOT EXISTS (SELECT 1 FROM aprendiz WHERE numero_documento_aprendiz = numero_documento AND id_estado_aprendiz = 2) THEN
+                    UPDATE aprendiz SET id_estado_aprendiz = 2 WHERE numero_documento_aprendiz = numero_documento;
+                END IF;
+            ELSIF dias < 0 THEN
+                IF NOT EXISTS (SELECT 1 FROM aprendiz WHERE numero_documento_aprendiz = numero_documento AND id_estado_aprendiz = 4) THEN
+                    UPDATE aprendiz SET id_estado_aprendiz = 4 WHERE numero_documento_aprendiz = numero_documento;
+                END IF;
+            ELSE
+                IF NOT EXISTS (SELECT 1 FROM aprendiz WHERE numero_documento_aprendiz = numero_documento AND id_estado_aprendiz = 5) THEN
+                    UPDATE aprendiz SET id_estado_aprendiz = 5 WHERE numero_documento_aprendiz = numero_documento;
+                END IF;
+            END IF;
+        EXCEPTION
+            WHEN others THEN
+                GET STACKED DIAGNOSTICS sql_state = RETURNED_SQLSTATE;
+                RAISE NOTICE 'Error SQLSTATE: %', sql_state;
+        END;
     END LOOP;
+    
+    CLOSE c_aprendices;
 END;
 $BODY$;
-select * from estado_aprendiz;
-select * from novedad; 
-select * from tipo_novedad;
 call fun_act_est();
-ALTER PROCEDURE public.fun_act_est()
-    OWNER TO gr_apoyo;
+select * from aprendiz ;
 select * from novedad;
-delete from novedad where usuario = 'sistema'
+drop table novedad;

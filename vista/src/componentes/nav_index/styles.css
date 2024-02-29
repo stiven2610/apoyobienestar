@@ -6,7 +6,11 @@
   justify-content: space-around;
 }
 
-
+.link-nav.active {
+  color: #39A900;
+  font-weight: bold;
+  text-decoration: underline; /* Opcional: puedes agregar subrayado */
+}
 
 .sigaas-container {
   text-align: center;

@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Nav, Navbar } from "react-bootstrap";
-import { Link, Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import { AuthContext } from "../AppRoutes/Authcontext";
 import Boton from "../botones/Boton";
 import "./styles.css";
@@ -23,33 +23,29 @@ const Nav_index = () => {
 
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="">
-                  <Link to="/adjudicados" className="link-nav">
+                  <Nav.Link as={NavLink} to="/adjudicados" className="link-nav" activeClassName="active">
                     Adjudicados
-                  </Link>
-                 
-                  <Link to="novedades" className="link-nav">
+                  </Nav.Link>
+                  <Nav.Link as={NavLink} to="/novedades" className="link-nav" activeClassName="active">
                     Novedades
-                  </Link>
-                  <Link to="registronovedad" className="link-nav">
+                  </Nav.Link>
+                  <Nav.Link as={NavLink} to="/registronovedad" className="link-nav" activeClassName="active">
                     Novedades formato de seguimiento
-                  </Link>
-                  <Link to="creacionbeneficio" className="link-nav">
+                  </Nav.Link>
+                  <Nav.Link as={NavLink} to="/creacionbeneficio" className="link-nav" activeClassName="active">
                     Creación de beneficio
-                  </Link>
-                  <Link to="/cancelados" className="link-nav">
+                  </Nav.Link>
+                  <Nav.Link as={NavLink} to="/cancelados" className="link-nav" activeClassName="active">
                     Aprendices Cancelados
-                  </Link>
-                  <Link to="/talleres" className="link-nav">
+                  </Nav.Link>
+                  <Nav.Link as={NavLink} to="/talleres" className="link-nav" activeClassName="active">
                     Talleres
-                  </Link>
+                  </Nav.Link>
                 </Nav>
               </Navbar.Collapse>
             </Navbar>
           </div>
-          <div className="container-boton"
-          onClick={logout}
-          >
-
+          <div className="container-boton" onClick={logout}>
             <Boton texto="Cerrar sesión" color="#39A900" textcolor="#ffffff" />
           </div>
         </div>
@@ -70,24 +66,18 @@ const Nav_index = () => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                   <Nav className="">
-                    <Link to="/" className="link-nav">
+                    <Nav.Link as={NavLink} exact to="/" className="link-nav" activeClassName="active">
                       Inicio
-                    </Link>
-
-                    <Link to="/login" className="link-nav">
+                    </Nav.Link>
+                    <Nav.Link as={NavLink} to="/login" className="link-nav" activeClassName="active">
                       Aplicación
-                    </Link>
-                    <Link to="/contacto" className="link-nav">
+                    </Nav.Link>
+                    <Nav.Link as={NavLink} to="/contacto" className="link-nav" activeClassName="active">
                       Contáctanos
-                    </Link>
-                    <a
-                      href="https://normograma.sena.edu.co/docs/resolucion_sena_0169_2022.htm"
-                      className="link-nav"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
+                    </Nav.Link>
+                    <Nav.Link href="https://normograma.sena.edu.co/docs/resolucion_sena_0169_2022.htm" className="link-nav">
                       Normatividad
-                    </a>
+                    </Nav.Link>
                   </Nav>
                 </Navbar.Collapse>
               </Navbar>
