@@ -1,4 +1,4 @@
-import  { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../AppRoutes/Authcontext";
 import Boton from "../botones/Boton";
@@ -32,7 +32,7 @@ const limpiarCampos =()=>{
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:4000/login", {
+      const res = await fetch("http://10.200.138.62:4000/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

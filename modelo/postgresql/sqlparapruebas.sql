@@ -36,7 +36,7 @@ insert into tipo_novedad values ('3','Aprendiz no definio etapa practica fue apl
 insert into tipo_novedad values ('4','Aprendiz ');
 insert into tipo_novedad values ('9','Aprendiz fue citado a comite academico');
 insert into tipo_novedad values ('4','Aprendiz no fue registrado en el taller mensual');
-insert into usuario (numero_documento_usuario,nombre_usuario,apellidos_usuario,contrasenha_usuario) values ('1094778783','Yeison Stiven','Gutierrez Rozo','1234567890');
+insert into usuario (numero_documento_usuario,nombre_usuario,apellidos_usuario,password) values ('1094778783','Yeison Stiven','Gutierrez Rozo',md5('1234'));
 insert into modalidad ( id_modalidad,nombre_modalidad) values ('2','Virtual');
 insert into modalidad ( id_modalidad,nombre_modalidad) values ('1','Presencial');
 insert into tipo_documento (id_tipo_documento,nombre_documento) values (1,'Cedula de ciudadania');

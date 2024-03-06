@@ -1,11 +1,11 @@
 const pool = require("../db.js");
 const validarUsuario = async (req, res, next) => {
   const { numero_documento_usuario, contrasenha_usuario } = req.body;
-  
+  const password = contrasenha_usuario;
   try {
     const result = await pool.query("SELECT * FROM fun_log($1, $2)", [
       numero_documento_usuario,
-      contrasenha_usuario,
+      password,
     ]);
     
     const documento_existe = result.rows[0].documento_existe;

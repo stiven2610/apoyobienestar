@@ -25,7 +25,7 @@ CREATE TABLE usuario (
     numero_documento_usuario     INT        NOT NULL,
     nombre_usuario            VARCHAR NOT NULL,
     apellidos_usuario        VARCHAR   NOT NULL,
-    contrasenha_usuario      VARCHAR(20)    NOT NULL,
+	password varchar  NOT NULL,
     user_insert              VARCHAR,           
     fecha_insert             TIMESTAMP WITHOUT TIME ZONE NOT NULL,    
     user_update              VARCHAR,                    
