@@ -24,27 +24,29 @@ BEGIN
         
         BEGIN 
             dias := fecha_fin - fecha_actual;
-            IF dias <= 15 AND dias >= 0 THEN
+            IF dias <= 15 AND dias > 0 THEN
                 IF NOT EXISTS (SELECT 1 FROM aprendiz WHERE numero_documento_aprendiz = numero_documento AND id_estado_aprendiz = 1) THEN
                     UPDATE aprendiz SET id_estado_aprendiz = 1 WHERE numero_documento_aprendiz = numero_documento;
+							raise notice 'estado cambiado a 1 para la ficha %',codigo;
                 END IF;
             ELSIF fecha_fin = fecha_actual AND dias <= 30 THEN
                 IF NOT EXISTS (SELECT 1 FROM aprendiz WHERE numero_documento_aprendiz = numero_documento AND id_estado_aprendiz = 2) THEN
                     UPDATE aprendiz SET id_estado_aprendiz = 2 WHERE numero_documento_aprendiz = numero_documento;
+							raise notice 'estado cambiado a 2 para la ficha %',codigo;
                 END IF;
             ELSIF dias < 0 THEN
                 IF NOT EXISTS (SELECT 1 FROM aprendiz WHERE numero_documento_aprendiz = numero_documento AND id_estado_aprendiz = 4) THEN
                     UPDATE aprendiz SET id_estado_aprendiz = 4 WHERE numero_documento_aprendiz = numero_documento;
+							raise notice 'estado cambiado a 4 para la ficha %',codigo;
                 END IF;
             ELSE
                 IF NOT EXISTS (SELECT 1 FROM aprendiz WHERE numero_documento_aprendiz = numero_documento AND id_estado_aprendiz = 5) THEN
                     UPDATE aprendiz SET id_estado_aprendiz = 5 WHERE numero_documento_aprendiz = numero_documento;
+								raise notice 'estado cambiado a 5 para la ficha %',codigo;
+
                 END IF;
             END IF;
-        EXCEPTION
-            WHEN others THEN
-                GET STACKED DIAGNOSTICS sql_state = RETURNED_SQLSTATE;
-                RAISE NOTICE 'Error SQLSTATE: %', sql_state;
+       
         END;
     END LOOP;
     
@@ -52,6 +54,8 @@ BEGIN
 END;
 $BODY$;
 call fun_act_est();
-select * from aprendiz ;
+select * from ficha;
+select codigo_ficha,id_estado_aprendiz from aprendiz ;
 select * from novedad;
 drop table novedad;
+
