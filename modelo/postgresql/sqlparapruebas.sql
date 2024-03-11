@@ -29,6 +29,7 @@ ADD CONSTRAINT id_modalidad FOREIGN KEY (id_modalidad) REFERENCES modalidad(id_m
 SELECT * FROM pg_stat_activity;
 select * from instructor_lider;
 select * from tipo_novedad; 
+insert into tipo_novedad (5,'a')
 delete from tipo_novedad where id_tipo_novedad = 3
 insert into tipo_novedad values ('1','Aprendiz esta a punto de cumplir etapa lectiva');
 insert into tipo_novedad values ('2','Aprendiz entro a mes de gracia');
@@ -94,3 +95,21 @@ insert into ficha values ('2670702','1','1234567893','2023-10-05','2024-02-29','
 
 INSERT INTO  aprendiz_cancelado values ('0001','2619702','1609477893','No presento formato de siguimiento mensual','2024-02-17','12345678');
 INSERT INTO  aprendiz_cancelado values ('0002','2619701','1094778783','Se fue a contrato de aprendizaje','2024-03-05','123456790');
+select * from ficha ;
+delete from novedad where usuario = 'sistema';
+2670123  =  2024/03/20   estado = 1 bien 
+2619702 = 2024/03/08	estado = 2
+2619701 = 2024/01/07	estado = 4 bien 
+2670702 = 2024/05/02    estado = 5 bien
+select codigo_ficha,id_estado_aprendiz  from aprendiz;
+call fun_act_est();
+select * from novedad;
+update aprendiz set id_estado_aprendiz = 1 where codigo_ficha = 2670123;
+update aprendiz set id_estado_aprendiz = 3  where id_estado_aprendiz = 1;
+update aprendiz set id_estado_aprendiz = 3  where id_estado_aprendiz = 2;
+update aprendiz set id_estado_aprendiz = 3  where id_estado_aprendiz = 5;
+update aprendiz set id_estado_aprendiz = 3  where id_estado_aprendiz = 4;
+update ficha set fecha_fin_lectiva = '2024/03/20'  where codigo_ficha = 2670123;
+update ficha set fecha_fin_lectiva = '2024/03/07'  where codigo_ficha = 2619702;
+update ficha set fecha_fin_lectiva = '2024/01/07'  where codigo_ficha = 2619701;
+update ficha set fecha_fin_lectiva = '2024/05/02'  where codigo_ficha =2670702;
