@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./styles.css";
+import Boton from "../botones/Boton";
 
 const Novedades_presentadas = () => {
   const [datos, setDatos] = useState([]);
@@ -112,7 +113,7 @@ const filteredDatos = datos.filter((item) => {
             <th>Motivo Novedad</th>
             <th>Nombre Programa</th>
             <th>Fecha Novedad</th>
-            <th>Estado del Aprendiz</th>
+            <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
@@ -130,18 +131,7 @@ const filteredDatos = datos.filter((item) => {
                 <td>{item.nombre_programa}</td>
                 <td>{item.fecha_novedad}</td>
                 <td>
-                  <select
-                    value={item.id_estado_aprendiz}
-                    onChange={(e) =>
-                      handleChangeEstado(index, e.target.value)
-                    }
-                  >
-                    {estados.map((estado) => (
-                      <option key={estado.id_estado_aprendiz} value={estado.id_estado_aprendiz}>
-                        {estado.nombre_estado_aprendiz}
-                      </option>
-                    ))}
-                  </select>
+                 <Boton texto = "Cancelar Aprendiz" color = "red" />
                 </td>
               </tr>
             ))

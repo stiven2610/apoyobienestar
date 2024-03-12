@@ -11,11 +11,14 @@ const actualizardatos = async (req, res, next) => {
     id_estado_aprendiz,
     id_obligacion_mensual,
   } = req.body;
-
+console.log(req.body);
   try {
+   
+
     const update_aprendiz = await pool.query(
-      "UPDATE aprendiz SET id_tipo_documento = $1, direccion_residencia_aprendiz = $2, numero_telefono_fijo = $3, numero_telefono_movil = $4, email_aprendiz = $5, id_estado_aprendiz = $6, id_obligacion_mensual = $7 WHERE numero_documento_aprendiz = $8",
+      "SELECT fun_act_apr($1, $2, $3, $4, $5, $6, $7, $8)",
       [
+        numero_documento_aprendiz,
         id_tipo_documento,
         direccion_residencia_aprendiz,
         numero_telefono_fijo,
@@ -23,31 +26,24 @@ const actualizardatos = async (req, res, next) => {
         email_aprendiz,
         id_estado_aprendiz,
         id_obligacion_mensual,
-        numero_documento_aprendiz,
       ]
     );
 
     if (update_aprendiz.rowCount >= 1) {
-      res
-        .status(200)
-        .json({
-          success: true,
-          message: "¡Actualización de datos realizada con éxito!",
-        });
+      res.status(200).json({
+        success: true,
+        message: "¡Actualización de datos realizada con éxito!",
+      });
     } else {
-      res
-        .status(401)
-        .json({
-          success: false,
-          error:
-            "¡Los datos no pudieron ser actualizados, inténtelo nuevamente!",
-        });
+      res.status(401).json({
+        success: false,
+        error: "¡Los datos no pudieron ser actualizados, inténtelo nuevamente!",
+      });
     }
   } catch (error) {
     next(error); // Pasar el error al middleware de manejo de errores
   }
 };
-
 module.exports = {
   actualizardatos,
 };
