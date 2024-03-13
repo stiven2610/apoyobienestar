@@ -47,7 +47,8 @@ AFTER UPDATE OF id_estado_aprendiz ON aprendiz
 FOR EACH ROW
 EXECUTE PROCEDURE fun_tri_nov(); 
 
-
+select * from motivo_suspension; 
+select * from estado_aprendiz; 
 select * from novedad;
 select * from aprendiz;
 delete from novedad;

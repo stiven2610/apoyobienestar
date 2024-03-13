@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import "./styles.css";
 import Boton from "../botones/Boton";
+import "./styles.css";
 
 const Novedades_presentadas = () => {
   const [datos, setDatos] = useState([]);

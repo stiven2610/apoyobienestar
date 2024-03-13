@@ -8,7 +8,8 @@ CREATE OR REPLACE FUNCTION fun_act_apr(
     _id_estado_aprendiz INT,
     _id_obligacion_mensual INT
 )
-RETURNS VOID AS $$
+RETURNS BOOLEAN  AS $$
+DECLARE EXITO BOOLEAN; 
 BEGIN
     UPDATE aprendiz
     SET id_tipo_documento = _id_tipo_documento,
@@ -18,6 +19,12 @@ BEGIN
         email_aprendiz = _email_aprendiz,
         id_estado_aprendiz = _id_estado_aprendiz,
         id_obligacion_mensual = _id_obligacion_mensual
-    WHERE numero_documento_aprendiz = _numero_documento_aprendiz;
+    WHERE numero_documento_aprendiz = _numero_documento_aprendiz; 
+	
+	IF FOUND THEN
+	EXITO := TRUE;
+	END IF ;
+	RETURN EXITO,  _numero_documento_aprendiz ;
+
 END;
 $$ LANGUAGE plpgsql;
