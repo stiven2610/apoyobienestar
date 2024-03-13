@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Boton from "../botones/Boton";
 import "./styles.css";
 
@@ -22,7 +23,7 @@ const Update_aprendiz = ({ aprendiz }) => {
   
  
   const [errors] = useState({});
-
+  const navigate = useNavigate();
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -44,6 +45,8 @@ const Update_aprendiz = ({ aprendiz }) => {
 
       if (!res.ok) {
         throw new Error("Error al enviar el formulario");
+      }else{
+        navigate("/adjudicados")
       }
 
     } catch (error) {

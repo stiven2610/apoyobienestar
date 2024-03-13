@@ -41,7 +41,6 @@ const Formulario_registro_asistencia_taller = () => {
   };
 
   const handleInputChange = (e) => {
-    // Limpiar el mensaje de error cada vez que el usuario comienza a escribir en el campo de entrada
     setError("");
     setNumero_documento_aprendiz(e.target.value);
   };

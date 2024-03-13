@@ -34,7 +34,7 @@ delete from tipo_novedad where id_tipo_novedad = 3
 insert into tipo_novedad values ('1','Aprendiz esta a punto de cumplir etapa lectiva');
 insert into tipo_novedad values ('2','Aprendiz entro a mes de gracia');
 insert into tipo_novedad values ('3','Aprendiz no definio etapa practica fue aplazado');
-insert into tipo_novedad values ('4','Aprendiz ');
+insert into tipo_novedad values ('4','Aprendiz fue aplazado por no definir etapa practica ');
 insert into tipo_novedad values ('9','Aprendiz fue citado a comite academico');
 insert into tipo_novedad values ('4','Aprendiz no fue registrado en el taller mensual');
 insert into usuario (numero_documento_usuario,nombre_usuario,apellidos_usuario,password) values ('1094778783','Yeison Stiven','Gutierrez Rozo',md5('1234'));
@@ -103,6 +103,7 @@ delete from novedad where usuario = 'Sistema';
 2670702 = 2024/05/02    estado = 5 bien
 select codigo_ficha,id_estado_aprendiz  from aprendiz;
 call fun_act_est();
+select * from tipo_novedad; 
 select * from novedad;
 update aprendiz set id_estado_aprendiz = 1 where codigo_ficha = 2670123;
 update aprendiz set id_estado_aprendiz = 3  where id_estado_aprendiz = 1;
