@@ -35,14 +35,15 @@ const Update_aprendiz = ({ aprendiz }) => {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:4000/actualizardatos", {
-        method: "POST",
+      const res = await fetch("http://10.200.138.62:4000/actualizardatos", {
+        method: "post",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
-
+console.log(res);
+console.log(res);
       if (!res.ok) {
         throw new Error("Error al enviar el formulario");
       }else{
