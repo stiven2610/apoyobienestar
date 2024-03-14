@@ -43,6 +43,7 @@ const limpiarCampos =()=>{
       if (res.ok) {
         const data = await res.json();
         if (data.success) {
+          localStorage.setItem("token", data.token);
           login();
           navigate("/adjudicados");
         }

@@ -1,4 +1,6 @@
 const pool = require("../db.js");
+const jwt = require('jsonwebtoken');
+const secretKey = 'alphaRomeo_@bienecset';
 const validarUsuario = async (req, res, next) => {
   const { numero_documento_usuario, contrasenha_usuario } = req.body;
   const password = contrasenha_usuario;
@@ -12,9 +14,11 @@ const validarUsuario = async (req, res, next) => {
     const contrasenha_existe = result.rows[0].contrasenha_existe;
 
     if (documento_existe && contrasenha_existe) {
+      const token = jwt.sign({ numero_documento_usuario }, secretKey, { expiresIn: '1h' });
       res.status(200).json({
         success: true,
         message: "Sesión iniciada correctamente",
+        token: token
       });
     } else if (!documento_existe && !contrasenha_existe) {
       res.status(400).json({
