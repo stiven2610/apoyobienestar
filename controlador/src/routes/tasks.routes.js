@@ -46,7 +46,7 @@ router.post("/aprendiz", pruebaControlador);
 router.post("/asistenciataller", formularioRegistroAsistencia);
 
 router.get("/adjudicados", obtenerAdjudicados);
-router.post("/actualizardatos", actualizardatos);
+router.put("/actualizardatos", actualizardatos);
 router.get("/asistencias/:codigo_taller", asistencias);
 router.get("/novedades", obtenerNovedades);
 router.get("/cancelados", obtenerCancelados);
