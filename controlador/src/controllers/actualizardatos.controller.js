@@ -1,4 +1,3 @@
-const { default: Update_aprendiz } = require("../../../vista/src/componentes/update_aprendiz/update_aprendiz");
 const pool = require("../db");
 
 const actualizardatos = async (req, res, next) => {
