@@ -27,10 +27,10 @@ try {
       ]
   );
 
-  const exito = update_aprendiz.rows[0]; // Accede directamente a la primera fila de resultados
+  const exito = update_aprendiz.rows[0].fun_act_apr; // Accede directamente a la primera fila de resultados
   console.log(exito); // Imprime la fila de resultados
 
-  if (exito) {
+  if (exito == true) {
       console.log("buena pa ")
       res.status(200).json({
           success: true,
