@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Boton from "../botones/Boton";
+import PropTypes from 'prop-types';
+
 import "./styles.css";
 
 const Update_aprendiz = ({ aprendiz }) => {
@@ -21,7 +23,25 @@ const Update_aprendiz = ({ aprendiz }) => {
     email_aprendiz: aprendiz.email_aprendiz || "",
   });
   
- 
+Update_aprendiz.propTypes = {
+  aprendiz: PropTypes.shape({
+    numero_documento_aprendiz: PropTypes.number,
+    codigo_ficha: PropTypes.number,
+    id_tipo_documento: PropTypes.number,
+    id_estado_aprendiz: PropTypes.number,
+    id_obligacion_mensual: PropTypes.number,
+    numero_consecutivo: PropTypes.number,
+    numero_resolucion_adjudicacion: PropTypes.number,
+    nombre_beneficio: PropTypes.string,
+    nombre_completo_aprendiz: PropTypes.string,
+    fecha_adjudicacion: PropTypes.string,
+    numero_telefono_fijo: PropTypes.string,
+    numero_telefono_movil: PropTypes.string,
+    direccion_residencia_aprendiz: PropTypes.string,
+    email_aprendiz: PropTypes.string,
+  }).isRequired,
+};
+
   const [errors] = useState({});
   const navigate = useNavigate();
   const handleChange = (e) => {
@@ -36,17 +56,16 @@ const Update_aprendiz = ({ aprendiz }) => {
 
     try {
       const res = await fetch("http://localhost:4000/actualizardatos", {
-        method: "post",
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
-console.log(res);
-console.log(res);
       if (!res.ok) {
         throw new Error("Error al enviar el formulario");
       }else{
+        window.location.reload();
         navigate("/adjudicados")
       }
 
