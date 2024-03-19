@@ -15,6 +15,7 @@ import Talleres from "../talleres/Talleres";
 import Update_aprendiz from "../update_aprendiz/update_aprendiz";
 import PrivateRoute from "./PrivateRouter";
 import "./styles.css";
+import Aprendices_meritorios from "../aprendices_meritorios/Aprendices_meritorios";
 
 const Approutes = () => {
   return (
@@ -101,6 +102,15 @@ const Approutes = () => {
             element={
               <PrivateRoute>
                 <Formulario_registro_asistencia_taller/>
+              </PrivateRoute>
+            }
+          />
+          
+          <Route
+            path="/meritorios"
+            element={
+              <PrivateRoute>
+                <Aprendices_meritorios/>
               </PrivateRoute>
             }
           />
