@@ -45,6 +45,12 @@ const Nav_index = () => {
                   <Nav.Link as={NavLink} to="/cancelados" className="link-nav" activeClassName="active">
                     Aprendices Cancelados
                   </Nav.Link>
+                  <Nav.Link as={NavLink} to="/cancelados" className="link-nav" activeClassName="active">
+                    Registro Novedades
+                  </Nav.Link>
+                  <Nav.Link as={NavLink} to="/cancelados" className="link-nav" activeClassName="active">
+                    Aprendices suspendidos
+                  </Nav.Link>
                 </Nav>
               </Navbar.Collapse>
             </Navbar>
