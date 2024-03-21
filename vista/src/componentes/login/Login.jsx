@@ -93,8 +93,7 @@ const limpiarCampos =()=>{
             required
           />
           {errorContrasenha && <p style={{ color: "red" }}>{errorContrasenha}</p>}
-          {errorUsuario && <p style={{ color: "red" }}>{errorUsuario}</p>}
-          {errorCredenciales && <p style={{ color: "red" }}>{errorCredenciales}</p>}
+          {errorUsuario && <p style={{ color: "red" }}>{errorUsuario}</p>}          {errorCredenciales && <p style={{ color: "red" }}>{errorCredenciales}</p>}
           <Boton texto="Ingresar" textcolor="#fefefe" color="#39A900" />
         </form>
       </div>

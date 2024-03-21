@@ -22,6 +22,24 @@ drop table asistencia_taller;
 drop table taller_mensual;
 ALTER TABLE ficha;
 select * from taller_mensual;
+
+insert into motivo_suspension values (1,'Aprendiz no cumplio con el plan de actividades ');
+insert into motivo_suspension values (2,'Aprendiz no asistio al taller mensual');
+insert into motivo_suspension values (3,'Aprendiz realizo retiro voluntario del apoyo');
+insert into motivo_suspension values (4,'Aprendiz realizo retiro voluntario de su programa de formación');
+insert into motivo_suspension values (5,'Aprendiz realizo aplazamiento de su programa de formación');
+insert into motivo_suspension values (6,'Al aprendiz se le cancelo la matricula por acto academico');
+insert into motivo_suspension values (7,'Aprendiz suscribio contrato de aprendizaje');
+insert into motivo_suspension values (8,'Aprendiz suscribio contrato de trabajo formal o prestacion de servicios');
+insert into motivo_suspension values (9,'Aprendiz suscribio apoyo FIC');
+insert into motivo_suspension values (10,'Aprendiz suscribio apoyo de jovenes en acción');
+insert into motivo_suspension values (11,'Aprendiz suscribio practicas que le generan ingresos');
+insert into motivo_suspension values (12,'Aprendiz se le comprobo falsedad en documentos presetados');
+insert into motivo_suspension values (13,'Aprendiz supero los 3 meses de suspensión');
+insert into motivo_suspension values (14,'Aprendiz fallecio');
+
+
+
 insert into taller_mensual values ( 12,'Taller 1 mentalidad de liderazgo','2024-10-05','taller123')
 
 insert into ficha (id_modalidad) values ('1');
