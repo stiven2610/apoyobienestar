@@ -2,6 +2,8 @@ select a.numero_documento_aprendiz, a.nombre_completo_aprendiz, a.codigo_ficha ,
 select a.codigo_ficha ,b.nombre_documento,a.numero_documento_aprendiz, c.nombre_completo_aprendiz, a.motivo_cancelacion , a.fecha_cancelacion ,a.numero_resolucion FROM aprendiz_cancelado AS a ,tipo_documento AS b,aprendiz AS c   WHERE a.numero_documento_aprendiz = c.numero_documento_aprendiz AND b.id_tipo_documento = c.id_tipo_documento;
 select a.numero_documento_aprendiz ,a.nombre_completo_aprendiz , g.nombre_documento  FROM  aprendiz AS a ,aprendiz AS d,tipo_documento AS g WHERE a.numero_documento_aprendiz = d.numero_documento_aprendiz;
 select a.numero_documento_aprendiz,f.nombre_documento,a.fecha_novedad,b.nombre_tipo_novedad,c.nombre_completo_aprendiz,e.codigo_ficha,e.nombre_programa,h.nombre_estado_aprendiz FROM novedad AS a , tipo_novedad AS b , aprendiz AS c ,tipo_documento AS f, ficha AS e, estado_aprendiz AS h WHERE a.id_tipo_novedad = b.id_tipo_novedad AND a.numero_documento_aprendiz = c.numero_documento_aprendiz AND  e.codigo_ficha = c.codigo_ficha AND c.id_estado_aprendiz = h.id_estado_aprendiz AND c.id_tipo_documento = f.id_tipo_documento;
+
+SELECT a.id_tipo_documento,a.id_estado_aprendiz,a.numero_documento_aprendiz, a.nombre_completo_aprendiz,a.codigo_ficha, g.nombre_modalidad, b.nombre_documento, c.nombre_estado_aprendiz, d.id_obligacion_mensual,d.nombre_obligacion_mensual, a.numero_consecutivo, a.numero_resolucion_adjudicacion,  e.nombre_beneficio,  a.fecha_adjudicacion,  a.numero_telefono_fijo, a.numero_telefono_movil, a.direccion_residencia_aprendiz, a.email_aprendiz FROM  aprendiz AS a,  tipo_documento AS b,   estado_aprendiz AS c,  obligacion_mensual AS d,  beneficio AS e,  ficha AS f,  modalidad AS g WHERE   a.id_tipo_documento = b.id_tipo_documento   AND a.id_estado_aprendiz = c.id_estado_aprendiz   AND a.id_obligacion_mensual = d.id_obligacion_mensual   AND a.codigo_beneficio = e.codigo_beneficio    AND a.codigo_ficha = f.codigo_ficha  AND f.id_modalidad = g.id_modalidad
 select *from beneficio;
 select * from usuario;
 select * FROM APRENDIZ;
@@ -55,7 +57,7 @@ insert into tipo_novedad values ('3','Aprendiz no definio etapa practica fue apl
 insert into tipo_novedad values ('4','Aprendiz fue aplazado por no definir etapa practica ');
 insert into tipo_novedad values ('9','Aprendiz fue citado a comite academico');
 insert into tipo_novedad values ('4','Aprendiz no fue registrado en el taller mensual');
-insert into usuario (numero_documento_usuario,nombre_usuario,apellidos_usuario,password) values ('1094778783','Yeison Stiven','Gutierrez Rozo',md5('1234'));
+insert into usuario (numero_documento_usuario,nombre_usuario,apellidos_usuario,password) values ('1234','Yeison Stiven','Gutierrez Rozo',md5('1234'));
 insert into modalidad ( id_modalidad,nombre_modalidad) values ('2','Virtual');
 insert into modalidad ( id_modalidad,nombre_modalidad) values ('1','Presencial');
 insert into tipo_documento (id_tipo_documento,nombre_documento) values (1,'Cedula de ciudadania');
@@ -121,6 +123,8 @@ delete from novedad where usuario = 'Sistema';
 2670702 = 2024/05/02    estado = 5 bien
 select codigo_ficha,id_estado_aprendiz  from aprendiz;
 call fun_act_est();
+ drop  table usuario cascade;
+
 select * from tipo_novedad; 
 select * from novedad;
 update aprendiz set id_estado_aprendiz = 1 where codigo_ficha = 2670123;

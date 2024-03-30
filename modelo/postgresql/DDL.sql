@@ -12,8 +12,6 @@ DROP TABLE IF EXISTS  asistencia_taller;
 DROP TABLE IF EXISTS  novedad;
 DROP TABLE IF EXISTS  alerta;
 DROP TABLE IF EXISTS  parametros;
-
-
 CREATE TABLE  tipo_documento(
     id_tipo_documento      INT     NOT NULL,
     nombre_documento       VARCHAR(50)  NOT NULL,
@@ -59,8 +57,8 @@ CREATE TABLE instructor_lider(
 CREATE TABLE ficha
 (
     codigo_ficha                       INT             NOT NULL,    
-    id_modalidad             INT NOT NULL     ,                      
-    numero_documento_instructor_lider   INT NOT NULL,         
+    id_modalidad                       INT NOT NULL     ,                      
+    numero_documento_instructor_lider  INT NOT NULL,         
     fecha_inicio_ficha                 DATE            NOT NULL,                      
     fecha_inicio_etapa_productiva      DATE          ,               
     fecha_fin_ficha                    DATE            NOT NULL,                       
@@ -95,7 +93,7 @@ CREATE TABLE estado_aprendiz(
 
     PRIMARY KEY ( id_estado_aprendiz)
 );
-C REATE TABLE  obligacion_mensual(
+CREATE TABLE  obligacion_mensual(
     id_obligacion_mensual   INT NOT NULL,
     nombre_obligacion_mensual  VARCHAR NOT NULL,
 
@@ -104,13 +102,13 @@ C REATE TABLE  obligacion_mensual(
 CREATE TABLE aprendiz(
     numero_documento_aprendiz        INT        NOT NULL,
     nombre_completo_aprendiz         VARCHAR    NOT  NULL,
+	codigo_beneficio                 INT NOT NULL,
     codigo_ficha                     INT  NOT   NULL,
     id_tipo_documento                INT NOT NULL,
     id_estado_aprendiz               INT NOT NULL,
     id_obligacion_mensual            INT NOT NULL    ,
     numero_consecutivo               INT  NOT  NULL,
     numero_resolucion_adjudicacion   INT NOT NULL ,
-    codigo_beneficio                 INT  NOT    NULL,
     fecha_adjudicacion               DATE       NOT NULL,
     numero_telefono_fijo             VARCHAR(50)      NOT NULL,              
     numero_telefono_movil            VARCHAR(50)      NOT NULL,                
@@ -123,11 +121,19 @@ CREATE TABLE aprendiz(
 
     PRIMARY  KEY  (numero_documento_aprendiz),
     FOREIGN KEY (codigo_ficha)  REFERENCES  ficha   (codigo_ficha),
+	FOREIGN KEY (codigo_beneficio)  REFERENCES beneficio (codigo_beneficio),
 	foreign Key  (id_tipo_documento)  REFERENCES tipo_documento (id_tipo_documento),
     FOREIGN  KEY (id_estado_aprendiz)  REFERENCES  estado_aprendiz ( id_estado_aprendiz),
     FOREIGN KEY (id_obligacion_mensual)  REFERENCES obligacion_mensual (id_obligacion_mensual),
     FOREIGN KEY (codigo_beneficio)  REFERENCES beneficio (codigo_beneficio)
   );
+ALTER TABLE aprendiz
+ADD COLUMN codigo_beneficio INT;
+
+ALTER TABLE beneficio
+ADD CONSTRAINT codigo_beneficio
+FOREIGN KEY (codigo_beneficio)
+REFERENCES beneficio(codigo_beneficio);
 
 CREATE TABLE motivo_suspension (
     id_motivo_suspension   INT NOT NULL,

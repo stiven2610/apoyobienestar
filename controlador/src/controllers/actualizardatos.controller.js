@@ -27,17 +27,13 @@ try {
       ]
   );
 
-  const exito = update_aprendiz.rows[0].fun_act_apr; // Accede directamente a la primera fila de resultados
-  console.log(exito); // Imprime la fila de resultados
-
+  const exito = update_aprendiz.rows[0].fun_act_apr; 
   if (exito == true) {
-      console.log("buena pa ")
       res.status(200).json({
           success: true,
           message: "¡Actualización de datos realizada con éxito!",
       });
   } else {
-      console.log("pailas socio")
       res.status(401).json({
           success: false,
           error: "¡Los datos no pudieron ser actualizados, inténtelo nuevamente!",

@@ -1,7 +1,25 @@
 /*const pool = require("../db.js");
 const xlsx = require("xlsx");
 const moment = require("moment");
+*/
+const get_beneficios = async (req,res) => {
+const  {
+  codigo_beneficio,
+  nombre_beneficio
+} = req.body;
 
+try {
+  const {rows} = await pool.query( 'SELECT codigo_beneficio,nombre_beneficio FROM beneficio')
+  res.json({succes: true,
+  data: rows})
+} catch (error) {
+  console.log("Error en la consulta")
+  res.status(500).json({succes: false , message: 'Error en la consulta'})
+}
+
+}
+
+/*
 const crearBeneficio = async (req, res, next) => {
   const {
     codigo_beneficio,
@@ -152,6 +170,7 @@ module.exports = {
 };
 */
 const xlsx = require("xlsx");
+const pool = require("../db");
 
 // Ruta del archivo de Excel
 
@@ -183,4 +202,5 @@ const extraerDatosExcel = async (req) => {
 
 module.exports = {
   extraerDatosExcel,
+  get_beneficios
 };

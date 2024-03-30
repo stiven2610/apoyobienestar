@@ -107,9 +107,9 @@ const filteredDatos = datos.filter((item) => {
       <table className="table table-bordered table-striped">
         <thead>
           <tr>
+          <th>Nombre Completo del Aprendiz</th>
             <th>Tipo de Documento</th>
             <th>Número de Documento</th>
-            <th>Nombre Completo del Aprendiz</th>
             <th>Motivo Novedad</th>
             <th>Nombre Programa</th>
             <th>Fecha Novedad</th>
@@ -124,9 +124,9 @@ const filteredDatos = datos.filter((item) => {
           ) : (
           filteredDatos.map((item, index) => (
               <tr key={index}>
+                <td>{item.nombre_completo_aprendiz}</td>
                 <td>{item.nombre_documento}</td>
                 <td>{item.numero_documento_aprendiz}</td>
-                <td>{item.nombre_completo_aprendiz}</td>
                 <td>{item.nombre_tipo_novedad}</td>
                 <td>{item.nombre_programa}</td>
                 <td>{item.fecha_novedad}</td>

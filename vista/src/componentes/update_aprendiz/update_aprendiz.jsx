@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Boton from "../botones/Boton";
 import PropTypes from 'prop-types';
@@ -6,12 +6,17 @@ import PropTypes from 'prop-types';
 import "./styles.css";
 
 const Update_aprendiz = ({ aprendiz }) => {
+  const [estados,set_estados] = useState();
+  const [documentos,set_documentos] = useState();
   const [formData, setFormData] = useState({
     numero_documento_aprendiz: aprendiz.numero_documento_aprendiz || "",
     codigo_ficha: aprendiz.codigo_ficha || "",
+    nombre_documento: aprendiz.nombre_documento ||"",
     id_tipo_documento: aprendiz.id_tipo_documento || "",
     id_estado_aprendiz: aprendiz.id_estado_aprendiz || "",
+    nombre_estado : aprendiz.nombre_estado_aprendiz || "",
     id_obligacion_mensual: aprendiz.id_obligacion_mensual || "",
+    nombre_obligacion_mensual: aprendiz.nombre_obligacion_mensual || "",
     numero_consecutivo: aprendiz.numero_consecutivo || "",
     numero_resolucion_adjudicacion: aprendiz.numero_resolucion_adjudicacion || "",
     codigo_beneficio: aprendiz.nombre_beneficio || "",
@@ -22,13 +27,12 @@ const Update_aprendiz = ({ aprendiz }) => {
     direccion_residencia_aprendiz: aprendiz.direccion_residencia_aprendiz || "",
     email_aprendiz: aprendiz.email_aprendiz || "",
   });
-  
 Update_aprendiz.propTypes = {
   aprendiz: PropTypes.shape({
     numero_documento_aprendiz: PropTypes.number,
     codigo_ficha: PropTypes.number,
     id_tipo_documento: PropTypes.number,
-    id_estado_aprendiz: PropTypes.number,
+    id_estao_aprendiz: PropTypes.number,
     id_obligacion_mensual: PropTypes.number,
     numero_consecutivo: PropTypes.number,
     numero_resolucion_adjudicacion: PropTypes.number,
@@ -65,15 +69,45 @@ Update_aprendiz.propTypes = {
       if (!res.ok) {
         throw new Error("Error al enviar el formulario");
       }else{
-        window.location.reload();
-        navigate("/adjudicados")
+      alert("Datos del aprendiz actualizados correctamente")
+      navigate('/novedades')
       }
 
     } catch (error) {
       console.log("Error:", error);
     }
+  
   };
+ 
+  useEffect(() => {
+    fetch("http://localhost:4000/get_documentos")
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.data && Array.isArray(data.data)) {
+          set_documentos(data.data);
+        } else {
+          console.error("Los datos recibidos no son válidos.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error en la solicitud:", error);
+      });
+  }, []);
 
+  useEffect(() => {
+    fetch("http://localhost:4000/get_estados")
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.data && Array.isArray(data.data)) {
+          set_estados(data.data);
+        } else {
+          console.error("Los datos recibidos no son válidos.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error en la solicitud:", error);
+      });
+  }, []);
   return (
     <>
     <form className="container" onSubmit={handleSubmit} autoComplete="off">
@@ -108,17 +142,26 @@ Update_aprendiz.propTypes = {
                 Tipo de Documento
               </label>
               <select
-                name="id_tipo_documento"
-                onChange={handleChange}
-                required
-                className={`form-control ${errors.id_tipo_documento && "is-invalid"}`}
-                id="id_tipo_documento"
-                value={formData.id_tipo_documento || ""}
-              >
-                <option value="">Selecciona...</option>
-                <option value="1">Cédula de Ciudadanía</option>
-                <option value="2">Tarjeta de identidad</option>
-              </select>
+                  name="id_tipo_documento"
+                  onChange={handleChange}
+                  required
+                  className={`form-control ${
+                    errors.id_tipo_documento && "is-invalid"
+                  }`}
+                  id="id_obligacion_mensual"
+                  value={formData.id_tipo_documento || ""}
+                >
+                  <option value="">Selecciona...</option>
+                  {documentos &&
+                    documentos.map((item) => (
+                      <option
+                        key={item.id_tipo_documento}
+                        value={item.id_tipo_documento}
+                      >
+                        {item.nombre_documento}
+                      </option>
+                    ))}
+                </select>
               {errors.id_tipo_documento && (
                 <span className="invalid-feedback">
                   {errors.id_tipo_documento}
@@ -283,19 +326,26 @@ Update_aprendiz.propTypes = {
                 Estado del Aprendiz
               </label>
               <select
-                name="id_estado_aprendiz"
-                onChange={handleChange}
-                required
-                className={`form-control ${errors.id_estado_aprendiz && "is-invalid"}`}
-                id="id_estado_aprendiz"
-                value={formData.id_estado_aprendiz || ""}
-              >
-                <option value="">Selecciona...</option>
-                <option value="1">Étapa Lectiva</option>
-                <option value="2">Mes de Gracia</option>
-                <option value="3">Suspendido</option>
-                <option value="4">Proyecto Productivo</option>
-              </select>
+                  name="id_estado_aprendiz"
+                  onChange={handleChange}
+                  required
+                  className={`form-control ${
+                    errors.id_estado_aprendiz && "is-invalid"
+                  }`}
+                  id="id_estado_aprendiz"
+                  value={formData.id_estado_aprendiz || ""}
+                >
+                   <option value="">Selecciona...</option>
+                  {estados &&
+                    estados.map((item) => (
+                      <option
+                        key={item.id_estado_aprendiz}
+                        value={item.id_estado_aprendiz}
+                      >
+                        {item.nombre_estado_aprendiz}
+                      </option>
+                    ))}
+                </select>
               {errors.id_estado_aprendiz && (
                 <span className="invalid-feedback">
                   {errors.id_estado_aprendiz}
@@ -315,7 +365,7 @@ Update_aprendiz.propTypes = {
                 id="id_obligacion_mensual"
                 value={formData.id_obligacion_mensual || ""}
               >
-                <option value="">Selecciona...</option>
+                <option value={aprendiz.id_obligacion_mensual}>{aprendiz.nombre_obligacion_mensual}</option>
                 <option value="1">Taller Mensual</option>
                 <option value="2">Plan de Actividades</option>
               </select>
@@ -349,7 +399,7 @@ Update_aprendiz.propTypes = {
 
             <div className="container_input">
               <label htmlFor="codigo_beneficio" className="">
-                Código de Beneficio
+             Nombre de beneficio
               </label>
               <input
                 placeholder="Ingrese el código de beneficio"

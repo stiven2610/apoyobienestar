@@ -2,8 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import Boton from "../botones/Boton";
 import Update_aprendiz from "../update_aprendiz/update_aprendiz";
 import "./styles.css";
+import { useNavigate } from "react-router-dom";
 
 const Tabla_adjudicados = () => {
+  const navigate = useNavigate();
   const [datos, setDatos] = useState([]);
   const [cargando, setCargando] = useState(true);
   const [filtroBusqueda, setFiltroBusqueda] = useState("");
@@ -73,13 +75,13 @@ const Tabla_adjudicados = () => {
             value={filtroBusqueda}
             onChange={handleBusquedaChange}
           />
-
-          <Boton
-            texto="Agregar"
-            tamaño="20%"
-            color="#39A900"
-            textcolor="#ffffff"
-          />
+          <div onClick={() => navigate("/insertaprendiz")}>
+            <Boton
+              texto="Agregar"
+              color="#39A900"
+              textcolor="#ffffff"
+            />
+          </div>
         </div>
         <div className="adjudicados">
           <table className="table table-bordered table-striped">
@@ -139,7 +141,9 @@ const Tabla_adjudicados = () => {
           </table>
           {mostrarFormulario && aprendizSeleccionado && (
             <div ref={formularioRef} className="container_">
-              <Update_aprendiz aprendiz={aprendizSeleccionado} />
+              <Update_aprendiz aprendiz={aprendizSeleccionado} 
+               id_tipo_documento={aprendizSeleccionado.id_tipo_documento}
+               id_estado_aprendiz={aprendizSeleccionado.id_estado_aprendiz}/>
               <div onClick={handleCloseForm}>
                 <Boton texto="Cancelar" textcolor="#fffff" color="#fa4711" />
               </div>

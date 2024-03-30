@@ -32,7 +32,6 @@ const Aprendices_cancelados = () => {
           <table className="table table-bordered table-striped">
             <thead>
               <tr>
-             
                 <th>Nombre Completo del Aprendiz</th>
                 <th>Código de Ficha</th>
                 <th>Tipo de Documento</th>

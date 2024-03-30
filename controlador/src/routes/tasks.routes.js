@@ -10,41 +10,41 @@ const {
   actualizardatos,
 } = require("../controllers/actualizardatos.controller");
 const { validarUsuario } = require("../controllers/login.controllers");
-const { crearBeneficio, extraerDatosExcel } = require("../controllers/beneficio.controller");
+const {
+  extraerDatosExcel,
+  get_beneficios,
+} = require("../controllers/beneficio.controller");
 const {
   formularioRegistroAsistencia,
 } = require("../controllers/asistencia.controller");
 const { obtenerAdjudicados } = require("../controllers/adjudicados.controller");
 const { creacion_taller, get_talleres } = require("../controllers/talleres");
 const { asistencias } = require("../controllers/asistencias.controller");
-const { pruebaControlador } = require("../controllers/creacion.aprendiz");
+const { insert_aprendiz } = require("../controllers/creacion.aprendiz");
 const { obtenerCancelados } = require("../controllers/cancelados.controller");
 const { obtenerNovedades } = require("../controllers/novedades.controller");
 const {
   get_estado_aprendiz,
   update_estado,
 } = require("../controllers/estado_aprendiz.controllers.js");
+const {
+  Get_documentos,
+  Get_estados_aprendiz,
+} = require("../controllers/selecciones.controllers.js");
 //rutas para CRUD de usuario...
+router.get("/get_documentos", Get_documentos);
+router.get("/get_estados", Get_estados_aprendiz);
 router.get("/usuarios", getALlUsuarios);
-
 router.get("/usuario/:id", getUsuario);
-
 router.delete("/usuario/:id", deleteUsuario);
-
 router.put("/usuario/:id", updateUsuario);
-
 //rutas para inicio de sesión...
 router.post("/login", validarUsuario);
-
 //ruta para creacion de beneficio
+router.get("/get_beneficios", get_beneficios);
 router.post("/beneficio", extraerDatosExcel);
-
-//ruta para creacion de Aprendiz
-router.post("/aprendiz", pruebaControlador);
-
 //ruta para registro de asistencia
 router.post("/asistenciataller", formularioRegistroAsistencia);
-
 router.get("/adjudicados", obtenerAdjudicados);
 router.put("/actualizardatos", actualizardatos);
 router.get("/asistencias/:codigo_taller", asistencias);
@@ -54,4 +54,5 @@ router.post("/creaciontaller", creacion_taller);
 router.get("/talleres", get_talleres);
 router.post("/updateestado", update_estado);
 router.get("/getestadoaprendiz", get_estado_aprendiz);
+router.post("/insertaraprendiz", insert_aprendiz);
 module.exports = router;
