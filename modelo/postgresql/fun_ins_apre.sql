@@ -4,7 +4,7 @@ CREATE OR REPLACE FUNCTION fun_ins_apr(
     p_id_tipo_documento INTEGER,
     p_id_estado_aprendiz INTEGER,
     p_id_obligacion_mensual INTEGER,
-    p_numero_consecutivo integer,
+    p_numero_consecutivo INTEGER,
     p_numero_resolucion_adjudicacion INTEGER,
     p_codigo_beneficio INTEGER,
     p_nombre_completo_aprendiz VARCHAR,
@@ -22,91 +22,119 @@ CREATE OR REPLACE FUNCTION fun_ins_apr(
     p_numero_documento_instructor_lider INTEGER,
     p_nombre_instructor_lider VARCHAR,
     p_email_instructor VARCHAR
-)
-RETURNS BOOLEAN 
+) RETURNS TABLE (
+    instructor_existe BOOLEAN,
+    aprendiz_existe BOOLEAN,
+    insercion_realizada BOOLEAN
+) 
 AS $$
-
-DECLARE 
-insercion_realizada boolean;
-
+DECLARE
+    insercion_realizada BOOLEAN := FALSE;
 BEGIN
- 
-          INSERT INTO instructor_lider (
-            numero_documento_instructor_lider,
-            nombre_instructor_lider,
-            email_instructor_lider
-        ) VALUES (
-            p_numero_documento_instructor_lider,
-            p_nombre_instructor_lider,
-            p_email_instructor
-        );
-        
-        -- Insertar datos en la tabla de fichas
-        INSERT INTO ficha(
-            codigo_ficha,
-            id_modalidad,
-			numero_documento_instructor_lider,
-            fecha_inicio_ficha,
-            fecha_inicio_etapa_productiva,
-            fecha_fin_ficha,
-            nivel_formacion,
-            nombre_programa
-        ) VALUES (
-            p_codigo_ficha,
-            p_id_modalidad_formacion,
-			p_numero_documento_instructor_lider,
-            p_fecha_inicio_ficha,
-            p_fecha_inicio_productiva,
-            p_fecha_fin_ficha,
-            p_nivel_formacion,
-            p_nombre_programa
-        );
-        
-   
-           -- Insertar datos en la tabla de aprendices
-        INSERT INTO aprendiz (
-            numero_documento_aprendiz,
-            nombre_completo_aprendiz,
-			codigo_ficha,
-			id_tipo_documento,
-			id_estado_aprendiz,
-			id_obligacion_mensual,
-			numero_consecutivo,
-			numero_resolucion_adjudicacion,
-			codigo_beneficio,
-            fecha_adjudicacion,
-            numero_telefono_fijo,
-            numero_telefono_movil,
-            direccion_residencia_aprendiz,
-            email_aprendiz
-        ) VALUES (
-            p_numero_documento_aprendiz,
-            p_nombre_completo_aprendiz,
-			p_codigo_ficha,
-			p_id_tipo_documento,
-			p_id_estado_aprendiz,
-			p_id_obligacion_mensual,
-			p_numero_consecutivo,
-			p_numero_resolucion_adjudicacion,
-			p_codigo_beneficio,
-            p_fecha_adjudicacion,
-            p_numero_telefono_fijo,
-            p_numero_telefono_movil,
-            p_direccion_residencia_aprendiz,
-            p_email_aprendiz
-        );
-IF FOUND THEN 
-    insercion_realizada := TRUE;
-ELSE
-    insercion_realizada := FALSE;
-END IF;
-  RETURN insercion_realizada;
+    -- Verificar si el instructor existe
+    SELECT EXISTS (
+        SELECT 1 FROM instructor_lider WHERE numero_documento_instructor_lider = p_numero_documento_instructor_lider
+    ) INTO instructor_existe;
+
+    -- Verificar si el aprendiz existe
+    SELECT EXISTS (
+        SELECT 1 FROM aprendiz WHERE numero_documento_aprendiz = p_numero_documento_aprendiz
+    ) INTO aprendiz_existe;
+  
+    -- Si el instructor no existe, insertarlo
+    IF NOT instructor_existe THEN 
+        BEGIN
+            INSERT INTO instructor_lider (
+                numero_documento_instructor_lider,
+                nombre_instructor_lider,
+                email_instructor_lider
+            ) VALUES (
+                p_numero_documento_instructor_lider,
+                p_nombre_instructor_lider,
+                p_email_instructor
+            );
+
+            -- Insertar datos en la tabla de fichas
+            INSERT INTO ficha(
+                codigo_ficha,
+                id_modalidad,
+                numero_documento_instructor_lider,
+                fecha_inicio_ficha,
+                fecha_inicio_etapa_productiva,
+                fecha_fin_ficha,
+                nivel_formacion,
+                nombre_programa
+            ) VALUES (
+                p_codigo_ficha,
+                p_id_modalidad_formacion,
+                p_numero_documento_instructor_lider,
+                p_fecha_inicio_ficha,
+                p_fecha_inicio_productiva,
+                p_fecha_fin_ficha,
+                p_nivel_formacion,
+                p_nombre_programa
+            );
+        EXCEPTION
+            WHEN unique_violation THEN
+                -- El instructor ya existe, no se hace nada
+                NULL;
+        END;
+    END IF;
+    
+    -- Si el aprendiz no existe, insertarlo
+    IF NOT aprendiz_existe THEN 
+        BEGIN
+            INSERT INTO aprendiz (
+                numero_documento_aprendiz,
+                nombre_completo_aprendiz,
+                codigo_ficha,
+                id_tipo_documento,
+                id_estado_aprendiz,
+                id_obligacion_mensual,
+                numero_consecutivo,
+                numero_resolucion_adjudicacion,
+                codigo_beneficio,
+                fecha_adjudicacion,
+                numero_telefono_fijo,
+                numero_telefono_movil,
+                direccion_residencia_aprendiz,
+                email_aprendiz
+            ) VALUES (
+                p_numero_documento_aprendiz,
+                p_nombre_completo_aprendiz,
+                p_codigo_ficha,
+                p_id_tipo_documento,
+                p_id_estado_aprendiz,
+                p_id_obligacion_mensual,
+                p_numero_consecutivo,
+                p_numero_resolucion_adjudicacion,
+                p_codigo_beneficio,
+                p_fecha_adjudicacion,
+                p_numero_telefono_fijo,
+                p_numero_telefono_movil,
+                p_direccion_residencia_aprendiz,
+                p_email_aprendiz
+            );
+            insercion_realizada := TRUE;
+        EXCEPTION
+            WHEN unique_violation THEN
+                -- El aprendiz ya existe, no se hace nada
+                NULL;
+            WHEN others THEN
+                -- Manejar otros errores de inserción
+                insercion_realizada := FALSE;
+        END;
+    END IF;
+
+    -- Retornar los resultados
+    RETURN QUERY SELECT instructor_existe, aprendiz_existe, insercion_realizada;
 END;
 $$ LANGUAGE plpgsql;
 
+
 SELECT fun_ins_apr(
-    p_numero_documento_aprendiz := 141324329,
-    p_codigo_ficha := 10323,
+    p_numero_documento_aprendiz := 123888439,
+    p_codigo_ficha := 10333,
     p_id_tipo_documento := 1,
     p_id_estado_aprendiz := 1,
     p_id_obligacion_mensual := 1,
@@ -125,7 +153,7 @@ SELECT fun_ins_apr(
     p_fecha_fin_ficha := '2024-12-31',
     p_nivel_formacion := 'Técnico',
     p_nombre_programa := 'Programa de Formación',
-    p_numero_documento_instructor_lider := 9874321,
+    p_numero_documento_instructor_lider := 98321,
     p_nombre_instructor_lider := 'Pedro Gomez',
     p_email_instructor := 'pedro@example.com'
 );

@@ -22,3 +22,4 @@ SELECT  md5(con_usu ) INTO encriptada;
     RETURN NEXT;
 END;
 $$ LANGUAGE PLPGSQL;
+select fun_log(1123321,'33232');
