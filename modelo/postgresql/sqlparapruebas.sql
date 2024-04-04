@@ -36,11 +36,14 @@ insert into motivo_suspension values (8,'Aprendiz suscribio contrato de trabajo 
 insert into motivo_suspension values (9,'Aprendiz suscribio apoyo FIC');
 insert into motivo_suspension values (10,'Aprendiz suscribio apoyo de jovenes en acción');
 insert into motivo_suspension values (11,'Aprendiz suscribio practicas que le generan ingresos');
-insert into motivo_suspension values (12,'Aprendiz se le comprobo falsedad en documentos presetados');
+insert into motivo_suspension values (12,'Aprendiz se le comprobo falsedad en documentos presentados');
 insert into motivo_suspension values (13,'Aprendiz supero los 3 meses de suspensión');
 insert into motivo_suspension values (14,'Aprendiz fallecio');
+insert into motivo_suspension values (15,'Aprendiz fue citado a comite academico');
 
-
+ALTER TABLE aprendiz ADD COLUMN codigo_modalidad INT ;
+ALTER TABLE aprendiz
+ADD CONSTRAINT codigo_modalidad FOREIGN KEY (codigo_modalidad) REFERENCES modalidad_productiva(codigo_modalidad);
 
 insert into taller_mensual values ( 12,'Taller 1 mentalidad de liderazgo','2024-10-05','taller123')
 
@@ -49,14 +52,11 @@ ADD CONSTRAINT id_modalidad FOREIGN KEY (id_modalidad) REFERENCES modalidad(id_m
 SELECT * FROM pg_stat_activity;
 select * from instructor_lider;
 select * from tipo_novedad; 
-insert into tipo_novedad (5,'a')
-delete from tipo_novedad where id_tipo_novedad = 3
 insert into tipo_novedad values ('1','Aprendiz esta a punto de cumplir etapa lectiva');
 insert into tipo_novedad values ('2','Aprendiz entro a mes de gracia');
-insert into tipo_novedad values ('3','Aprendiz no definio etapa practica fue aplazado');
-insert into tipo_novedad values ('4','Aprendiz fue aplazado por no definir etapa practica ');
-insert into tipo_novedad values ('9','Aprendiz fue citado a comite academico');
-insert into tipo_novedad values ('4','Aprendiz no fue registrado en el taller mensual');
+insert into tipo_novedad values ('3','Aprendiz en proyecto productivo');
+insert into tipo_novedad values ('4','Aprendiz fue aplazado por no definir etapa practica');
+
 insert into usuario (numero_documento_usuario,nombre_usuario,apellidos_usuario,password) values ('1234','Yeison Stiven','Gutierrez Rozo',md5('1234'));
 insert into modalidad ( id_modalidad,nombre_modalidad) values ('2','Virtual');
 insert into modalidad ( id_modalidad,nombre_modalidad) values ('1','Presencial');
@@ -73,6 +73,11 @@ insert into estado_aprendiz(id_estado_aprendiz,nombre_estado_aprendiz)  values (
 insert into estado_aprendiz(id_estado_aprendiz,nombre_estado_aprendiz)  values ('3','Proyecto productivo');
 insert into estado_aprendiz(id_estado_aprendiz,nombre_estado_aprendiz)  values ('4','Aplazado');
 insert into estado_aprendiz(id_estado_aprendiz,nombre_estado_aprendiz)  values ('5','Etapa lectiva');
+INSERT INTO modalidad_productiva VALUES ( 1,'Proyecto productivo');
+INSERT INTO modalidad_productiva VALUES ( 2,'Pasantia');
+INSERT INTO modalidad_productiva VALUES ( 3,'Apoyo a unidad familiar');
+INSERT INTO modalidad_productiva VALUES ( 4,'Contrato de aprendizaje');
+
 
 select * from obligacion_mensual;
 insert into obligacion_mensual ( id_obligacion_mensual,nombre_obligacion_mensual) values ('1','Taller Mensual');

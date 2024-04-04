@@ -41,8 +41,14 @@ CREATE TABLE modalidad (
 
     PRIMARY KEY (id_modalidad)   
 );
+CREATE TABLE modalidad_productiva(
+codigo_modalidad    INT NOT NULL,
+	nombre_modalidad VARCHAR NOT NULL,
+	
+	PRIMARY KEY ( codigo_modalidad)
 
-
+)
+drop table modalidad_productiva
 CREATE TABLE instructor_lider(
     numero_documento_instructor_lider      INT      NOT NULL,
     nombre_instructor_lider                VARCHAR (300) NOT NULL,

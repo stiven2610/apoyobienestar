@@ -30,6 +30,7 @@ const Insert_aprendiz = () => {
     nombre_instructor_lider: "",
     email_instructor: "",
   });
+  console.log(formData);
   const [datos, setDatos] = useState([]);
   useEffect(() => {
     fetch("http://localhost:4000/get_beneficios")
@@ -633,29 +634,29 @@ const Insert_aprendiz = () => {
                   Seleccionar beneficio
                 </label>
                 <select
-                  name="id_codigo_beneficio"
+                  name="codigo_beneficio"
                   onChange={handleChange}
                   required
                   className={`form-control ${
-                    errors.id_codigo_beneficio && "is-invalid"
+                    errors.codigo_beneficio && "is-invalid"
                   }`}
                   id="id_obligacion_mensual"
-                  value={formData.id_codigo_beneficio || ""}
+                  value={formData.codigo_beneficio || ""}
                 >
                   <option value="">Selecciona...</option>
                   {datos &&
                     datos.map((item) => (
                       <option
-                        key={item.id_codigo_beneficio}
-                        value={item.id_codigo_beneficio}
+                        key={item.codigo_beneficio}
+                        value={item.codigo_beneficio}
                       >
                         {item.nombre_beneficio}
                       </option>
                     ))}
                 </select>
-                {errors.id_codigo_beneficio && (
+                {errors.codigo_beneficio && (
                   <span className="invalid-feedback">
-                    {errors.id_codigo_beneficio}
+                    {errors.codigo_beneficio}
                   </span>
                 )}
               </div>

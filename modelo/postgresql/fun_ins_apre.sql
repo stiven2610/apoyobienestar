@@ -133,7 +133,7 @@ $$ LANGUAGE plpgsql;
 
 
 SELECT fun_ins_apr(
-    p_numero_documento_aprendiz := 123888439,
+    p_numero_documento_aprendiz := 12388439,
     p_codigo_ficha := 10333,
     p_id_tipo_documento := 1,
     p_id_estado_aprendiz := 1,

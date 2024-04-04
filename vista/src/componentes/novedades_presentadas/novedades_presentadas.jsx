@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react";
 import Boton from "../botones/Boton";
 import "./styles.css";
+import Registro_cancelados from "../registro_cancelados/Registro_cancelados";
 
 const Novedades_presentadas = () => {
   const [datos, setDatos] = useState([]);
   const [cargando, setCargando] = useState(true);
   const [estados, setEstados] = useState([]);
-  const [ setEstadoSeleccionado] = useState(""); 
+  const [estadoSeleccionado, setEstadoSeleccionado] = useState("");
   const [filtroBusqueda, setFiltroBusqueda] = useState("");
+  const [datosNovedad, setDatosNovedad] = useState(null);
+  const [mostrarFormulario, setMostrarFormulario] = useState(false);
+
   useEffect(() => {
     fetch("http://localhost:4000/novedades")
       .then((response) => response.json())
@@ -35,17 +39,20 @@ const Novedades_presentadas = () => {
         console.error("Error en la solicitud:", error);
       });
   }, []);
-const handleBusquedaChange=(e) => {
-  setFiltroBusqueda(e.target.value);
-}
-const filteredDatos = datos.filter((item) => {
-  return (
-    item.nombre_completo_aprendiz
-      .toLowerCase()
-      .includes(filtroBusqueda.toLowerCase()) ||
-    String(item.numero_documento_aprendiz).includes(String(filtroBusqueda))
-  );
-});
+
+  const handleBusquedaChange = (e) => {
+    setFiltroBusqueda(e.target.value);
+  };
+
+  const filteredDatos = datos.filter((item) => {
+    return (
+      item.nombre_completo_aprendiz
+        .toLowerCase()
+        .includes(filtroBusqueda.toLowerCase()) ||
+      String(item.numero_documento_aprendiz).includes(String(filtroBusqueda))
+    );
+  });
+
   const handleChangeEstado = async (index, nuevoEstado) => {
     const confirmacion = window.confirm(
       `¿Estás seguro de cambiar el estado del aprendiz "${nuevoEstado}"?`
@@ -64,7 +71,7 @@ const filteredDatos = datos.filter((item) => {
           body: JSON.stringify({
             numero_documento_aprendiz,
             id_estado_aprendiz: nuevoEstado,
-          }), 
+          }),
         });
 
         if (!res.ok) {
@@ -77,7 +84,9 @@ const filteredDatos = datos.filter((item) => {
         setDatos(newData);
 
         // Obtener el nombre del estado seleccionado y almacenarlo en el estado local
-        const selectedState = estados.find(state => state.id_estado_aprendiz === nuevoEstado);
+        const selectedState = estados.find(
+          (state) => state.id_estado_aprendiz === nuevoEstado
+        );
         if (selectedState) {
           setEstadoSeleccionado(selectedState.nombre_estado_aprendiz);
         }
@@ -87,27 +96,35 @@ const filteredDatos = datos.filter((item) => {
     }
   };
 
+  const handleOpenForm = (index) => {
+    setDatosNovedad(filteredDatos[index]);
+    setMostrarFormulario(true);
+  };
+
+  const handleCloseForm = () => {
+    setMostrarFormulario(false);
+  };
+
   return (
     <div className="container-novedades m-4">
       <h4 className="titulos text-center">Novedades presentadas</h4>
 
       <div className="container_filtros m-2">
-      <label htmlFor="busqueda" className="subtitulos">
-            Buscar Aprendiz:
-          </label>
-          <input
-            type="text"
-            id="busqueda"
-            className="form-control m-1"
-            value={filtroBusqueda}
-            onChange={handleBusquedaChange}
-          />
-
+        <label htmlFor="busqueda" className="subtitulos">
+          Buscar Aprendiz:
+        </label>
+        <input
+          type="text"
+          id="busqueda"
+          className="form-control m-1"
+          value={filtroBusqueda}
+          onChange={handleBusquedaChange}
+        />
       </div>
       <table className="table table-bordered table-striped">
         <thead>
           <tr>
-          <th>Nombre Completo del Aprendiz</th>
+            <th>Nombre Completo del Aprendiz</th>
             <th>Tipo de Documento</th>
             <th>Número de Documento</th>
             <th>Motivo Novedad</th>
@@ -122,7 +139,7 @@ const filteredDatos = datos.filter((item) => {
               <td colSpan="8">Cargando datos...</td>
             </tr>
           ) : (
-          filteredDatos.map((item, index) => (
+            filteredDatos.map((item, index) => (
               <tr key={index}>
                 <td>{item.nombre_completo_aprendiz}</td>
                 <td>{item.nombre_documento}</td>
@@ -131,13 +148,24 @@ const filteredDatos = datos.filter((item) => {
                 <td>{item.nombre_programa}</td>
                 <td>{item.fecha_novedad}</td>
                 <td>
-                 <Boton texto = "Cancelar Aprendiz" color = "red" />
+                  <div onClick={() => handleOpenForm(index)}>
+                    <Boton texto="Cancelar Aprendiz" color="red" />
+                  </div>
                 </td>
               </tr>
             ))
           )}
         </tbody>
       </table>
+      {mostrarFormulario && datosNovedad && (
+        <div className="container_">
+       <Registro_cancelados datosNovedad={datosNovedad} />
+
+          <div onClick={handleCloseForm}>
+            <Boton texto="Cancelar" textcolor="#ffffff" color="#fa4711" />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
