@@ -1,99 +1,32 @@
 import { useEffect, useState } from "react";
 import Boton from "../botones/Boton";
-import "./styles.css";
 import Registro_cancelados from "../registro_cancelados/Registro_cancelados";
+import "./styles.css";
 
 const Novedades_presentadas = () => {
   const [datos, setDatos] = useState([]);
   const [cargando, setCargando] = useState(true);
-  const [estados, setEstados] = useState([]);
-  const [estadoSeleccionado, setEstadoSeleccionado] = useState("");
   const [filtroBusqueda, setFiltroBusqueda] = useState("");
   const [datosNovedad, setDatosNovedad] = useState(null);
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
-
+  console.log(datosNovedad);
   useEffect(() => {
     fetch("http://localhost:4000/novedades")
       .then((response) => response.json())
       .then((data) => {
         if (data.data && Array.isArray(data.data)) {
           setDatos(data.data);
-          setCargando(false);
         }
-      })
-      .catch((error) => {
-        console.error("Error en la solicitud:", error);
         setCargando(false);
-      });
-  }, []);
-
-  useEffect(() => {
-    fetch("http://localhost:4000/getestadoaprendiz")
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.data && Array.isArray(data.data)) {
-          setEstados(data.data);
-        }
       })
       .catch((error) => {
-        console.error("Error en la solicitud:", error);
+        console.error("Error en la solicitud de novedades:", error);
+        setCargando(false);
       });
   }, []);
 
   const handleBusquedaChange = (e) => {
     setFiltroBusqueda(e.target.value);
-  };
-
-  const filteredDatos = datos.filter((item) => {
-    return (
-      item.nombre_completo_aprendiz
-        .toLowerCase()
-        .includes(filtroBusqueda.toLowerCase()) ||
-      String(item.numero_documento_aprendiz).includes(String(filtroBusqueda))
-    );
-  });
-
-  const handleChangeEstado = async (index, nuevoEstado) => {
-    const confirmacion = window.confirm(
-      `¿Estás seguro de cambiar el estado del aprendiz "${nuevoEstado}"?`
-    );
-
-    if (confirmacion) {
-      const aprendiz = datos[index];
-      const { numero_documento_aprendiz } = aprendiz;
-
-      try {
-        const res = await fetch("http://localhost:4000/updateestado", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            numero_documento_aprendiz,
-            id_estado_aprendiz: nuevoEstado,
-          }),
-        });
-
-        if (!res.ok) {
-          throw new Error("Error al enviar el formulario");
-        }
-
-        // Actualizar el estado local de los datos después de la actualización
-        const newData = [...datos];
-        newData[index].id_estado_aprendiz = nuevoEstado;
-        setDatos(newData);
-
-        // Obtener el nombre del estado seleccionado y almacenarlo en el estado local
-        const selectedState = estados.find(
-          (state) => state.id_estado_aprendiz === nuevoEstado
-        );
-        if (selectedState) {
-          setEstadoSeleccionado(selectedState.nombre_estado_aprendiz);
-        }
-      } catch (error) {
-        console.log("Error:", error);
-      }
-    }
   };
 
   const handleOpenForm = (index) => {
@@ -104,6 +37,15 @@ const Novedades_presentadas = () => {
   const handleCloseForm = () => {
     setMostrarFormulario(false);
   };
+
+  const filteredDatos = datos.filter((item) => {
+    return (
+      item.nombre_completo_aprendiz
+        .toLowerCase()
+        .includes(filtroBusqueda.toLowerCase()) ||
+      String(item.numero_documento_aprendiz).includes(String(filtroBusqueda))
+    );
+  });
 
   return (
     <div className="container-novedades m-4">
@@ -159,9 +101,11 @@ const Novedades_presentadas = () => {
       </table>
       {mostrarFormulario && datosNovedad && (
         <div className="container_">
-       <Registro_cancelados datosNovedad={datosNovedad} />
-
+            {datosNovedad && datosNovedad.nombre_completo_aprendiz && (
+              <Registro_cancelados datosNovedad={datosNovedad} />
+            )}
           <div onClick={handleCloseForm}>
+
             <Boton texto="Cancelar" textcolor="#ffffff" color="#fa4711" />
           </div>
         </div>

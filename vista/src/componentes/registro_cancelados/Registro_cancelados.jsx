@@ -1,10 +1,19 @@
-import { useState } from "react";
+import  { useState, useEffect } from "react";
 
 const Registro_cancelados = ({ datosNovedad }) => {
-  const [errors, setErrors] = useState();
-  const [formData, setFormData] = useState({
-    nombre_completo_aprendiz: datosNovedad.nombre_completo_aprendiz || "",
-  });
+  const [errors, setErrors] = useState({});
+  const [formData, setFormData] = useState({});
+
+  // Este efecto se ejecuta cada vez que datosNovedad cambia
+  useEffect(() => {
+    if (datosNovedad) {
+      // Si datosNovedad tiene un valor, inicializa formData con sus datos
+      setFormData({
+        nombre_completo_aprendiz: datosNovedad.nombre_completo_aprendiz || "",
+      });
+    }
+  }, [datosNovedad]);
+
   const handleSubmit = (event) => {
     // Aquí puedes manejar la lógica para enviar el formulario
     event.preventDefault();
@@ -17,8 +26,6 @@ const Registro_cancelados = ({ datosNovedad }) => {
     // Por ejemplo:
     console.log("Cambio detectado en:", event.target.name);
   };
-
-  // Suponiendo que `formData`, `errors` y `documentos` están definidos previamente
 
   return (
     <>
@@ -38,18 +45,17 @@ const Registro_cancelados = ({ datosNovedad }) => {
                   type="text"
                   required
                   className={`form-control ${
-                    errors.nombre_completo_aprendiz && "is-invalid"
+                    errors && errors.nombre_completo_aprendiz && "is-invalid"
                   }`}
                   id="nombre_completo_aprendiz"
-                  value={datosNovedad.nombre_completo_aprendiz || ""}
+                  value={formData.nombre_completo_aprendiz || ""}
                 />
-                {errors.nombre_completo_aprendiz && (
+                {errors && errors.nombre_completo_aprendiz && (
                   <span className="invalid-feedback">
                     {errors.nombre_completo_aprendiz}
                   </span>
                 )}
               </div>
-
             </div>
           </div>
         </div>
