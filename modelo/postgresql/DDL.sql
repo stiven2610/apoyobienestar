@@ -148,7 +148,6 @@ CREATE TABLE motivo_suspension (
     PRIMARY KEY ( id_motivo_suspension )
 );
 CREATE TABLE  aprendiz_suspendido (
-    id_aprendiz_suspendido           INT NOT   NULL,
     numero_documento_aprendiz        INT NOT  NULL,
     id_motivo_suspension             INT  NOT NULL,
     fecha_inicio_suspension          DATE NOT  NULL,
@@ -157,9 +156,8 @@ CREATE TABLE  aprendiz_suspendido (
     fecha_insert                     TIMESTAMP WITHOUT TIME ZONE NOT NULL,         
     user_update                      VARCHAR,                                        
     fecha_update                     TIMESTAMP WITHOUT TIME ZONE, 
-    PRIMARY KEY (id_aprendiz_suspendido),
+    PRIMARY KEY (numero_documento_aprendiz),
 	
-    FOREIGN key (numero_documento_aprendiz) REFERENCES aprendiz (numero_documento_aprendiz),
     FOREIGN key (id_motivo_suspension) REFERENCES motivo_suspension (id_motivo_suspension)
  );
 CREATE TABLE tipo_novedad (
