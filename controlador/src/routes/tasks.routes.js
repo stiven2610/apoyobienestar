@@ -22,7 +22,7 @@ const { creacion_taller, get_talleres } = require("../controllers/talleres");
 const { asistencias } = require("../controllers/asistencias.controller");
 const { insert_aprendiz } = require("../controllers/creacion.aprendiz");
 const { obtenerCancelados } = require("../controllers/cancelados.controller");
-const { obtenerNovedades } = require("../controllers/novedades.controller");
+const { obtenerNovedades, insert_suspendido } = require("../controllers/novedades.controller");
 const {
   get_estado_aprendiz,
   update_estado,
@@ -31,9 +31,12 @@ const {
   Get_documentos,
   Get_estados_aprendiz,
 } = require("../controllers/selecciones.controllers.js");
+const { get_motivos_suspension } = require("../controllers/motivos_suspension.controller.js");
 //rutas para CRUD de usuario...
 router.get("/get_documentos", Get_documentos);
 router.get("/get_estados", Get_estados_aprendiz);
+router.get("/get_motivos_suspension" , get_motivos_suspension)
+router.post("/insert_suspendido",insert_suspendido)
 router.get("/usuarios", getALlUsuarios);
 router.get("/usuario/:id", getUsuario);
 router.delete("/usuario/:id", deleteUsuario);

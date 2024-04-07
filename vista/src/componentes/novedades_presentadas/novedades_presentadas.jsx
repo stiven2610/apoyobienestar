@@ -70,7 +70,8 @@ const Novedades_presentadas = () => {
             <th>Tipo de Documento</th>
             <th>Número de Documento</th>
             <th>Motivo Novedad</th>
-            <th>Nombre Programa</th>
+            <th>Código de ficha</th>
+            <th>Nombre Programa de formación</th>
             <th>Fecha Novedad</th>
             <th>Acciones</th>
           </tr>
@@ -87,6 +88,7 @@ const Novedades_presentadas = () => {
                 <td>{item.nombre_documento}</td>
                 <td>{item.numero_documento_aprendiz}</td>
                 <td>{item.nombre_tipo_novedad}</td>
+                <td>{item.codigo_ficha}</td>
                 <td>{item.nombre_programa}</td>
                 <td>{item.fecha_novedad}</td>
                 <td>
