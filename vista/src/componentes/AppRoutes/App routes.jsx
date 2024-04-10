@@ -17,6 +17,7 @@ import PrivateRoute from "./PrivateRouter";
 import "./styles.css";
 import Aprendices_meritorios from "../aprendices_meritorios/Aprendices_meritorios";
 import Insert_aprendiz from "../formulario_insert_aprendiz/formulario_insert_aprendiz";
+import Suspendidos from "../aprendices_suspendidos/Aprendices_suspendidos";
 
 const Approutes = () => {
   return (
@@ -30,7 +31,7 @@ const Approutes = () => {
             path="/adjudicados"
             element={
               <PrivateRoute>
-                <Tabla_adjudicados/>
+                <Tabla_adjudicados />
               </PrivateRoute>
             }
           />
@@ -38,15 +39,15 @@ const Approutes = () => {
             path="/cancelados"
             element={
               <PrivateRoute>
-                <Aprendices_cancelados/>
+                <Aprendices_cancelados />
               </PrivateRoute>
             }
           />
-           <Route
+          <Route
             path="/insertaprendiz"
             element={
               <PrivateRoute>
-                <Insert_aprendiz/>
+                <Insert_aprendiz />
               </PrivateRoute>
             }
           />
@@ -54,7 +55,7 @@ const Approutes = () => {
             path="/novedades"
             element={
               <PrivateRoute>
-                <Novedades_presentadas/>
+                <Novedades_presentadas />
               </PrivateRoute>
             }
           />
@@ -86,7 +87,7 @@ const Approutes = () => {
             path="/actualizaraprendiz/:id"
             element={
               <PrivateRoute>
-                <Update_aprendiz/>
+                <Update_aprendiz />
               </PrivateRoute>
             }
           />
@@ -110,16 +111,23 @@ const Approutes = () => {
             path="/registroasistencia/:codigo_taller"
             element={
               <PrivateRoute>
-                <Formulario_registro_asistencia_taller/>
+                <Formulario_registro_asistencia_taller />
               </PrivateRoute>
             }
           />
-          
+ <Route
+            path="/suspendidos"
+            element={
+              <PrivateRoute>
+                <Suspendidos />
+              </PrivateRoute>
+            }
+          />
           <Route
             path="/meritorios"
             element={
               <PrivateRoute>
-                <Aprendices_meritorios/>
+                <Aprendices_meritorios />
               </PrivateRoute>
             }
           />

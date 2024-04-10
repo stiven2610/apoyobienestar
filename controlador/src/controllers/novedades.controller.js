@@ -14,13 +14,17 @@ const obtenerNovedades = async (req, res, next) => {
 const insert_suspendido = async (req,res)=>{
   const {
     numero_documento_aprendiz,
-    id_motivo_suspension
+    id_motivo_suspension,
+    numero_resolucion,
+    codigo_ficha
   } = req.body;
   console.log(req.body)
   try {
-    const  result = await pool.query("SELECT * FROM fun_ins_apr_sus($1, $2)", [
+    const  result = await pool.query("SELECT * FROM fun_ins_apr_sus($1, $2,$3,$4)", [
       numero_documento_aprendiz,
-      id_motivo_suspension
+      id_motivo_suspension,
+      numero_resolucion,
+      codigo_ficha
     ]);
     // Acceder a las variables booleanas por separado
     const { insercion_exitosa } = result.rows[0];

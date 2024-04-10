@@ -69,7 +69,7 @@ const Novedades_presentadas = () => {
             <th>Nombre Completo del Aprendiz</th>
             <th>Tipo de Documento</th>
             <th>Número de Documento</th>
-            <th>Motivo Novedad</th>
+            <th>Novedad</th>
             <th>Código de ficha</th>
             <th>Nombre Programa de formación</th>
             <th>Fecha Novedad</th>

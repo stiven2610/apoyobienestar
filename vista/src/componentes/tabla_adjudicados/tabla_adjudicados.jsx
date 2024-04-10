@@ -1,15 +1,18 @@
 import { useEffect, useRef, useState } from "react";
 import Boton from "../botones/Boton";
+import Registro_cancelados from "../registro_cancelados/Registro_cancelados";
 import Update_aprendiz from "../update_aprendiz/update_aprendiz";
 import "./styles.css";
 import { useNavigate } from "react-router-dom";
 
 const Tabla_adjudicados = () => {
   const navigate = useNavigate();
+  const [datosNovedad, setDatosNovedad] = useState(null);
   const [datos, setDatos] = useState([]);
   const [cargando, setCargando] = useState(true);
   const [filtroBusqueda, setFiltroBusqueda] = useState("");
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
+  const [mostrarCancelar, setMostrarCancelar] = useState(false);
   const [aprendizSeleccionado, setAprendizSeleccionado] = useState(null);
 
   const formularioRef = useRef(null);
@@ -38,6 +41,11 @@ const Tabla_adjudicados = () => {
     }
   }, [mostrarFormulario]);
 
+  useEffect(() => {
+    if (mostrarCancelar && formularioRef.current) {
+      formularioRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [mostrarCancelar]);
   const handleBusquedaChange = (e) => {
     setFiltroBusqueda(e.target.value);
   };
@@ -46,12 +54,20 @@ const Tabla_adjudicados = () => {
     setAprendizSeleccionado(aprendiz);
     setMostrarFormulario(true);
   };
+  const handleOpenForm = (aprendiz) => {
+    setDatosNovedad(aprendiz);
+    setMostrarCancelar(true);
+  };
+  
 
   const handleCloseForm = () => {
     setMostrarFormulario(false);
     setAprendizSeleccionado(null);
   };
-
+  const handleCloseFormNovedad = () => {
+    setMostrarCancelar(false);
+    setAprendizSeleccionado(null);
+  };
   const filteredDatos = datos.filter((item) => {
     return (
       item.nombre_completo_aprendiz
@@ -76,11 +92,7 @@ const Tabla_adjudicados = () => {
             onChange={handleBusquedaChange}
           />
           <div onClick={() => navigate("/insertaprendiz")}>
-            <Boton
-              texto="Agregar"
-              color="#39A900"
-              textcolor="#ffffff"
-            />
+            <Boton texto="Agregar" color="#39A900" textcolor="#ffffff" />
           </div>
         </div>
         <div className="adjudicados">
@@ -95,6 +107,7 @@ const Tabla_adjudicados = () => {
                 <th>Estado de Aprendiz</th>
                 <th>Obligación Mensual</th>
                 <th>Código de Ficha</th>
+                <th>Nombre Programa</th>
                 <th>Nombre Beneficio</th>
                 <th>Fecha de Adjudicación</th>
                 <th>Modalidad</th>
@@ -117,7 +130,13 @@ const Tabla_adjudicados = () => {
                         className="iconos_gestion d-flex flex-column align-items-center "
                         onClick={() => handleEditarClick(item)}
                       >
-                        <Boton texto="Editar" color="#A2F5EC" />
+                        <Boton texto="Editar" color="#A2F5EC"/>
+                      </div>
+                      <div
+                        className="iconos_gestion d-flex flex-column align-items-center "
+                        onClick={() => handleOpenForm(item)}
+                      >
+                        <Boton texto="Suspender Aprendiz" color="#eb7777" />
                       </div>
                     </td>
                     <td>{item.numero_consecutivo}</td>
@@ -127,8 +146,18 @@ const Tabla_adjudicados = () => {
                     <td>{item.nombre_estado_aprendiz}</td>
                     <td>{item.nombre_obligacion_mensual}</td>
                     <td>{item.codigo_ficha}</td>
+                    <td>{item.nombre_programa}</td>
                     <td>{item.nombre_beneficio}</td>
-                    <td>{item.fecha_adjudicacion}</td>
+                    <td>
+                      {new Date(item.fecha_adjudicacion).toLocaleDateString(
+                        "es-ES",
+                        {
+                          day: "2-digit",
+                          month: "2-digit",
+                          year: "numeric",
+                        }
+                      )}
+                    </td>
                     <td>{item.nombre_modalidad}</td>
                     <td>{item.numero_telefono_fijo}</td>
                     <td>{item.numero_telefono_movil}</td>
@@ -140,12 +169,33 @@ const Tabla_adjudicados = () => {
             </tbody>
           </table>
           {mostrarFormulario && aprendizSeleccionado && (
-            <div ref={formularioRef} className="container_">
-              <Update_aprendiz aprendiz={aprendizSeleccionado} 
-               id_tipo_documento={aprendizSeleccionado.id_tipo_documento}
-               id_estado_aprendiz={aprendizSeleccionado.id_estado_aprendiz}/>
+            <div ref={formularioRef} className="container_edicion">
+              <div>
+
+              <Update_aprendiz
+                aprendiz={aprendizSeleccionado}
+                id_tipo_documento={aprendizSeleccionado.id_tipo_documento}
+                id_estado_aprendiz={aprendizSeleccionado.id_estado_aprendiz}
+              />
+              </div>
+
               <div onClick={handleCloseForm}>
                 <Boton texto="Cancelar" textcolor="#fffff" color="#fa4711" />
+              </div>
+            </div>
+          )}
+          {mostrarCancelar && datosNovedad && (
+            <div ref={formularioRef} className="container_edicion">
+              <div>
+
+              {datosNovedad && datosNovedad.nombre_completo_aprendiz && (
+  
+                <Registro_cancelados datosNovedad={datosNovedad} />
+              )}
+              </div>
+
+              <div onClick={handleCloseFormNovedad}>
+                <Boton texto="Cancelar" textcolor="#ffffff" color="#fa4711" />
               </div>
             </div>
           )}

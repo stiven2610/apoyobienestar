@@ -5,17 +5,13 @@ import Boton from "../botones/Boton";
 import "./styles.css";
 
 const Login = () => {
-  const [errorContrasenha, setErrorContrasenha] = useState("");
   const [errorCredenciales, setErrorCredenciales] = useState("");
-  const [errorUsuario, setErrorUsuario] = useState("");
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
 
 const limpiarCampos =()=>{
-  setErrorContrasenha("");
   setErrorCredenciales("");
-  setErrorUsuario("");
 }
 
   const [user, setUser] = useState({
@@ -47,12 +43,8 @@ const limpiarCampos =()=>{
           login();
           navigate("/adjudicados");
         }
-      } else if (res.status === 400) {
-        setErrorCredenciales("Credenciales incorrectas"); 
-      }else if (res.status === 401 ){
-        setErrorContrasenha("Contraseña incorrecta")
-      }else{
-        setErrorUsuario("Usuario no existe por favor verifique el número de documento")
+      } else {
+        setErrorCredenciales("Credenciales incorrectas")
       }
     } catch (error) {
       console.error("Error:", error);
@@ -72,7 +64,7 @@ const limpiarCampos =()=>{
             onChange={handleChange}
             type="number"
             onFocus={limpiarCampos}
-            className={`form-control mb-2 ${errorUsuario? 'error-container' : ''}`}
+            className={"form-control mb-2 "}
             id="numero_documento_usuario"
             placeholder="Ingrese su número de documento"
             maxLength="10"
@@ -87,13 +79,12 @@ const limpiarCampos =()=>{
             name="contrasenha_usuario"
             placeholder="Ingrese su contraseña"
             type="password"
-            className={`form-control mb-2 ${errorContrasenha ? 'error-container' : ''}`}
+            className={"form-control mb-2"}
             id="Password"
             maxLength="10"
             required
           />
-          {errorContrasenha && <p style={{ color: "red" }}>{errorContrasenha}</p>}
-          {errorUsuario && <p style={{ color: "red" }}>{errorUsuario}</p>}          {errorCredenciales && <p style={{ color: "red" }}>{errorCredenciales}</p>}
+        {errorCredenciales && <p style={{ color: "red" }}>{errorCredenciales}</p>}
           <Boton texto="Ingresar" textcolor="#fefefe" color="#39A900" />
         </form>
       </div>

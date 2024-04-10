@@ -6,6 +6,8 @@ DROP TABLE IF EXISTS  instructor_lider;
 DROP TABLE IF EXISTS  ficha;
 DROP TABLE IF EXISTS  aprendiz;
 DROP TABLE IF EXISTS  aprendiz_suspendido;
+DROP TABLE IF EXISTS  aprendiz_cancelado;
+
 DROP TABLE IF EXISTS  formato_seguimiento;
 DROP TABLE IF EXISTS  taller_mensual;
 DROP TABLE IF EXISTS  asistencia_taller;
@@ -239,21 +241,22 @@ CREATE TABLE novedad_formato_seguimiento (
     FOREIGN KEY (numero_documento_aprendiz)  REFERENCES  aprendiz(numero_documento_aprendiz)
  );
 CREATE TABLE aprendiz_cancelado(
-    id_aprendiz_cancelado  INT NOT NULL,
-    codigo_ficha   INT NOT NULL,
     numero_documento_aprendiz  INT NOT NULL,
-    motivo_cancelacion VARCHAR  NOT NULL,
+    codigo_ficha   INT NOT NULL,
+    id_motivo_suspension INT  NOT NULL,
     fecha_cancelacion   DATE NOT NULL,
     numero_resolucion    INT NOT   NULL,
     user_insert           VARCHAR       NOT NULL,                      
     fecha_insert          TIMESTAMP WITHOUT TIME ZONE NOT NULL,         
     user_update           VARCHAR,                                        
     fecha_update          TIMESTAMP WITHOUT TIME ZONE, 
-    PRIMARY KEY (id_aprendiz_cancelado),
+    PRIMARY KEY (numero_documento_aprendiz),
+	FOREIGN KEY (id_motivo_suspension) REFERENCES motivo_suspension  (id_motivo_suspension),
     FOREIGN KEY (codigo_ficha) REFERENCES ficha  (codigo_ficha),
     FOREIGN  KEY (numero_documento_aprendiz) REFERENCES  aprendiz (numero_documento_aprendiz)
 
 );
+drop table aprendiz_cancelado
  CREATE TABLE parametros ( 
     id_parametros             INT      NOT NULL,
     correo_electronico_contacto   VARCHAR  NOT NULL,

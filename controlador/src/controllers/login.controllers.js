@@ -20,20 +20,10 @@ const validarUsuario = async (req, res, next) => {
         message: "Sesión iniciada correctamente",
         token: token
       });
-    } else if (!documento_existe && !contrasenha_existe) {
-      res.status(400).json({
-        success: false,
-        message: "Credenciales incorrectas",
-      });
-    } else if (!documento_existe) {
-      res.status(404).json({
-        success: false,
-        error: "El usuario no existe",
-      });
-    } else if (!contrasenha_existe) {
+      } else  {
       res.status(401).json({
         success: false,
-        error: "La contraseña es incorrecta",
+        error: "Credenciales incorrectas",
       });
     }
   } catch (error) {

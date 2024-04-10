@@ -6,7 +6,8 @@ select a.numero_documento_aprendiz,f.nombre_documento,a.fecha_novedad,b.nombre_t
 SELECT a.id_tipo_documento,a.id_estado_aprendiz,a.numero_documento_aprendiz, a.nombre_completo_aprendiz,a.codigo_ficha, g.nombre_modalidad, b.nombre_documento, c.nombre_estado_aprendiz, d.id_obligacion_mensual,d.nombre_obligacion_mensual, a.numero_consecutivo, a.numero_resolucion_adjudicacion,  e.nombre_beneficio,  a.fecha_adjudicacion,  a.numero_telefono_fijo, a.numero_telefono_movil, a.direccion_residencia_aprendiz, a.email_aprendiz FROM  aprendiz AS a,  tipo_documento AS b,   estado_aprendiz AS c,  obligacion_mensual AS d,  beneficio AS e,  ficha AS f,  modalidad AS g WHERE   a.id_tipo_documento = b.id_tipo_documento   AND a.id_estado_aprendiz = c.id_estado_aprendiz   AND a.id_obligacion_mensual = d.id_obligacion_mensual   AND a.codigo_beneficio = e.codigo_beneficio    AND a.codigo_ficha = f.codigo_ficha  AND f.id_modalidad = g.id_modalidad
 select *from beneficio;
 select * from usuario;
-select * FROM APRENDIZ;
+select * FROM aprendiz_suspendido;
+select * FROM aprendiz;
 select * from estado_aprendiz;
 select * from modalidad;
 select * from aprendiz_cancelado;
@@ -72,7 +73,7 @@ insert into estado_aprendiz(id_estado_aprendiz,nombre_estado_aprendiz)  values (
 insert into estado_aprendiz(id_estado_aprendiz,nombre_estado_aprendiz)  values ('2','Mes de gracia');
 insert into estado_aprendiz(id_estado_aprendiz,nombre_estado_aprendiz)  values ('3','Proyecto productivo');
 insert into estado_aprendiz(id_estado_aprendiz,nombre_estado_aprendiz)  values ('4','Aplazado');
-insert into estado_aprendiz(id_estado_aprendiz,nombre_estado_aprendiz)  values ('5','Etapa lectiva');
+insert into estado_aprendiz(id_estado_aprendiz,nombre_estado_aprendiz)  values ('6','Cancelado');
 INSERT INTO modalidad_productiva VALUES ( 1,'Proyecto productivo');
 INSERT INTO modalidad_productiva VALUES ( 2,'Pasantia');
 INSERT INTO modalidad_productiva VALUES ( 3,'Apoyo a unidad familiar');

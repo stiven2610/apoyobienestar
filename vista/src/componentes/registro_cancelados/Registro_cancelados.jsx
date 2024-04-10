@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Boton from "../botones/Boton";
 
 const Registro_cancelados = ({ datosNovedad }) => {
   const navigate = useNavigate();
   const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({});
-  console.log(formData)
+  console.log(formData);
   const [motivos, setMotivos] = useState([]);
 
   useEffect(() => {
@@ -15,7 +16,8 @@ const Registro_cancelados = ({ datosNovedad }) => {
         numero_documento_aprendiz: datosNovedad.numero_documento_aprendiz || "",
         nombre_programa: datosNovedad.nombre_programa || "",
         codigo_ficha: datosNovedad.codigo_ficha || "",
-        id_motivo_suspension: "", 
+        id_motivo_suspension: "",
+        numero_resolucion:""
       });
     }
   }, [datosNovedad]);
@@ -31,15 +33,15 @@ const Registro_cancelados = ({ datosNovedad }) => {
         body: JSON.stringify(formData),
       });
       if (!res.ok) {
+        alert("No se registro la suspensión")
         throw new Error("Error al enviar el formulario");
-      }else{
-      alert("Datos del aprendiz actualizados correctamente")
+      } else {
+        alert("Aprendiz suspendido del apoyo correctamente");
+        navigate("/novedades")
       }
-
     } catch (error) {
       console.log("Error:", error);
     }
-  
   };
 
   const handleChange = (event) => {
@@ -71,7 +73,7 @@ const Registro_cancelados = ({ datosNovedad }) => {
         <div className="row">
           <div className="col-md-6 datos_beneficio">
             <div className="">
-              <p className="titulos">Datos personales</p>
+              <p className="titulos">SUSPENDER APRENDIZ</p>
               <div className="container_input">
                 <label htmlFor="nombre_completo_aprendiz" className="">
                   Nombre Completo del Aprendiz
@@ -169,11 +171,14 @@ const Registro_cancelados = ({ datosNovedad }) => {
                     errors.id_motivo_suspension && "is-invalid"
                   }`}
                   id="id_motivo_suspension"
-                  value = {formData.id_motivo_suspension}
+                  value={formData.id_motivo_suspension}
                 >
                   <option value="">Seleccione motivo de suspensión...</option>
                   {motivos.map((item) => (
-                    <option key={item.id_motivo_suspension} value={item.id_motivo_suspension}>
+                    <option
+                      key={item.id_motivo_suspension}
+                      value={item.id_motivo_suspension}
+                    >
                       {item.nombre_motivo_suspension}
                     </option>
                   ))}
@@ -184,13 +189,31 @@ const Registro_cancelados = ({ datosNovedad }) => {
                   </span>
                 )}
               </div>
+              <div className="container_input">
+                <label htmlFor="numero_resolucion" className="">
+                  Número resolución
+                </label>
+                <input
+                  name="numero_resolucion"
+                  onChange={handleChange}
+                  type="text"
+                  required
+                  className={`form-control ${
+                    errors && errors.numero_resolucion && "is-invalid"
+                  }`}
+                  id="numero_resolucion"
+                  value={formData.numero_resolucion || ""}
+                />
+                {errors && errors.numero_resolucion && (
+                  <span className="invalid-feedback">
+                    {errors.numero_resolucion}
+                  </span>
+                )}
+              </div>
+              <Boton texto="Enviar" color="#88fc45" tamaño="20%" />
             </div>
           </div>
         </div>
-
-        <button type="submit" className="btn btn-primary">
-          Enviar
-        </button>
       </form>
     </>
   );
