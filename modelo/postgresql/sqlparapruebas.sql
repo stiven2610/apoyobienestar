@@ -2,8 +2,26 @@ select a.numero_documento_aprendiz, a.nombre_completo_aprendiz, a.codigo_ficha ,
 select a.codigo_ficha ,b.nombre_documento,a.numero_documento_aprendiz, c.nombre_completo_aprendiz, a.motivo_cancelacion , a.fecha_cancelacion ,a.numero_resolucion FROM aprendiz_cancelado AS a ,tipo_documento AS b,aprendiz AS c   WHERE a.numero_documento_aprendiz = c.numero_documento_aprendiz AND b.id_tipo_documento = c.id_tipo_documento;
 select a.numero_documento_aprendiz ,a.nombre_completo_aprendiz , g.nombre_documento  FROM  aprendiz AS a ,aprendiz AS d,tipo_documento AS g WHERE a.numero_documento_aprendiz = d.numero_documento_aprendiz;
 select a.numero_documento_aprendiz,f.nombre_documento,a.fecha_novedad,b.nombre_tipo_novedad,c.nombre_completo_aprendiz,e.codigo_ficha,e.nombre_programa,h.nombre_estado_aprendiz FROM novedad AS a , tipo_novedad AS b , aprendiz AS c ,tipo_documento AS f, ficha AS e, estado_aprendiz AS h WHERE a.id_tipo_novedad = b.id_tipo_novedad AND a.numero_documento_aprendiz = c.numero_documento_aprendiz AND  e.codigo_ficha = c.codigo_ficha AND c.id_estado_aprendiz = h.id_estado_aprendiz AND c.id_tipo_documento = f.id_tipo_documento;
+SELECT  
+    a.numero_documento_aprendiz, 
+    a.codigo_ficha,
+    a.fecha_cancelacion, 
+    a.numero_resolucion, 
+    b.nombre_completo_aprendiz,
+    c.nombre_documento AS nombre_tipo_documento,
+    d.nombre_programa  
+FROM 
+    aprendiz_cancelado AS a
+INNER JOIN 
+    aprendiz AS b ON a.numero_documento_aprendiz = b.numero_documento_aprendiz
+INNER JOIN 
+    tipo_documento AS c ON b.id_tipo_documento = c.id_tipo_documento
+INNER JOIN 
+    ficha AS d ON a.codigo_ficha = d.codigo_ficha;
 
-SELECT a.id_tipo_documento,a.id_estado_aprendiz,a.numero_documento_aprendiz, a.nombre_completo_aprendiz,a.codigo_ficha, g.nombre_modalidad, b.nombre_documento, c.nombre_estado_aprendiz, d.id_obligacion_mensual,d.nombre_obligacion_mensual, a.numero_consecutivo, a.numero_resolucion_adjudicacion,  e.nombre_beneficio,  a.fecha_adjudicacion,  a.numero_telefono_fijo, a.numero_telefono_movil, a.direccion_residencia_aprendiz, a.email_aprendiz FROM  aprendiz AS a,  tipo_documento AS b,   estado_aprendiz AS c,  obligacion_mensual AS d,  beneficio AS e,  ficha AS f,  modalidad AS g WHERE   a.id_tipo_documento = b.id_tipo_documento   AND a.id_estado_aprendiz = c.id_estado_aprendiz   AND a.id_obligacion_mensual = d.id_obligacion_mensual   AND a.codigo_beneficio = e.codigo_beneficio    AND a.codigo_ficha = f.codigo_ficha  AND f.id_modalidad = g.id_modalidad
+SELECT a.
+
+
 select *from beneficio;
 select * from usuario;
 select * FROM aprendiz_suspendido;

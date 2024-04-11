@@ -4,7 +4,7 @@ const pool = require("../db.js");
 const obtenerCancelados =async (req, res,next) => {
   try {
     // Realiza la consulta a la base de datos
-    const { rows } = await pool.query('select a.codigo_ficha ,b.nombre_documento,a.numero_documento_aprendiz, c.nombre_completo_aprendiz, a.motivo_cancelacion , a.fecha_cancelacion ,a.numero_resolucion FROM aprendiz_cancelado AS a ,tipo_documento AS b,aprendiz AS c   WHERE a.numero_documento_aprendiz = c.numero_documento_aprendiz AND b.id_tipo_documento = c.id_tipo_documento;    ');
+    const { rows } = await pool.query('SELECT a.numero_documento_aprendiz, a.codigo_ficha, a.fecha_cancelacion, a.numero_resolucion, b.nombre_completo_aprendiz, c.nombre_documento AS nombre_tipo_documento, d.nombre_programa, f.nombre_motivo_suspension AS nombre_motivo_suspension FROM aprendiz_cancelado AS a INNER JOIN aprendiz AS b ON a.numero_documento_aprendiz = b.numero_documento_aprendiz INNER JOIN tipo_documento AS c ON b.id_tipo_documento = c.id_tipo_documento INNER JOIN ficha AS d ON a.codigo_ficha = d.codigo_ficha INNER JOIN motivo_suspension AS f ON f.id_motivo_suspension = a.id_motivo_suspension;');
     res.json({ success: true, data: rows });
   } catch (error) {
     console.error('Error en la consulta:', error);

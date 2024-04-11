@@ -52,11 +52,11 @@ const Aprendices_cancelados = () => {
         
                     <td>{item.nombre_completo_aprendiz}</td>
                     <td>{item.codigo_ficha}</td>
-                    <td>{item.nombre_documento}</td>
+                    <td>{item.nombre_tipo_documento}</td>
                     <td>{item.numero_documento_aprendiz}</td>
                     <td>{item.numero_resolucion}</td>
                     <td>{item.fecha_cancelacion}</td>
-                    <td>{item.motivo_cancelacion}</td>
+                    <td>{item.nombre_motivo_suspension}</td>
                   </tr>
                 ))
               )}
