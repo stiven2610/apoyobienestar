@@ -4,7 +4,7 @@ const Suspendidos = () =>{
     const [cargando, setCargando] = useState(true);
   
     useEffect(() => {
-      fetch("http://localhost:4000/cancelados")
+      fetch("http://localhost:4000/get_suspendidos")
         .then((response) => response.json())
         .then((data) => {
           if (data.data && Array.isArray(data.data)) {
@@ -25,7 +25,7 @@ const Suspendidos = () =>{
         <>
         <div className="container-cancelados">
           <div className="table-container">
-          <h4 className="titulos">Aprendices cancelados</h4>
+          <h4 className="titulos">Aprendices Suspendidos</h4>
     
             <div className="table-responsive">
               <table className="table table-bordered table-striped">
@@ -49,14 +49,28 @@ const Suspendidos = () =>{
                   ) : (
                     datos.map((item) => (
                       <tr key={item.numero_documento_aprendiz}>
-            
                         <td>{item.nombre_completo_aprendiz}</td>
                         <td>{item.codigo_ficha}</td>
                         <td>{item.nombre_documento}</td>
                         <td>{item.numero_documento_aprendiz}</td>
                         <td>{item.numero_resolucion}</td>
-                        <td>{item.fecha_cancelacion}</td>
-                        <td>{item.motivo_cancelacion}</td>
+                        <td>{item.nombre_motivo_suspension}</td>
+                        <td> {new Date(item.fecha_inicio_suspension).toLocaleDateString(
+                        "es-ES",
+                        {
+                          day: "2-digit",
+                          month: "2-digit",
+                          year: "numeric",
+                        }
+                      )}</td>
+                        <td> {new Date(item.fecha_fin_suspension).toLocaleDateString(
+                        "es-ES",
+                        {
+                          day: "2-digit",
+                          month: "2-digit",
+                          year: "numeric",
+                        }
+                      )}</td>
                       </tr>
                     ))
                   )}

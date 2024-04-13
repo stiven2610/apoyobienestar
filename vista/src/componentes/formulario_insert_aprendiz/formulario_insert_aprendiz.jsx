@@ -3,8 +3,9 @@ import Boton from "../botones/Boton";
 import { useNavigate } from "react-router-dom";
 const Insert_aprendiz = () => {
   const navigate = useNavigate();
-  const [documentos,set_documentos] = useState();
-  const [estados,set_estados] = useState();
+  const [documentos, set_documentos] = useState();
+  const [estados, set_estados] = useState();
+  const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
     numero_documento_aprendiz: "",
     codigo_ficha: "",
@@ -46,15 +47,128 @@ const Insert_aprendiz = () => {
         console.error("Error en la solicitud:", error);
       });
   }, []);
-  const [errors] = useState({}); // Asegúrate de inicializar errors
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
       [name]: value,
     });
+    validateField(name, value);
   };
+  const validateField = (name, value) => {
+    var hoy = new Date();
+    var haceTresAnios = new Date(
+      hoy.getFullYear() - 3,
+      hoy.getMonth(),
+      hoy.getDate()
+    );
 
+    // Obtener la fecha ingresada por el usuario
+    let errorMessage = "";
+    switch (name) {
+      case "nombre_completo_aprendiz":
+        if (value.trim() === "") {
+          errorMessage = "El nombre es obligatorio";
+        } else if (!/^[a-zA-Z\s]+$/.test(value)) {
+          errorMessage = "El nombre solo puede contener letras ";
+        }
+        break;
+      case "id_tipo_documento":
+        if (!value) {
+          errorMessage = "El tipo de documento es requerido";
+        }
+        break;
+      case "numero_documento_aprendiz":
+        if (!/^[0-9]+$/.test(value)) {
+          errorMessage = "Ingresar solo números";
+        }
+        break;
+      case "numero_telefono_fijo":
+        if (!/^\d{7}$/.test(value)) {
+          errorMessage = " Número de fijo no valido";
+        }
+        break;
+      case "numero_telefono_movil":
+        if (
+          !/^(3(0[0-5]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9]|6[0-9]|7[0-9]|8[0-9]|9[0-9]))\d{7}$/.test(
+            value
+          )
+        ) {
+          errorMessage = "El número de teléfono móvil no es válido";
+        }
+        break;
+      case "direccion_residencia_aprendiz":
+        if (value.length < 35) {
+          errorMessage = "La dirección debe ser mas especifica";
+        }
+        break;
+      case "email_aprendiz":
+        // Validación para el tipo de documento
+        if (!/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(value)) {
+          errorMessage = "El correo electrónico no es válido";
+        }
+        break;
+      case "codigo_ficha":
+        // Validación para el tipo de documento
+        if (!/^[0-9]+$/.test(value)) {
+          errorMessage = "Ingresar solo números y sin espacios";
+        }
+        break;
+      case "id_modalidad_formacion":
+        // Validación para el tipo de documento
+        if (!value) {
+          errorMessage = "Por favor seleccione una modalidad";
+        }
+        break;
+      case "fecha_inicio_formacion":
+        var fecha_inicio = new Date(value);
+
+        // Validación para la fecha de inicio de formación
+        if (!value) {
+          errorMessage =
+            "Por favor seleccione una fecha de inicio de formación";
+        } else {
+          // Validar si la fecha está en el futuro o hace menos de 3 años
+          if (fecha_inicio > hoy || fecha_inicio < haceTresAnios) {
+            errorMessage = "Por favor verifique la fecha";
+          }
+        }
+        break;
+      case "fecha_inicio_productiva":
+        // Validación para la fecha de inicio de formación
+        var fecha_productiva = new Date(value);
+
+        if (!value) {
+          errorMessage =
+            "Por favor seleccione una fecha de inicio de formación";
+        } else {
+          if (fecha_productiva < hoy || fecha_productiva > haceTresAnios)  {
+            errorMessage = "Por favor verifique la fecha ";
+          }
+        }
+        break;
+        case "fecha_fin_ficha":
+    var fecha_fin = new Date(value);
+
+          // Validación para la fecha de inicio de formación
+          if (!value) {
+            errorMessage =
+              "Por favor seleccione una fecha de inicio de formación";
+          } else {
+            if (fecha_fin < hoy || fecha_fin > haceTresAnios)  {
+              errorMessage = "Por favor verifique la fecha ";
+            }
+          }
+          break;
+
+      default:
+        break;
+    }
+    setErrors({
+      ...errors,
+      [name]: errorMessage,
+    });
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -76,7 +190,7 @@ const Insert_aprendiz = () => {
       console.log("Error:", error);
     }
   };
-  
+
   useEffect(() => {
     fetch("http://localhost:4000/get_documentos")
       .then((response) => response.json())
@@ -130,7 +244,7 @@ const Insert_aprendiz = () => {
                   value={formData.nombre_completo_aprendiz || ""}
                 />
                 {errors.nombre_completo_aprendiz && (
-                  <span className="invalid-feedback">
+                  <span className="invalid-feedback p-3">
                     {errors.nombre_completo_aprendiz}
                   </span>
                 )}
@@ -162,9 +276,9 @@ const Insert_aprendiz = () => {
                     ))}
                 </select>
                 {errors.id_tipo_documento && (
-                  <span className="invalid-feedback">
+                  <div className="invalid-feedback">
                     {errors.id_tipo_documento}
-                  </span>
+                  </div>
                 )}
               </div>
 
@@ -173,11 +287,12 @@ const Insert_aprendiz = () => {
                   Número de Documento del Aprendiz
                 </label>
                 <input
-                  placeholder="Ingrese el numero de documento del aprendiz"
+                  placeholder="Ingrese el número de documento del aprendiz"
                   name="numero_documento_aprendiz"
                   onChange={handleChange}
                   type="text"
                   required
+                  maxLength="10"
                   className={` ${
                     errors.numero_documento_aprendiz && "is-invalid"
                   } form-control`}
@@ -185,7 +300,7 @@ const Insert_aprendiz = () => {
                   value={formData.numero_documento_aprendiz || ""}
                 />
                 {errors.numero_documento_aprendiz && (
-                  <span className="invalid-feedback">
+                  <span className=" p-3 invalid-feedback">
                     {errors.numero_documento_aprendiz}
                   </span>
                 )}
@@ -224,6 +339,7 @@ const Insert_aprendiz = () => {
                   onChange={handleChange}
                   type="text"
                   required
+                  maxLength="8"
                   className={` ${
                     errors.numero_telefono_fijo && "is-invalid"
                   } form-control`}
@@ -247,6 +363,8 @@ const Insert_aprendiz = () => {
                   onChange={handleChange}
                   type="text"
                   required
+                  maxLength="10"
+                  minLength="10"
                   className={` ${
                     errors.numero_telefono_movil && "is-invalid"
                   } form-control`}
@@ -321,6 +439,8 @@ const Insert_aprendiz = () => {
                   onChange={handleChange}
                   type="text"
                   required
+                  maxLength="9"
+                  minLength="9"
                   className={`form-control ${
                     errors.codigo_ficha && "is-invalid"
                   }`}
@@ -560,7 +680,7 @@ const Insert_aprendiz = () => {
                   id="id_estado_aprendiz"
                   value={formData.id_estado_aprendiz || ""}
                 >
-                   <option value="">Selecciona...</option>
+                  <option value="">Selecciona...</option>
                   {estados &&
                     estados.map((item) => (
                       <option

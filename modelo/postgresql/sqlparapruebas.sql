@@ -2,7 +2,8 @@ select a.numero_documento_aprendiz, a.nombre_completo_aprendiz, a.codigo_ficha ,
 select a.codigo_ficha ,b.nombre_documento,a.numero_documento_aprendiz, c.nombre_completo_aprendiz, a.motivo_cancelacion , a.fecha_cancelacion ,a.numero_resolucion FROM aprendiz_cancelado AS a ,tipo_documento AS b,aprendiz AS c   WHERE a.numero_documento_aprendiz = c.numero_documento_aprendiz AND b.id_tipo_documento = c.id_tipo_documento;
 select a.numero_documento_aprendiz ,a.nombre_completo_aprendiz , g.nombre_documento  FROM  aprendiz AS a ,aprendiz AS d,tipo_documento AS g WHERE a.numero_documento_aprendiz = d.numero_documento_aprendiz;
 select a.numero_documento_aprendiz,f.nombre_documento,a.fecha_novedad,b.nombre_tipo_novedad,c.nombre_completo_aprendiz,e.codigo_ficha,e.nombre_programa,h.nombre_estado_aprendiz FROM novedad AS a , tipo_novedad AS b , aprendiz AS c ,tipo_documento AS f, ficha AS e, estado_aprendiz AS h WHERE a.id_tipo_novedad = b.id_tipo_novedad AND a.numero_documento_aprendiz = c.numero_documento_aprendiz AND  e.codigo_ficha = c.codigo_ficha AND c.id_estado_aprendiz = h.id_estado_aprendiz AND c.id_tipo_documento = f.id_tipo_documento;
-SELECT  
+SELECT a.numero_documento_aprendiz, a.fecha_inicio_suspension, a.fecha_fin_suspension, b.nombre_completo_aprendiz, c.nombre_documento, d.nombre_programa, d.codigo_ficha FROM aprendiz_suspendido a, aprendiz b, tipo_documento c, ficha d WHERE a.numero_documento_aprendiz = b.numero_documento_aprendiz AND b.id_tipo_documento = c.id_tipo_documento AND b.codigo_ficha = d.codigo_ficha;
+SELECT  a.numero_documento_aprendiz , a.fecha_inicio_suspension, a.fecha_fin_suspension, b.nombre_completo_aprendiz,c.nombre_documento, d.nombre_programa, d.codigo_ficha INNER JOIN numero_documento_aprendiz.aprendiz_cancelado = numero_documento_aprendiz.aprendiz  AND codigo_ficha.aprendiz = codigo_ficha.ficha; 
     a.numero_documento_aprendiz, 
     a.codigo_ficha,
     a.fecha_cancelacion, 
@@ -18,8 +19,25 @@ INNER JOIN
     tipo_documento AS c ON b.id_tipo_documento = c.id_tipo_documento
 INNER JOIN 
     ficha AS d ON a.codigo_ficha = d.codigo_ficha;
+SELECT  
+    a.numero_documento_aprendiz, 
+    a.fecha_inicio_suspension, 
+    a.fecha_fin_suspension, 
+    b.nombre_completo_aprendiz, 
+    c.nombre_documento, 
+    d.nombre_programa, 
+    d.codigo_ficha 
+FROM 
+    aprendiz_suspendido AS a 
+INNER JOIN 
+    aprendiz AS b ON a.numero_documento_aprendiz = b.numero_documento_aprendiz 
+INNER JOIN 
+    tipo_documento AS c ON b.id_tipo_documento = c.id_tipo_documento 
+INNER JOIN 
+    ficha AS d ON b.codigo_ficha = d.codigo_ficha;
 
-SELECT a.
+SELECT a.numero_documento_aprendiz,g.nombre_motivo_suspension, a.fecha_inicio_suspension, a.fecha_fin_suspension, b.nombre_completo_aprendiz, c.nombre_documento, d.nombre_programa, d.codigo_ficha FROM aprendiz_suspendido a, aprendiz b, tipo_documento c, ficha d, motivo_suspension AS g  WHERE a.numero_documento_aprendiz = b.numero_documento_aprendiz AND b.id_tipo_documento = c.id_tipo_documento AND b.codigo_ficha = d.codigo_ficha AND a.id_motivo_suspension = g.id_motivo_suspension;
+
 
 
 select *from beneficio;

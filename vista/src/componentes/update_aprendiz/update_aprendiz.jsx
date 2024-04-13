@@ -46,7 +46,7 @@ Update_aprendiz.propTypes = {
   }).isRequired,
 };
 
-  const [errors] = useState({});
+  const [errors,setErrors] = useState({});
   const navigate = useNavigate();
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -57,7 +57,32 @@ Update_aprendiz.propTypes = {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    const validateField = (name, value) => {
+      let errorMessage = "";
+      // Validación específica para cada campo
+      switch (name) {
+        case "nombre_completo_aprendiz":
+          // Validación para el nombre completo del aprendiz
+          if (value.trim() === "") {
+            errorMessage = "El nombre completo del aprendiz es requerido";
+          }
+          break;
+        case "id_tipo_documento":
+          // Validación para el tipo de documento
+          if (!value) {
+            errorMessage = "El tipo de documento es requerido";
+          }
+          break;
+        // Añade más casos de validación para otros campos si es necesario
+        default:
+          break;
+      }
+      // Actualiza el estado de errores
+      setErrors({
+        ...errors,
+        [name]: errorMessage,
+      });
+    };
     try {
       const res = await fetch("http://localhost:4000/actualizardatos", {
         method: "PUT",

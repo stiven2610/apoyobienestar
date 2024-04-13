@@ -32,11 +32,13 @@ const {
   Get_estados_aprendiz,
 } = require("../controllers/selecciones.controllers.js");
 const { get_motivos_suspension } = require("../controllers/motivos_suspension.controller.js");
+const { get_suspendidos } = require("../controllers/suspendidos.controller.js");
 //rutas para CRUD de usuario...
 router.get("/get_documentos", Get_documentos);
 router.get("/get_estados", Get_estados_aprendiz);
 router.get("/get_motivos_suspension" , get_motivos_suspension)
 router.post("/insert_suspendido",insert_suspendido)
+router.get("/get_suspendidos",get_suspendidos)
 router.get("/usuarios", getALlUsuarios);
 router.get("/usuario/:id", getUsuario);
 router.delete("/usuario/:id", deleteUsuario);
