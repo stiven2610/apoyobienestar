@@ -108,6 +108,12 @@ const Insert_aprendiz = () => {
           errorMessage = "El correo electrónico no es válido";
         }
         break;
+        case "email_instructor":
+        // Validación para el tipo de documento
+        if (!/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(value)) {
+          errorMessage = "El correo electrónico no es válido";
+        }
+        break;
       case "codigo_ficha":
         // Validación para el tipo de documento
         if (!/^[0-9]+$/.test(value)) {
@@ -293,6 +299,7 @@ const Insert_aprendiz = () => {
                   type="text"
                   required
                   maxLength="10"
+                  minLength="8"
                   className={` ${
                     errors.numero_documento_aprendiz && "is-invalid"
                   } form-control`}

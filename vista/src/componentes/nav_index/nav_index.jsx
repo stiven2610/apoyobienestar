@@ -23,6 +23,9 @@ const Nav_index = () => {
 
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="">
+                <Nav.Link as={NavLink} to="/creacionbeneficio" className="link-nav" activeClassName="active">
+                    Creación de beneficio
+                  </Nav.Link>
                   <Nav.Link as={NavLink} to="/adjudicados" className="link-nav" activeClassName="active">
                     Adjudicados
                   </Nav.Link>
@@ -32,9 +35,7 @@ const Nav_index = () => {
                   <Nav.Link as={NavLink} to="/registronovedad" className="link-nav" activeClassName="active">
                     Novedades formato de seguimiento
                   </Nav.Link>
-                  <Nav.Link as={NavLink} to="/creacionbeneficio" className="link-nav" activeClassName="active">
-                    Creación de beneficio
-                  </Nav.Link>
+                 
                  
                   <Nav.Link as={NavLink} to="/talleres" className="link-nav" activeClassName="active">
                     Talleres
