@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Boton from "../botones/Boton";
 import { useNavigate } from "react-router-dom";
+import BackIcon from "../backIcon/BackIcon";
 const Insert_aprendiz = () => {
   const navigate = useNavigate();
   const [documentos, set_documentos] = useState();
@@ -22,12 +23,11 @@ const Insert_aprendiz = () => {
     direccion_residencia_aprendiz: "",
     email_aprendiz: "",
     id_modalidad_formacion: "",
-    fecha_inicio_formacion: "",
+    fecha_inicio_ficha: "",
     fecha_inicio_productiva: "",
     fecha_fin_ficha: "",
     nivel_formacion: "",
-    nombre_programa_formacion: "",
-    numero_documento_instructor_lider: "",
+    nombre_programanumero_documento_instructor_lider: "",
     nombre_instructor_lider: "",
     email_instructor: "",
   });
@@ -126,7 +126,7 @@ const Insert_aprendiz = () => {
           errorMessage = "Por favor seleccione una modalidad";
         }
         break;
-      case "fecha_inicio_formacion":
+      case "":
         var fecha_inicio = new Date(value);
 
         // Validación para la fecha de inicio de formación
@@ -140,7 +140,7 @@ const Insert_aprendiz = () => {
           }
         }
         break;
-      case "fecha_inicio_productiva":
+      case " j":
         // Validación para la fecha de inicio de formación
         var fecha_productiva = new Date(value);
 
@@ -153,7 +153,7 @@ const Insert_aprendiz = () => {
           }
         }
         break;
-        case "fecha_fin_ficha":
+        case "jhh":
     var fecha_fin = new Date(value);
 
           // Validación para la fecha de inicio de formación
@@ -229,6 +229,7 @@ const Insert_aprendiz = () => {
   return (
     <>
       <form className="container" onSubmit={handleSubmit} autoComplete="off">
+        <BackIcon/>
         <div className="row">
           <div className="col-md-6 datos_beneficio">
             <div className="">
@@ -447,7 +448,7 @@ const Insert_aprendiz = () => {
                   type="text"
                   required
                   maxLength="9"
-                  minLength="9"
+                  minLength="6"
                   className={`form-control ${
                     errors.codigo_ficha && "is-invalid"
                   }`}
@@ -485,23 +486,23 @@ const Insert_aprendiz = () => {
                 )}
               </div>
               <div className="container_input">
-                <label htmlFor="fecha_inicio_formacion" className="">
+                <label htmlFor="fecha_inicio_ficha" className="">
                   Fecha de inicio de formación
                 </label>
                 <input
-                  name="fecha_inicio_formacion"
+                  name="fecha_inicio_ficha"
                   onChange={handleChange}
                   type="date"
                   required
                   className={` ${
-                    errors.fecha_inicio_formacion && "is-invalid"
+                    errors.fecha_inicio_ficha && "is-invalid"
                   } form-control`}
-                  id="fecha_inicio_formacion"
-                  value={formData.fecha_inicio_formacion || ""}
+                  id="fecha_inicio_ficha"
+                  value={formData.fecha_inicio_ficha || ""}
                 />
-                {errors.fecha_inicio_formacion && (
+                {errors.fecha_inicio_ficha && (
                   <span className="invalid-feedback">
-                    {errors.fecha_inicio_formacion}
+                    {errors.fecha_inicio_ficha}
                   </span>
                 )}
               </div>
@@ -573,26 +574,26 @@ const Insert_aprendiz = () => {
               </div>
               <div className="container_input">
                 <label
-                  htmlFor="nombre_programa_formacion"
+                  htmlFor="nombre_programa"
                   className="form_label"
                 >
                   Nombre programa de formación
                 </label>
                 <input
                   placeholder="Ingrese el numero de resolución de adjudicación"
-                  name="nombre_programa_formacion"
+                  name="nombre_programa"
                   onChange={handleChange}
                   type="text"
                   required
                   className={` ${
-                    errors.nombre_programa_formacion && "is-invalid"
+                    errors.nombre_programa && "is-invalid"
                   } form-control`}
-                  id="nombre_programa_formacion"
-                  value={formData.nombre_programa_formacion || ""}
+                  id="nombre_programa"
+                  value={formData.nombre_programa || ""}
                 />
-                {errors.nombre_programa_formacion && (
+                {errors.nombre_programa && (
                   <span className="invalid-feedback">
-                    {errors.nombre_programa_formacion}
+                    {errors.nombre_programa}
                   </span>
                 )}
               </div>

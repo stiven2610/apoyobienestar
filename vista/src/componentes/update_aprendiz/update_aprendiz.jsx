@@ -4,6 +4,7 @@ import Boton from "../botones/Boton";
 import PropTypes from 'prop-types';
 
 import "./styles.css";
+import BackIcon from "../backIcon/BackIcon";
 
 const Update_aprendiz = ({ aprendiz }) => {
   const [estados,set_estados] = useState();
@@ -136,6 +137,7 @@ Update_aprendiz.propTypes = {
   return (
     <>
     <form className="container" onSubmit={handleSubmit} autoComplete="off">
+      <BackIcon/>
       <div className="row">
         <div className="col-md-6 datos_beneficio">
           <div className="">

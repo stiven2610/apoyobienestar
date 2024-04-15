@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Boton from "../botones/Boton";
 import "./styles.css";
+import BackIcon from "../backIcon/BackIcon";
 const Formulario_create_beneficio = () => {
   const [beneficio, setBeneficio] = useState({
     codigo_beneficio: "",
@@ -81,8 +82,12 @@ const Formulario_create_beneficio = () => {
 
   return (
     <>
+
       <div className="container_beneficio">
+      <BackIcon/>
+
         <div className="container_bene">
+
           <p className="titulos">BENEFICIO</p>
           <form onSubmit={handleSubmit} encType="multipart/form-data">
             <label htmlFor="nombre_beneficio" className="subtitulos">

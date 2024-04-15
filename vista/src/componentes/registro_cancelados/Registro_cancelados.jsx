@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Boton from "../botones/Boton";
+import BackIcon from "../backIcon/BackIcon";
 
 const Registro_cancelados = ({ datosNovedad }) => {
   const navigate = useNavigate();
@@ -70,6 +71,7 @@ const Registro_cancelados = ({ datosNovedad }) => {
   return (
     <>
       <form className="container" onSubmit={handleSubmit} autoComplete="off">
+        <BackIcon/>
         <div className="row">
           <div className="col-md-6 datos_beneficio">
             <div className="">

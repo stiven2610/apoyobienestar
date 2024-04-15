@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import FormularioRegistroAsistenciaTaller from "../formulario_registro_asistencia_taller/formulario_registro_asistencia_taller";
 import "./styles.css";
+import BackIcon from "../backIcon/BackIcon";
 
 const Asistencia_taller = () => {
   const location = useLocation();
@@ -30,6 +31,7 @@ const Asistencia_taller = () => {
   return (
     <div className="asistencia_taller">
       <p className="titulos text-center mt-3">{nombreTaller}</p>
+      <BackIcon/>
 
       <div className="table_container_asistencia">
         <div>
@@ -38,7 +40,6 @@ const Asistencia_taller = () => {
             codigo_taller={codigo_taller}
           />
         </div>
-
         <div className="table-responsive mt-3">
           <table className="table table-bordered table-striped">
             <thead>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./styles.css";
+import BackIcon from "../backIcon/BackIcon";
 const Aprendices_cancelados = () => {
   const [datos, setDatos] = useState([]);
   const [cargando, setCargando] = useState(true);
@@ -27,7 +28,7 @@ const Aprendices_cancelados = () => {
     <div className="container-cancelados">
       <div className="table-container">
       <h4 className="titulos">Aprendices cancelados</h4>
-
+<BackIcon/>
         <div className="table-responsive">
           <table className="table table-bordered table-striped">
             <thead>

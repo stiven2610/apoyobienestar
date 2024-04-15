@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import Boton from "../botones/Boton";
 import "./styles.css";
+import BackIcon from "../backIcon/BackIcon";
 const Formulario_create_taller = () => {
   const navigate = useNavigate();
 
@@ -48,8 +49,12 @@ const Formulario_create_taller = () => {
   };
   return (
     <>
-      <div className="container_form_taller">
+
+      <div className="container_form_taller m-2">
+      <BackIcon/>
+
         <form className="formulario_taller" onSubmit={handleSubmit}>
+
           <p className="titulos">TALLER</p>
           <label htmlFor="nombre_taller" className="subtitulos">
             Nombre

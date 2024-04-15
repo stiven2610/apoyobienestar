@@ -6,7 +6,7 @@ align-items: center;
 margin: 2rem;
 }
 .boton_talleres{
-    margin: 2rem;
+    margin: rem;
     display: flex;
 }
 .container_icons_taller{

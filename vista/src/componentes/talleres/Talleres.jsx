@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Boton from "../botones/Boton";
 import "./styles.css";
+import BackIcon from "../backIcon/BackIcon";
 
 const Talleres = () => {
   const navigate = useNavigate();
@@ -57,7 +58,9 @@ const Talleres = () => {
             onChange={handleBusquedaChange}
           />
         </div>
+
       </div>
+      <BackIcon/>
 
       <div className="container_table_talleres">
         <table className="table table-bordered table-striped">

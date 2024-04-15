@@ -7,6 +7,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
   }
   .container_bene{
     width: 35%;
@@ -15,7 +16,7 @@
     padding: 2rem;
     border-radius: 20px;
     box-shadow: 0 0 10px #9beb6e;
-margin-top: 3rem;
+margin-top: 1rem;
   }
   .titulo_beneficio{
     color: #41be07;

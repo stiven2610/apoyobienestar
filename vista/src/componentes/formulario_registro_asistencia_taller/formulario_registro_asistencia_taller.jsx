@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import Boton from "../botones/Boton";
 import "./styles.css";
+import BackIcon from "../backIcon/BackIcon";
 
 const Formulario_registro_asistencia_taller = () => {
   const { codigo_taller } = useParams();

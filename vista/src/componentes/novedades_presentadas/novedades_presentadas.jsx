@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import Boton from "../botones/Boton";
 import Registro_cancelados from "../registro_cancelados/Registro_cancelados";
+import BackIcon from "../backIcon/BackIcon";
 import "./styles.css";
+
 
 const Novedades_presentadas = () => {
   const [datos, setDatos] = useState([]);
@@ -50,6 +52,7 @@ const Novedades_presentadas = () => {
   return (
     <div className="container-novedades m-4">
       <h4 className="titulos text-center">Novedades presentadas</h4>
+      <BackIcon/>
 
       <div className="container_filtros m-2">
         <label htmlFor="busqueda" className="subtitulos">
