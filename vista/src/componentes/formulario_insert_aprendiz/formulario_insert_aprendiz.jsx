@@ -31,7 +31,6 @@ const Insert_aprendiz = () => {
     nombre_instructor_lider: "",
     email_instructor: "",
   });
-  console.log(formData);
   const [datos, setDatos] = useState([]);
   useEffect(() => {
     fetch("http://localhost:4000/get_beneficios")
@@ -226,6 +225,29 @@ const Insert_aprendiz = () => {
         console.error("Error en la solicitud:", error);
       });
   }, []);
+  const handleCodigoFichaBlur = () => {
+    const codigo_ficha = formData.codigo_ficha;
+  
+    console.log("ficha: " + codigo_ficha);
+  
+    fetch(`http://localhost:4000/get_ficha/${codigo_ficha}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Error al obtener los datos');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (data.data && Array.isArray(data.data)) {
+          set_estados(data.data);
+        } else {
+          console.error("Los datos recibidos no son válidos.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error en la solicitud:", error);
+      });
+  };
   return (
     <>
       <form className="container" onSubmit={handleSubmit} autoComplete="off">
@@ -449,6 +471,7 @@ const Insert_aprendiz = () => {
                   required
                   maxLength="9"
                   minLength="6"
+                  onBlur={handleCodigoFichaBlur}
                   className={`form-control ${
                     errors.codigo_ficha && "is-invalid"
                   }`}

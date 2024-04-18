@@ -33,8 +33,10 @@ const {
 } = require("../controllers/selecciones.controllers.js");
 const { get_motivos_suspension } = require("../controllers/motivos_suspension.controller.js");
 const { get_suspendidos } = require("../controllers/suspendidos.controller.js");
+const { Get_ficha } = require("../controllers/ficha.controllers.js");
 //rutas para CRUD de usuario...
 router.get("/get_documentos", Get_documentos);
+router.get("/get_ficha/:codigo_ficha",Get_ficha)
 router.get("/get_estados", Get_estados_aprendiz);
 router.get("/get_motivos_suspension" , get_motivos_suspension)
 router.post("/insert_suspendido",insert_suspendido)
