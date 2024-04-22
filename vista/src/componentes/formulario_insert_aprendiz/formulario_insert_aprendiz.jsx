@@ -5,11 +5,15 @@ import BackIcon from "../backIcon/BackIcon";
 const Insert_aprendiz = () => {
   const navigate = useNavigate();
   const [documentos, set_documentos] = useState();
+  const [fichaExistente, setFichaExistente] = useState(false);
   const [estados, set_estados] = useState();
+  const [datos_ficha, set_ficha] = useState({});
+  console.log("datos ficha: ")
+  console.log( datos_ficha);
   const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
     numero_documento_aprendiz: "",
-    codigo_ficha: "",
+    codigo_ficha:  "",
     id_tipo_documento: "",
     id_estado_aprendiz: "",
     id_obligacion_mensual: "",
@@ -27,10 +31,13 @@ const Insert_aprendiz = () => {
     fecha_inicio_productiva: "",
     fecha_fin_ficha: "",
     nivel_formacion: "",
-    nombre_programanumero_documento_instructor_lider: "",
+    nombre_programa: "",
+    numero_documento_instructor_lider: "",
     nombre_instructor_lider: "",
     email_instructor: "",
   });
+  console.log("datos enviar:  ")
+  console.log(formData )
   const [datos, setDatos] = useState([]);
   useEffect(() => {
     fetch("http://localhost:4000/get_beneficios")
@@ -54,6 +61,95 @@ const Insert_aprendiz = () => {
     });
     validateField(name, value);
   };
+ 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await fetch("http://localhost:4000/insertaraprendiz", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      if (!res.ok) {
+        throw new Error("Error al enviar el formulario");
+      } else {
+        alert("Aprendiz creado correctamente");
+        navigate("/adjudicados");
+      }
+    } catch (error) {
+      console.log("Error:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetch("http://localhost:4000/get_documentos")
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.data && Array.isArray(data.data)) {
+          set_documentos(data.data);
+        } else {
+          console.error("Los datos recibidos no son válidos.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error en la solicitud:", error);
+      });
+  }, []);
+
+  useEffect(() => {
+    fetch("http://localhost:4000/get_estados")
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.data && Array.isArray(data.data)) {
+          set_estados(data.data);
+        } else {
+          console.error("Los datos recibidos no son válidos.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error en la solicitud:", error);
+      });
+  }, []);
+  const handleCodigoFichaBlur = () => {
+    const codigo_ficha = formData.codigo_ficha;
+  
+    fetch(`http://localhost:4000/get_ficha/${codigo_ficha}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Error al obtener los datos');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (data.success) {
+        const fichaData = data.data; 
+        console.log("fichadata")
+        console.log(fichaData[0].nombre_programa)
+        set_ficha(fichaData);
+        setFichaExistente(true);
+        setFormData((prevFormData) => ({
+          ...prevFormData,
+          codigo_ficha: fichaData[0].codigo_ficha || "",
+          fecha_inicio_ficha: fichaData[0].fecha_inicio_ficha || "",
+          nombre_programa: fichaData[0].nombre_programa || "",
+          id_modalidad_formacion: fichaData[0].id_modalidad_formacion || "",
+          numero_documento_instructor_lider: fichaData[0].numero_documento_instructor_lider || "",
+          fecha_inicio_productiva: fichaData[0].fecha_inicio_productiva || "",
+          nivel_formacion: fichaData[0].nivel_formacion || "",
+        }));
+          alert("la ficha ya existe puedes agregar al aprendiz omitiendo este paso")
+        } else {
+          console.error("Los datos recibidos no son válidos.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error en la solicitud:", error);
+      });
+  };
+
   const validateField = (name, value) => {
     var hoy = new Date();
     var haceTresAnios = new Date(
@@ -173,80 +269,6 @@ const Insert_aprendiz = () => {
       ...errors,
       [name]: errorMessage,
     });
-  };
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      const res = await fetch("http://localhost:4000/insertaraprendiz", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-      if (!res.ok) {
-        throw new Error("Error al enviar el formulario");
-      } else {
-        alert("Aprendiz creado correctamente");
-        navigate("/adjudicados");
-      }
-    } catch (error) {
-      console.log("Error:", error);
-    }
-  };
-
-  useEffect(() => {
-    fetch("http://localhost:4000/get_documentos")
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.data && Array.isArray(data.data)) {
-          set_documentos(data.data);
-        } else {
-          console.error("Los datos recibidos no son válidos.");
-        }
-      })
-      .catch((error) => {
-        console.error("Error en la solicitud:", error);
-      });
-  }, []);
-
-  useEffect(() => {
-    fetch("http://localhost:4000/get_estados")
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.data && Array.isArray(data.data)) {
-          set_estados(data.data);
-        } else {
-          console.error("Los datos recibidos no son válidos.");
-        }
-      })
-      .catch((error) => {
-        console.error("Error en la solicitud:", error);
-      });
-  }, []);
-  const handleCodigoFichaBlur = () => {
-    const codigo_ficha = formData.codigo_ficha;
-  
-    console.log("ficha: " + codigo_ficha);
-  
-    fetch(`http://localhost:4000/get_ficha/${codigo_ficha}`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Error al obtener los datos');
-        }
-        return response.json();
-      })
-      .then((data) => {
-        if (data.data && Array.isArray(data.data)) {
-          set_estados(data.data);
-        } else {
-          console.error("Los datos recibidos no son válidos.");
-        }
-      })
-      .catch((error) => {
-        console.error("Error en la solicitud:", error);
-      });
   };
   return (
     <>
@@ -477,6 +499,7 @@ const Insert_aprendiz = () => {
                   }`}
                   id="codigo_ficha"
                   value={formData.codigo_ficha || ""}
+                  disabled={fichaExistente} 
                 />
                 {errors.codigo_ficha && (
                   <span className="invalid-feedback">
@@ -497,6 +520,7 @@ const Insert_aprendiz = () => {
                   }`}
                   id="id_modalidad_formacion"
                   value={formData.id_modalidad_formacion || ""}
+                  disabled={fichaExistente} 
                 >
                   <option value="">Selecciona...</option>
                   <option value="1">Presencial</option>
@@ -522,6 +546,7 @@ const Insert_aprendiz = () => {
                   } form-control`}
                   id="fecha_inicio_ficha"
                   value={formData.fecha_inicio_ficha || ""}
+                  disabled={fichaExistente} 
                 />
                 {errors.fecha_inicio_ficha && (
                   <span className="invalid-feedback">
@@ -543,6 +568,7 @@ const Insert_aprendiz = () => {
                   } form-control`}
                   id="fecha_inicio_productiva"
                   value={formData.fecha_inicio_productiva || ""}
+                  disabled={fichaExistente} 
                 />
                 {errors.fecha_inicio_productiva && (
                   <span className="invalid-feedback">
@@ -564,6 +590,7 @@ const Insert_aprendiz = () => {
                   } form-control`}
                   id="fecha_fin_ficha"
                   value={formData.fecha_fin_ficha || ""}
+                  disabled={fichaExistente} 
                 />
                 {errors.fecha_fin_ficha && (
                   <span className="invalid-feedback">
@@ -584,6 +611,7 @@ const Insert_aprendiz = () => {
                   }`}
                   id="nivel_formacion"
                   value={formData.nivel_formacion || ""}
+                  disabled={fichaExistente} 
                 >
                   <option value="">Selecciona...</option>
                   <option value="Técnico">Técnico</option>
@@ -613,6 +641,7 @@ const Insert_aprendiz = () => {
                   } form-control`}
                   id="nombre_programa"
                   value={formData.nombre_programa || ""}
+                  disabled={fichaExistente} 
                 />
                 {errors.nombre_programa && (
                   <span className="invalid-feedback">
@@ -639,6 +668,7 @@ const Insert_aprendiz = () => {
                   } form-control`}
                   id="numero_documento_instructor_lider"
                   value={formData.numero_documento_instructor_lider || ""}
+                  disabled={fichaExistente} 
                 />
                 {errors.numero_documento_instructor_lider && (
                   <span className="invalid-feedback">
@@ -661,6 +691,7 @@ const Insert_aprendiz = () => {
                   } form-control`}
                   id="nombre_instructor_lider"
                   value={formData.nombre_instructor_lider || ""}
+                  disabled={fichaExistente} 
                 />
                 {errors.nombre_instructor_lider && (
                   <span className="invalid-feedback">
@@ -683,6 +714,7 @@ const Insert_aprendiz = () => {
                   } form-control`}
                   id="email_instructor"
                   value={formData.email_instructor || ""}
+                  disabled={fichaExistente} 
                 />
                 {errors.email_instructor && (
                   <span className="invalid-feedback">

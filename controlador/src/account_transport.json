@@ -1,0 +1,10 @@
+{
+    "service": "gmail",
+    "auth": {
+      "type": "OAuth2",
+      "user": "stivenrozo1@gmail.com",
+      "clientId": "834482506453-h7v9clhphglre415i2bqmdvr1vikjhmi.apps.googleusercontent.com",
+      "clientSecret": "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",
+      "refreshToken": "1//04HfgbJEXoR0mCgYIARAAGAQSNwF-L9IrQV-icgCf-R49tqHmadIWBvG9tHCirAdmx4aNebMdRe3EplkE3UtjTG67K2OLWSdqLE8"
+    }
+  }

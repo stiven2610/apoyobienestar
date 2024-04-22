@@ -9,7 +9,7 @@ const Get_ficha = async (req, res) => {
         if (rows.length === 0) {
             return res.status(404).json({ success: false, message: 'La ficha no existe' });
         }
-        res.json({ success: true, data: rows[0] }); 
+        res.json({ success: true, data: rows }); 
     } catch (error) {
         console.error("Error en la consulta:", error);
         res.status(500).json({ success: false, message: 'Error en la consulta' });
