@@ -43,6 +43,7 @@ SELECT a.numero_documento_aprendiz,g.nombre_motivo_suspension, a.fecha_inicio_su
 select *from beneficio;
 select * from usuario;
 select * FROM aprendiz_suspendido;
+select fun_ins_apr_sus(1094778782,13,111111,2619701);
 select * FROM aprendiz;
 select * from estado_aprendiz;
 select * from modalidad;

@@ -39,16 +39,13 @@ BEGIN
         insercion_exitosa := true;
 
         IF p_id_motivo_suspension != 1 AND p_id_motivo_suspension != 2 THEN
-            -- Insertar el registro de cancelación del aprendiz solo si la suspensión fue exitosa y el motivo no es válido
             INSERT INTO aprendiz_cancelado (
                 numero_documento_aprendiz,
-                codigo_ficha,
                 id_motivo_suspension,
                 fecha_cancelacion,
                 numero_resolucion
             ) VALUES (
                 p_numero_documento_aprendiz,
-                p_codigo_ficha,
                 p_id_motivo_suspension,
                 fecha_actual,
                 p_numero_resolucion

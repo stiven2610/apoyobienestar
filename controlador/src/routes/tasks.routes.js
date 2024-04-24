@@ -34,6 +34,7 @@ const {
 const { get_motivos_suspension } = require("../controllers/motivos_suspension.controller.js");
 const { get_suspendidos } = require("../controllers/suspendidos.controller.js");
 const { Get_ficha } = require("../controllers/ficha.controllers.js");
+const Contactanos = require("../controllers/contactanos.controller.js");
 //rutas para CRUD de usuario...
 router.get("/get_documentos", Get_documentos);
 router.get("/get_ficha/:codigo_ficha",Get_ficha)
@@ -47,6 +48,7 @@ router.delete("/usuario/:id", deleteUsuario);
 router.put("/usuario/:id", updateUsuario);
 //rutas para inicio de sesión...
 router.post("/login", validarUsuario);
+router.post("/contactanos", Contactanos)
 //ruta para creacion de beneficio
 router.get("/get_beneficios", get_beneficios);
 router.post("/beneficio", extraerDatosExcel);

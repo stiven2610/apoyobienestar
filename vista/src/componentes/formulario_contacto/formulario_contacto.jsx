@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Boton from "../botones/Boton";
 import "./styles.css";
+import { useNavigate } from "react-router-dom";
 
 const Formulario_contacto = () => {
   const formulario_inicial = {
@@ -12,7 +13,8 @@ const Formulario_contacto = () => {
 
   const [formulario, setFormulario] = useState(formulario_inicial);
   const [errors, setErrors] = useState({});
-
+  const  navigate = useNavigate();
+console.log(formulario)
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormulario((prevFormulario) => ({
@@ -45,9 +47,26 @@ const Formulario_contacto = () => {
       [name]: errorMessage,
     }));
   };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    try {
+      const res = await fetch("http://localhost:4000/contactanos", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formulario),
+      });
+      if (!res.ok) {
+        throw new Error("Error al enviar el formulario");
+      } else {
+        alert("Correo enviado pronto tendra respuesta por parte del equipo de bienestar");
+        navigate("/");
+      }
+    } catch (error) {
+      console.log("Error:", error);
+    }
   };
 
   return (

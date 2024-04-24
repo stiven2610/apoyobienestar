@@ -36,7 +36,6 @@ const Suspendidos = () =>{
                     <th>Código de Ficha</th>
                     <th>Tipo de Documento</th>
                     <th>Número de Documento</th>
-                    <th>Número de Resolución</th>
                     <th>Motivo de suspensión</th>
                     <th>Fecha de inicio de suspensión</th>
                     <th>Fecha limite de suspensión</th>
@@ -54,7 +53,6 @@ const Suspendidos = () =>{
                         <td>{item.codigo_ficha}</td>
                         <td>{item.nombre_documento}</td>
                         <td>{item.numero_documento_aprendiz}</td>
-                        <td>{item.numero_resolucion}</td>
                         <td>{item.nombre_motivo_suspension}</td>
                         <td> {new Date(item.fecha_inicio_suspension).toLocaleDateString(
                         "es-ES",

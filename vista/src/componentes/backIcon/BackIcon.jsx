@@ -7,7 +7,7 @@ const BackIcon = () => {
   const navigate = useNavigate();
 
   const handleGoBack = () => {
-    navigate(-1); // Navega hacia atrás en la historia
+    navigate("/adjudicados"); // Navega hacia atrás en la historia
   };
 
   return (
