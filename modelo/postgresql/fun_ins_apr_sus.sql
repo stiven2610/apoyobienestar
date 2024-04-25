@@ -23,7 +23,8 @@ BEGIN
         SELECT 1 FROM aprendiz_suspendido WHERE numero_documento_aprendiz = p_numero_documento_aprendiz
     ) INTO aprendiz_suspendido;
 
-    IF aprendiz_existe AND NOT aprendiz_suspendido THEN
+    IF aprendiz_existe AND NOT aprendiz_suspendido AND  THEN
+	IF  p_id_motivo_suspension = 1 OR p_id_motivo_suspension = 2 THEN
         -- Insertar el registro de suspensión del aprendiz
         INSERT INTO aprendiz_suspendido (
             numero_documento_aprendiz,
@@ -37,7 +38,7 @@ BEGIN
             fecha_fin
         );
         insercion_exitosa := true;
-
+		END IF;
         IF p_id_motivo_suspension != 1 AND p_id_motivo_suspension != 2 THEN
             INSERT INTO aprendiz_cancelado (
                 numero_documento_aprendiz,
@@ -50,6 +51,7 @@ BEGIN
                 fecha_actual,
                 p_numero_resolucion
             );
+        insercion_exitosa := true;
         END IF; 
     ELSE
         insercion_exitosa := false;
@@ -61,5 +63,7 @@ $$
 LANGUAGE plpgsql;
 
 
-SELECT * FROM fun_ins_apr_sus(1094778783, 5, 1, 2619701);
+SELECT * FROM fun_ins_apr_sus(1094778783, 13, 1, 2619701);
 SELECT * FROM aprendiz_suspendido;
+SELECT * FROM aprendiz_cancelado;
+
